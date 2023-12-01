@@ -34,12 +34,12 @@ export interface Iconography {
 
 export interface Mushroom {
   id?: number; 
-  taxonomy: Taxonomy 
-  morphology: Morphology 
-  features: Features
-  microscopicFeatures: MicroscopicFeatures 
-  iconography: Iconography[]
-  message: string | null | undefined
+  taxonomy?: Taxonomy 
+  morphology?: Morphology 
+  features?: Features
+  microscopicFeatures?: MicroscopicFeatures 
+  iconography?: Iconography[] |null
+  message?: string | null 
   // constructor(){
   //   this.taxonomy = {},
   //   this.morphology = {},
@@ -49,6 +49,7 @@ export interface Mushroom {
   //   this.message = ''
   // }
 }
+//const fungo = new Mushroom()
 
 // export interface Mushroom {
 //   id?: number | null,

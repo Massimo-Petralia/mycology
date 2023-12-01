@@ -1,7 +1,7 @@
 <mat-sidenav-container>
   <mat-sidenav-content>
     <a *ngFor="let mushroom of mushrooms$|async" (click)="onMushroom(mushroom.id)">
-      {{ mushroom.taxonomy.species }}
+      {{ mushroom.taxonomy!.species }}
     </a>
     <button  (click)="toNewMushroom()" >Create new mushroom</button>
   </mat-sidenav-content>

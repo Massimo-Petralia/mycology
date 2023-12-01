@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError } from 'rxjs';
 import { Mushroom } from '../models/mushroom.models';
-import { error } from 'console';
 
 const mushroomsDataURL = 'http://localhost:3000/mushrooms'
 
@@ -22,7 +21,7 @@ export class DataService {
     )
   }
 
-  getMushroom(mushroomId: string): Observable<Mushroom> {
+  getMushroom(mushroomId: number): Observable<Mushroom> {
     return this.http.get<Mushroom>(`${mushroomsDataURL}/${mushroomId}`).pipe(
       catchError((error)=> {
         console.error('get request failed: ', error);

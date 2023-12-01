@@ -24,7 +24,7 @@ import { Router } from '@angular/router';
   styleUrl: './mycology-mushroom-item.component.scss',
 })
 export class MycologyMushroomItemComponent implements OnDestroy {
-  @Input() set id(mushroomId: string) {
+  @Input() set id(mushroomId: number) {
     this.subs = this.dataService
       .getMushroom(mushroomId)
       .subscribe((mushroom) => {
@@ -32,15 +32,9 @@ export class MycologyMushroomItemComponent implements OnDestroy {
       });
   }
   subs = new Subscription();
+  //mushroom = new Mushroom()
 
-  mushroom: Mushroom = {
-    taxonomy: {},
-    morphology: {},
-    features: {},
-    microscopicFeatures: {},
-    iconography: [],
-    message: '',
-  };
+  mushroom!: Mushroom
 
   constructor(
     private dataService: DataService,

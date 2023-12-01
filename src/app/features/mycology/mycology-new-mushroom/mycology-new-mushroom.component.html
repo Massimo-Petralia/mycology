@@ -1,8 +1,9 @@
 <h2>Add Mushroom</h2>
-<button (click)="onCreate()">Save mushroom</button>
 <h3>Define Taxonomy</h3>
 <div class="flex-container">
-  <form [formGroup]="formTaxsonomy" class="flex-taxonomy">
+  <form [formGroup]="mushroomForm" (submit)="onCreate()">
+    <button type="submit" [disabled]="!mushroomForm.valid">Save mushroom</button>
+  <div formGroupName="taxonomy" class="flex-taxonomy" >
     <mat-form-field>
       <mat-label>Species: </mat-label>
       <input type="text" matInput formControlName="species"/>
@@ -27,10 +28,11 @@
       <mat-label>Synonymous: </mat-label>
       <input type="text" matInput formControlName="synonymous"/>
     </mat-form-field>
-  </form>
+
+  </div>
 
   <h3>Define Morphology</h3>
-  <form [formGroup]="formMorphology" class="flex-morphology">
+  <form formGroupName="morphology" class="flex-morphology">
     <mat-form-field>
       <mat-label>Cap: </mat-label>
       <textarea matInput formControlName="cap"></textarea>
@@ -50,7 +52,7 @@
   </form>
 
   <h3>Define Features</h3>
-  <form [formGroup]="formFeatures" class="flex-features">
+  <form formGroupName="features" class="flex-features">
     <mat-form-field>
       <mat-label>Habitat: </mat-label>
       <textarea matInput formControlName="habitat"></textarea>
@@ -66,7 +68,7 @@
   </form>
 
   <h3>Define Microscopic features</h3>
-  <form [formGroup]="formMicroscopicFeatures" class="flex-micro-features">
+  <form formGroupName="microscopicFeatures" class="flex-micro-features">
     <mat-form-field>
       <mat-label>Spores: </mat-label>
       <textarea matInput formControlName="spores"></textarea>
@@ -80,4 +82,5 @@
       <textarea matInput formControlName="cystidia"></textarea>
     </mat-form-field>
   </form>
+</form>
 </div>
