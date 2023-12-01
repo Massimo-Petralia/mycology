@@ -75,34 +75,6 @@ export class MycologyMushroomItemComponent implements OnDestroy {
     private router: Router
   ) {}
 
-  // formTaxsonomy = this.formBuilder.group({
-  //   AA: this.formBuilder.control<string>(''),
-  //   species: this.formBuilder.control<string>(''),
-  //   gender: this.formBuilder.control<string>(''),
-  //   family: this.formBuilder.control<string>(''),
-  //   order: this.formBuilder.control<string>(''),
-  //   synonymous: this.formBuilder.control<string>(''),
-  // });
-
-  // formMorphology = this.formBuilder.group({
-  //   cap: this.formBuilder.control<string>(''),
-  //   gills: this.formBuilder.control<string>(''),
-  //   stalk: this.formBuilder.control<string>(''),
-  //   flesh: this.formBuilder.control<string>(''),
-  // });
-
-  // formFeatures = this.formBuilder.group({
-  //   habitat: this.formBuilder.control<string>(''),
-  //   edibility: this.formBuilder.control<string>(''),
-  //   note: this.formBuilder.control<string>(''),
-  // });
-
-  // formMicroscopicFeatures = this.formBuilder.group({
-  //   spores: this.formBuilder.control<string>(''),
-  //   pileipellis: this.formBuilder.control<string>(''),
-  //   cystidia: this.formBuilder.control<string>(''),
-  // });
-
   mushroomForm: FormGroup = this.formBuilder.group({
     id: null,
     taxonomy: this.formBuilder.group({
@@ -137,24 +109,8 @@ export class MycologyMushroomItemComponent implements OnDestroy {
 
   onSave() {
     this.store.dispatch(
-      MushroomsActions.updateMushroom(
-        this.mushroomForm.value
-        //   {
-        //   id: this.mushroom.id,
-        //   taxonomy: this.formTaxsonomy.value,
-        //   morphology: this.formMorphology.value,
-        //   features: this.formFeatures.value,
-        //   microscopicFeatures: this.formMicroscopicFeatures.value,
-        //   iconography: [],
-        //   message: '',
-        // }
-      )
+      MushroomsActions.updateMushroom(this.mushroomForm.value)
     );
-    // const fungo : Mushroom = this.mushroom
-    // const pippo = {...fungo, taxonomy: {...fungo.taxonomy, species: 'giggi'}}
-    // //pippo.taxonomy = {species: 'giggi'}
-
-    // debugger
   }
 
   onDelete() {
