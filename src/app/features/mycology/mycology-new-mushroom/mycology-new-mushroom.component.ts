@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { MycologyState } from '../../models/mycology-state.models';
 import * as MushroomsActions from '../../mycology-state/mycology.actions';
 import { Router } from '@angular/router';
+import { Iconography } from '../../models/mushroom.models';
 
 @Component({
   selector: 'app-mycology-new-mushroom',
@@ -27,7 +28,7 @@ export class MycologyNewMushroomComponent {
     private router: Router
   ) {}
 
-  mushroomForm = this.formBuilder.group({
+  mushroomForm: FormGroup = this.formBuilder.group({
     taxonomy: this.formBuilder.group({
       AA: this.formBuilder.control<string>(''),
       species: this.formBuilder.control<string>('', Validators.required),
@@ -53,7 +54,8 @@ export class MycologyNewMushroomComponent {
       pileipellis: this.formBuilder.control<string>(''),
       cystidia: this.formBuilder.control<string>(''),
     }),
-    iconography: [],
+    iconography: this.formBuilder.control<Iconography[]>([]) ,
+
     message: '',
   });
 
