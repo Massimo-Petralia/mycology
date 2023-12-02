@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Iconography, Mushroom } from '../../models/mushroom.models';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {
@@ -35,53 +35,26 @@ import { Router } from '@angular/router';
   styleUrl: './mycology-mushroom-item.component.scss',
 })
 export class MycologyMushroomItemComponent implements OnChanges, OnDestroy {
-  mushroomID!: number;
-
   @Input() set id(mushroomId: number) {
     this.mushroomID = mushroomId;
     console.log('id value: ', mushroomId);
-  };
-  
+  }
+  mushroomID!: number;
+  mushroom!: Mushroom | null;
+
   subs = new Subscription();
 
   ngOnChanges(changes: SimpleChanges): void {
     const { id } = changes;
     if (id) {
-      this.dataService.getMushroom(this.mushroomID).subscribe((mushroom) => {
-        this.mushroom = mushroom;
-        this.mushroomForm.patchValue(this.mushroom);
-      });
+      this.subs = this.dataService
+        .getMushroom(this.mushroomID)
+        .subscribe((mushroom: Mushroom) => {
+          this.mushroom = mushroom;
+          this.mushroomForm.patchValue(this.mushroom);
+        });
     }
   }
-
-  mushroom: Mushroom = {
-    taxonomy: {
-      AA: null,
-      species: null,
-      gender: null,
-      family: null,
-      order: null,
-      synonymous: null,
-    },
-    morphology: {
-      cap: null,
-      gills: null,
-      stalk: null,
-      flesh: null,
-    },
-    features: {
-      habitat: null,
-      edibility: null,
-      note: null,
-    },
-    microscopicFeatures: {
-      spores: null,
-      pileipellis: null,
-      cystidia: null,
-    },
-    iconography: [],
-    message: '',
-  };
 
   constructor(
     private dataService: DataService,
@@ -130,7 +103,7 @@ export class MycologyMushroomItemComponent implements OnChanges, OnDestroy {
 
   onDelete() {
     this.store.dispatch(
-      MushroomsActions.deleteMushroom({ id: Number(this.mushroom.id) })
+      MushroomsActions.deleteMushroom({ id: Number(this.mushroom?.id) })
     );
     this.router.navigate(['']);
   }

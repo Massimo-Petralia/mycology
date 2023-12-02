@@ -33,14 +33,13 @@ export interface Iconography {
 }
 
 export interface Mushroom {
-  id?: number; 
-  taxonomy: Taxonomy 
-  morphology: Morphology 
-  features: Features
-  microscopicFeatures: MicroscopicFeatures 
-  iconography: Iconography[] 
-  message: string | null 
-
+  id?: number;
+  taxonomy: Taxonomy;
+  morphology: Morphology;
+  features: Features;
+  microscopicFeatures: MicroscopicFeatures;
+  iconography: Iconography[];
+  message: string | null;
 }
 
 
