@@ -18,13 +18,13 @@
       },
       "features": {
         "habitat": "cresce gregaria, spesso in numerosi esemplari, nei boschi di latifoglie e di conifere di montagna, in estate-autunno. Molto comune e diffusa.",
-        "edibility": "tossico",
+        "edibility": "tossico\nmolto tossico",
         "note": "Amanita muscaria è senza dubbio il fungo più bello e più conosciuto. A livello specifco non esiste nessun problema di determinazione. Qualche diffcoltà potrebbe nascere se si vogliono distinguere le sue numerose forme o varietà esistenti in letteratura. Tra queste, citiamo: la var. aureola con il cappello giallo-arancio e con poche verruche, quasi glabro; la var. formosa con le verruche sul cappello e alla base del gambo di un bel giallo-oro. Amanita regalis (= A. muscaria var. regalis) ha il cappello più scuro, di colore rosso-fegato e con verruche grigiastre."
       },
       "microscopicFeatures": {
         "spores": "bianche in massa, ellissoidali, lisce,9-11, 5 × 6, 5-9 µm, non amiloidi.",
         "pileipellis": "",
-        "cystidia": ""
+        "cystidia": "da ispezionare"
       },
       "iconography": [
         {
@@ -33,35 +33,9 @@
           "message": ""
         }
       ],
-      "message": ""
-    },
-    {
-      "id": 6,
-      "taxonomy": {
-        "AA": "Max",
-        "species": "fungo sconosciuto",
-        "gender": "",
-        "family": "",
-        "order": "",
-        "synonymous": ""
-      },
-      "morphology": {
-        "cap": "",
-        "gills": "",
-        "stalk": "",
-        "flesh": ""
-      },
-      "features": {
-        "habitat": "",
-        "edibility": "",
-        "note": ""
-      },
-      "microscopicFeatures": {
-        "spores": "",
-        "pileipellis": "",
-        "cystidia": ""
-      },
-      "iconography": [],
+      "formArray": [
+        ""
+      ],
       "message": "",
       "type": "[Mushroom Item component] Update Mushroom Request"
     },
@@ -154,36 +128,6 @@
       "message": "",
       "type": "[New Mushroom component] Create Mushroom Request",
       "id": 18
-    },
-    {
-      "taxonomy": {
-        "AA": "",
-        "species": "strange new species",
-        "gender": "",
-        "family": "",
-        "order": "",
-        "synonymous": ""
-      },
-      "morphology": {
-        "cap": "",
-        "gills": "",
-        "stalk": "",
-        "flesh": ""
-      },
-      "features": {
-        "habitat": "",
-        "edibility": "",
-        "note": ""
-      },
-      "microscopicFeatures": {
-        "spores": "",
-        "pileipellis": "",
-        "cystidia": ""
-      },
-      "iconography": [],
-      "message": "",
-      "type": "[New Mushroom component] Create Mushroom Request",
-      "id": 19
     },
     {
       "taxonomy": {

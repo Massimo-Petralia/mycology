@@ -1,9 +1,9 @@
 <h2>{{ mushroom?.taxonomy?.species }}</h2>
 <h3>Taxonomy</h3>
 <div class="flex-container">
-  <form [formGroup]="mushroomForm" (submit)=" onSave()" (submit)="onDelete()">
-    <button type="submit" >Save</button>
-    <button type="submit">Delete</button>
+  <form [formGroup]="mushroomForm">
+    <button type="button" (click)="onSave()" >Save</button>
+    <button type="button" (click)="onDelete()">Delete</button>
   <div formGroupName="taxonomy" class="flex-taxonomy" >
     <mat-form-field>
       <mat-label>Species: </mat-label>
@@ -31,7 +31,7 @@
     </mat-form-field>
 
   </div>
-
+  <form >
   <h3>Morphology</h3>
   <div formGroupName="morphology" class="flex-morphology">
     <mat-form-field>
@@ -51,7 +51,7 @@
       <textarea matInput formControlName="flesh"></textarea>
     </mat-form-field>
   </div>
-
+</form>
   <h3>Features</h3>
   <div formGroupName="features" class="flex-features">
     <mat-form-field>
@@ -83,7 +83,39 @@
       <textarea matInput formControlName="cystidia"></textarea>
     </mat-form-field>
   </div>
+
+  <h3>Iconography: </h3>
+  
+    <mat-label>Iconography:</mat-label>
+    <input type="file">
+ 
+
+  <!-- <div formArrayName="formArray">
+    <h2>immagini</h2>
+    <button type="button" (click)="addImmagine()">add another immage</button>
+    <div *ngFor="let immagine of immagini.controls; let i = index">
+      <mat-label>immagine {{i}}</mat-label>
+      <input id="immagine {{i}}" type="text" [formControlName]="i">
+    
+    </div>
+    </div> -->
+
 </form>
+
+<!-- <form [formGroup]="colorGroup">
+  <h2>COLORI</h2>
+  <button (click)="addColor()">add new color control</button>
+  <div formArrayName="colori">
+    <div *ngFor="let color of colori.controls; index as i">
+      <mat-label for="color">Color: </mat-label>
+      <input type="text" [formArrayName]="i">
+    </div>
+  </div>
+  
+</form> -->
+
+
+
 </div>
 
 

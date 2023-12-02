@@ -15,6 +15,7 @@ import {
   FormBuilder,
   Validators,
   FormGroup,
+  FormArray
 } from '@angular/forms';
 import { DataService } from '../../services/data.service';
 import { Store } from '@ngrx/store';
@@ -91,9 +92,39 @@ export class MycologyMushroomItemComponent implements OnChanges, OnDestroy {
       cystidia: this.formBuilder.control<string>(''),
     }),
     iconography: this.formBuilder.control<Iconography[]>([]),
+
+    // formArray : this.formBuilder.array([
+    //   this.formBuilder.control('')
+    // ]),
+  
     message: '',
     type: null,
   });
+  // get immagini() {
+  //   return this.mushroomForm.get('formArray') as FormArray
+  // }
+
+
+// addImmagine() {
+//    this.immagini.push(this.formBuilder.control(''))
+//   }
+
+
+// colorGroup = this.formBuilder.group({
+//   colori: this.formBuilder.array([
+//     this.formBuilder.control('')
+//   ])
+// })
+
+// get colori() {
+//   return this.colorGroup.get('colori') as FormArray
+// }
+
+// addColor() {
+//   this.colori.push(this.formBuilder.control(''))
+
+// }
+
 
   onSave() {
     this.store.dispatch(
