@@ -1,7 +1,13 @@
-import { Component, OnDestroy, Input } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  OnDestroy,
+  Input,
+  SimpleChanges,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Iconography, Mushroom } from '../../models/mushroom.models';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {
@@ -28,16 +34,25 @@ import { Router } from '@angular/router';
   templateUrl: './mycology-mushroom-item.component.html',
   styleUrl: './mycology-mushroom-item.component.scss',
 })
-export class MycologyMushroomItemComponent implements OnDestroy {
+export class MycologyMushroomItemComponent implements OnChanges, OnDestroy {
+  mushroomID!: number;
+
   @Input() set id(mushroomId: number) {
-    this.subs = this.dataService
-      .getMushroom(mushroomId)
-      .subscribe((mushroom) => {
-        this.mushroom = mushroom;
-        this.mushroomForm.patchValue(mushroom);
-      });
-  }
+    this.mushroomID = mushroomId;
+    console.log('id value: ', mushroomId);
+  };
+  
   subs = new Subscription();
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const { id } = changes;
+    if (id) {
+      this.dataService.getMushroom(this.mushroomID).subscribe((mushroom) => {
+        this.mushroom = mushroom;
+        this.mushroomForm.patchValue(this.mushroom);
+      });
+    }
+  }
 
   mushroom: Mushroom = {
     taxonomy: {

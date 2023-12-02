@@ -4,7 +4,7 @@
   <form [formGroup]="mushroomForm" (submit)=" onSave()" (submit)="onDelete()">
     <button type="submit" >Save</button>
     <button type="submit">Delete</button>
-  <div formGroupName="taxonomy" class="flex-taxonomy" >
+  <form formGroupName="taxonomy" class="flex-taxonomy" >
     <mat-form-field>
       <mat-label>Species: </mat-label>
       <input type="text" matInput formControlName="species"/>
@@ -30,7 +30,7 @@
       <input type="text" matInput formControlName="synonymous"/>
     </mat-form-field>
 
-  </div>
+  </form>
 
   <h3>Morphology</h3>
   <form formGroupName="morphology" class="flex-morphology">
