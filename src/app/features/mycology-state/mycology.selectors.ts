@@ -7,3 +7,13 @@ export const selectMushrooms = createSelector(
     selectFeature,
     ({mushrooms}) => mushrooms
 )
+
+export const selectXtotalcount = createSelector(
+    selectFeature,
+    ({xtotalcount}) => xtotalcount
+)
+
+export const selectPageIndex = createSelector(
+    selectFeature,
+    ({pageIndex}) => pageIndex
+)

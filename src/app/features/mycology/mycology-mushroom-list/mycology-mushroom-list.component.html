@@ -1,8 +1,14 @@
+{{xtotalcount}}
 <mat-sidenav-container>
   <mat-sidenav-content>
     <a *ngFor="let mushroom of mushrooms$|async" (click)="onMushroom(mushroom.id)">
       {{ mushroom.taxonomy!.species }}
     </a>
+    <mat-paginator
+    [pageIndex]="pageIndex$! |async"
+    [length]="xtotalcount$! |async"
+    [pageSize]="10"
+    ></mat-paginator>
     <button  (click)="toNewMushroom()">Define mushroom</button>
   </mat-sidenav-content>
 </mat-sidenav-container>

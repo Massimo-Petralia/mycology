@@ -1,13 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+  FormGroup,
+} from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { MycologyState } from '../../models/mycology-state.models';
 import * as MushroomsActions from '../../mycology-state/mycology.actions';
 import { Router } from '@angular/router';
 import { Iconography } from '../../models/mushroom.models';
+import { HttpClient } from '@angular/common/http';
+import { selectPageIndex, selectXtotalcount } from '../../mycology-state/mycology.selectors'; 
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-mycology-new-mushroom',
@@ -21,12 +29,24 @@ import { Iconography } from '../../models/mushroom.models';
   templateUrl: './mycology-new-mushroom.component.html',
   styleUrl: './mycology-new-mushroom.component.scss',
 })
-export class MycologyNewMushroomComponent {
+export class MycologyNewMushroomComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private store: Store<MycologyState>,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {}
+
+  pageIndex$ = this.store.select(selectPageIndex);
+  xtotalcount$ = this.store.select(selectXtotalcount) ;
+  subs = new Subscription()
+  
+  xtotalcount!: number //counter dovrebbe essere assegnato al pezzo di stato xtotalcount tramite un selettore
+ngOnInit(): void {
+  this.subs = this.xtotalcount$.subscribe((xtotal)=> {
+    this.xtotalcount = xtotal
+  })
+}
 
   mushroomForm: FormGroup = this.formBuilder.group({
     taxonomy: this.formBuilder.group({
@@ -54,15 +74,16 @@ export class MycologyNewMushroomComponent {
       pileipellis: this.formBuilder.control<string>(''),
       cystidia: this.formBuilder.control<string>(''),
     }),
-    iconography: this.formBuilder.control<Iconography[]>([]) ,
+    iconography: this.formBuilder.control<Iconography[]>([]),
 
     message: '',
   });
-
   onCreate() {
+   this.xtotalcount = this.xtotalcount+1
     this.store.dispatch(
-      MushroomsActions.createMushroom(this.mushroomForm.value)
+      MushroomsActions.createMushroom({mushroom:this.mushroomForm.value, xtotalcount: this.xtotalcount})
     );
+    debugger
     this.router.navigate(['']);
   }
 }

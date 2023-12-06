@@ -4,6 +4,7 @@ import { DataService } from '../services/data.service';
 import * as MushroomsActions from './mycology.actions';
 import { map, exhaustMap, catchError, of } from 'rxjs';
 import { Mushroom } from '../models/mushroom.models';
+import { response } from 'express';
 
 @Injectable()
 export class LoadMushroomsEffects {
@@ -12,10 +13,14 @@ export class LoadMushroomsEffects {
   loadMoshrooms$ = createEffect(() =>
     this.actions$.pipe(
       ofType(MushroomsActions.loadMushrooms),
-      exhaustMap(() =>
-        this.dataService.getMushrooms().pipe(
-          map((mushrooms: Mushroom[]) =>
-            MushroomsActions.loadMushroomsSucces({ mushrooms })
+      exhaustMap((page) =>
+        this.dataService.getMushrooms(page.pageIndex).pipe(
+          map((response) =>
+            MushroomsActions.loadMushroomsSucces({
+              xtotalcount: Number(response.headers.get('X-total-count')),
+              mushrooms: response.body!,
+              pageIndex: page.pageIndex,
+            })
           ),
           catchError((error) =>
             of(MushroomsActions.loadMushroomsFailed({ error }))
@@ -30,20 +35,25 @@ export class LoadMushroomsEffects {
 export class CreateMushroomEffects {
   constructor(private actions$: Actions, private dataService: DataService) {}
 
-  createMushroom$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(MushroomsActions.createMushroom),
-      exhaustMap((mushroom) =>
-        this.dataService.createMushroom(mushroom).pipe(
-          map((mushroom: Mushroom) =>
-            MushroomsActions.createMushroomSucces({ mushroom })
-          ),
-          catchError((error) =>
-            of(MushroomsActions.createMushroomFailed({ error }))
+  createMushroom$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(MushroomsActions.createMushroom),
+        exhaustMap((request) =>
+          this.dataService.createMushroom(request.mushroom).pipe(
+            map((mushromm) =>
+              MushroomsActions.createMushroomSucces({
+                mushroom: mushromm,
+                xtotalcount: request.xtotalcount,
+              })
+            ),
+
+            catchError((error) =>
+              of(MushroomsActions.createMushroomFailed({ error }))
+            )
           )
         )
-      )
-    )
+      ),
   );
 }
 
@@ -89,3 +99,10 @@ export class deleteMushroomEffects {
     )
   );
 }
+
+// this.dataService.getXtotalcount().pipe(
+//   exhaustMap( (response) => MushroomsActions.sendDati({
+//     xtotalcount:  Number(response.headers.get('X-total-count'))
+//   })
+//   )
+//   )
