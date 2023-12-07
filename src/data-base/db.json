@@ -33,37 +33,9 @@
           "message": ""
         }
       ],
-      "formArray": [""],
-      "message": "",
-      "type": "[Mushroom Item component] Update Mushroom Request"
-    },
-    {
-      "id": 16,
-      "taxonomy": {
-        "AA": "",
-        "species": "fill",
-        "gender": "",
-        "family": "",
-        "order": "",
-        "synonymous": ""
-      },
-      "morphology": {
-        "cap": "",
-        "gills": "",
-        "stalk": "con anello",
-        "flesh": ""
-      },
-      "features": {
-        "habitat": "",
-        "edibility": "",
-        "note": ""
-      },
-      "microscopicFeatures": {
-        "spores": "",
-        "pileipellis": "",
-        "cystidia": ""
-      },
-      "iconography": [],
+      "formArray": [
+        ""
+      ],
       "message": "",
       "type": "[Mushroom Item component] Update Mushroom Request"
     },
@@ -126,66 +98,6 @@
       "message": "",
       "type": "[New Mushroom component] Create Mushroom Request",
       "id": 20
-    },
-    {
-      "taxonomy": {
-        "AA": "",
-        "species": "fill",
-        "gender": "",
-        "family": "",
-        "order": "",
-        "synonymous": ""
-      },
-      "morphology": {
-        "cap": "",
-        "gills": "",
-        "stalk": "",
-        "flesh": ""
-      },
-      "features": {
-        "habitat": "",
-        "edibility": "",
-        "note": ""
-      },
-      "microscopicFeatures": {
-        "spores": "",
-        "pileipellis": "",
-        "cystidia": ""
-      },
-      "iconography": [],
-      "message": "",
-      "type": "[New Mushroom component] Create Mushroom Request",
-      "id": 21
-    },
-    {
-      "taxonomy": {
-        "AA": "",
-        "species": "fungo6",
-        "gender": "",
-        "family": "",
-        "order": "",
-        "synonymous": ""
-      },
-      "morphology": {
-        "cap": "",
-        "gills": "",
-        "stalk": "",
-        "flesh": ""
-      },
-      "features": {
-        "habitat": "",
-        "edibility": "",
-        "note": ""
-      },
-      "microscopicFeatures": {
-        "spores": "",
-        "pileipellis": "",
-        "cystidia": ""
-      },
-      "iconography": [],
-      "message": "",
-      "type": "[New Mushroom component] Create Mushroom Request",
-      "id": 23
     },
     {
       "taxonomy": {
@@ -276,36 +188,6 @@
       "message": "",
       "type": "[New Mushroom component] Create Mushroom Request",
       "id": 29
-    },
-    {
-      "taxonomy": {
-        "AA": "",
-        "species": "fungo13",
-        "gender": "",
-        "family": "",
-        "order": "",
-        "synonymous": ""
-      },
-      "morphology": {
-        "cap": "",
-        "gills": "",
-        "stalk": "",
-        "flesh": ""
-      },
-      "features": {
-        "habitat": "",
-        "edibility": "",
-        "note": ""
-      },
-      "microscopicFeatures": {
-        "spores": "",
-        "pileipellis": "",
-        "cystidia": ""
-      },
-      "iconography": [],
-      "message": "",
-      "type": "[New Mushroom component] Create Mushroom Request",
-      "id": 30
     },
     {
       "taxonomy": {
@@ -4559,6 +4441,35 @@
       "iconography": [],
       "message": "",
       "id": 185
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "bombolo",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 186
     }
   ]
 }

@@ -1,4 +1,4 @@
-X total count: {{xtotalcount}}
+
 <mat-sidenav-container>
   <mat-sidenav-content>
     <a *ngFor="let mushroom of mushrooms$|async" (click)="onMushroom(mushroom.id)">
@@ -6,8 +6,9 @@ X total count: {{xtotalcount}}
     </a>
     <div class="paginator">
       <button #prev [disabled]="isPrevDisabled" (click)="onPrevPage()">prev</button>
-      page: {{pageIndex}} page size: {{pageSize}}
+      page: {{pageIndex}} 
       <button #next [disabled]="isNextDisabled" (click)="onNextPage()">next</button>
+      page size: {{pageSize}} | total mushrooms: {{xtotalcount}}
       </div>
     <button  (click)="toNewMushroom()">Define mushroom</button>
   </mat-sidenav-content>
