@@ -5,6 +5,7 @@ X total count: {{xtotalcount}}
       {{ mushroom.taxonomy!.species }}
     </a>
     <mat-paginator
+    (page)="handlePageEvent($event)"
     [pageIndex]="pageIndex$! |async"
     [length]="xtotalcount$! |async"
     [pageSize]="10"

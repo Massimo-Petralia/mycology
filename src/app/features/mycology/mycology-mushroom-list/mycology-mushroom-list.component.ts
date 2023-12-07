@@ -25,14 +25,15 @@ mushrooms$ = this.store.select(selectMushrooms);
 @Input() xtotalcount$ ! : Observable<number>
 pageIndex$ = this.store.select(selectPageIndex)
 
-pageIndex: number = 0
+pageIndex: number = 1
 xtotalcount: number = 0
 subs = new Subscription()
 
 
 handlePageEvent(event: PageEvent) {
   this.pageIndex = event.pageIndex;
-  this.xtotalcount = event.length
+  this.xtotalcount = event.length;
+  this.store.dispatch((MushroomsActions.loadMushrooms({pageIndex: this.pageIndex})))
 }
   ngOnInit(): void {
     this.store.dispatch(MushroomsActions.loadMushrooms({pageIndex: this.pageIndex}));
