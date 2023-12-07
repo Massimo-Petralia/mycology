@@ -13,7 +13,6 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   getMushrooms(pageNumber: number): Observable<HttpResponse<Mushroom[]>> {
-    debugger
     return this.http.get<Mushroom[]>(`${mushroomsDataURL}?_page=${pageNumber}`, 
     {
         observe: 'response',

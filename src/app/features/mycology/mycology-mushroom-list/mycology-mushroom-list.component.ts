@@ -11,11 +11,12 @@ import {
   selectPageIndex,
 } from '../../mycology-state/mycology.selectors';
 import { Observable, Subscription } from 'rxjs';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-mycology-mushroom-list',
   standalone: true,
-  imports: [CommonModule, MatSidenavModule, RouterLink],
+  imports: [CommonModule, MatSidenavModule, RouterLink, MatPaginatorModule],
   templateUrl: './mycology-mushroom-list.component.html',
   styleUrl: './mycology-mushroom-list.component.scss',
 })
@@ -27,38 +28,21 @@ export class MycologyMushroomListComponent implements OnInit, OnDestroy {
   pageIndex$ = this.store.select(selectPageIndex);
 
   totalPages!: number;
-  pageIndex: number = 1;
+  page: number = 1;
   xtotalcount!: number;
   pageSize!: number;
   subs = new Subscription();
 
-  isPrevDisabled!: boolean;
-  isNextDisabled!: boolean;
-
-  onNextPage() {
-    this.pageIndex = this.pageIndex + 1;
-    this.totalPages = Math.ceil(this.xtotalcount / this.pageSize);
-    if (this.pageIndex > 1) this.isPrevDisabled = false;
-    if (this.pageIndex === this.totalPages) this.isNextDisabled = true;
+  handlePagination(pageEvent: PageEvent) {
+    this.page = pageEvent.pageIndex + 1;
     this.store.dispatch(
-      MushroomsActions.loadMushrooms({ pageIndex: this.pageIndex })
-    );
-  }
-  onPrevPage() {
-    this.pageIndex = this.pageIndex - 1;
-    if (this.pageIndex === 1) {
-      this.isPrevDisabled = true;
-      this.isNextDisabled = false;
-    }
-    this.store.dispatch(
-      MushroomsActions.loadMushrooms({ pageIndex: this.pageIndex })
+      MushroomsActions.loadMushrooms({ pageIndex: this.page })
     );
   }
 
   ngOnInit(): void {
-    this.isPrevDisabled = true;
     this.store.dispatch(
-      MushroomsActions.loadMushrooms({ pageIndex: this.pageIndex })
+      MushroomsActions.loadMushrooms({ pageIndex: this.page })
     );
     this.xtotalcount$ = this.store.select(selectXtotalcount);
 

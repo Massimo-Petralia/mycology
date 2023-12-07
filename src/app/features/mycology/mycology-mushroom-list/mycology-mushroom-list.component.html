@@ -4,12 +4,15 @@
     <a *ngFor="let mushroom of mushrooms$|async" (click)="onMushroom(mushroom.id)">
       {{ mushroom.taxonomy!.species }}
     </a>
-    <div class="paginator">
-      <button #prev [disabled]="isPrevDisabled" (click)="onPrevPage()">prev</button>
-      page: {{pageIndex}} 
-      <button #next [disabled]="isNextDisabled" (click)="onNextPage()">next</button>
-      page size: {{pageSize}} | total mushrooms: {{xtotalcount}}
-      </div>
+
+    <mat-paginator #paginator
+    (page)="handlePagination($event)"
+    [length]="xtotalcount"
+    [pageSize]="pageSize"
+    ></mat-paginator>
+
     <button  (click)="toNewMushroom()">Define mushroom</button>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+get number of page {{paginator.getNumberOfPages()}}
