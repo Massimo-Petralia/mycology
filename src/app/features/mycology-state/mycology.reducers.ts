@@ -10,7 +10,7 @@ export const mushroomsReducer = createReducer(
     on(MushroomsActions.updateMushroomSucces, (mycologyState, {mushroom}) => (
       {...mycologyState, mushrooms: [...mycologyState.mushrooms.map((item)=> (item.id !== mushroom.id ? item : mushroom))]} 
     )),
-   on(MushroomsActions.deleteMushroomSucces, (mycologyState, {id})=>({...mycologyState, mushrooms: [...mycologyState.mushrooms.filter((item)=> (item.id !== id)  )]})),
+   on(MushroomsActions.deleteMushroomSucces, (mycologyState, {id, xtotalcount})=>({...mycologyState, mushrooms: [...mycologyState.mushrooms.filter((item)=> (item.id !== id)  )], xtotalcount})),
   
    )
 

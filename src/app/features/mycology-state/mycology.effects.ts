@@ -86,10 +86,10 @@ export class deleteMushroomEffects {
     this.actions$.pipe(
       ofType(MushroomsActions.deleteMushroom),
 
-      exhaustMap((idNumber) =>
-        this.dataService.deleteMushroom(idNumber.id).pipe(
-          map(() => idNumber),
-          map((idNumber) => MushroomsActions.deleteMushroomSucces(idNumber)),
+      exhaustMap((request) =>
+        this.dataService.deleteMushroom(request.id).pipe(
+          map(() => request),
+          map((request) => MushroomsActions.deleteMushroomSucces({id: request.id, xtotalcount: request.xtotalcount })),
 
           catchError((error) =>
             of(MushroomsActions.deleteMushroomFailed({ error }))

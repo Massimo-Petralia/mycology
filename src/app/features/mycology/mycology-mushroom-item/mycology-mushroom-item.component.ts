@@ -1,6 +1,7 @@
 import {
   Component,
   OnChanges,
+  OnInit,
   OnDestroy,
   Input,
   SimpleChanges,
@@ -15,13 +16,13 @@ import {
   FormBuilder,
   Validators,
   FormGroup,
-  FormArray
 } from '@angular/forms';
 import { DataService } from '../../services/data.service';
 import { Store } from '@ngrx/store';
 import { MycologyState } from '../../models/mycology-state.models';
 import * as MushroomsActions from '../../mycology-state/mycology.actions';
 import { Router } from '@angular/router';
+import { selectXtotalcount } from '../../mycology-state/mycology.selectors';
 
 @Component({
   selector: 'app-mycology-mushroom-item',
@@ -35,27 +36,38 @@ import { Router } from '@angular/router';
   templateUrl: './mycology-mushroom-item.component.html',
   styleUrl: './mycology-mushroom-item.component.scss',
 })
-export class MycologyMushroomItemComponent implements OnChanges, OnDestroy {
+export class MycologyMushroomItemComponent implements OnInit, OnChanges, OnDestroy {
   @Input() set id(mushroomId: number) {
     this.mushroomID = mushroomId;
     console.log('id value: ', mushroomId);
   }
   mushroomID!: number;
   mushroom!: Mushroom | null;
-
+  xtotalcount$ = this.store.select(selectXtotalcount)
+  xtotalcount!: number
   subs = new Subscription();
 
   ngOnChanges(changes: SimpleChanges): void {
     const { id } = changes;
     if (id) {
-      this.subs = this.dataService
+      this.subs.add(
+        this.dataService
         .getMushroom(this.mushroomID)
         .subscribe((mushroom: Mushroom) => {
           this.mushroom = mushroom;
           this.mushroomForm.patchValue(this.mushroom);
-        });
+        })
+      )
     }
   }
+
+ngOnInit(): void {
+  this.subs.add(
+    this.xtotalcount$.subscribe((xtotal)=> {
+      this.xtotalcount = xtotal
+    })
+  )
+}
 
   constructor(
     private dataService: DataService,
@@ -133,8 +145,9 @@ export class MycologyMushroomItemComponent implements OnChanges, OnDestroy {
   }
 
   onDelete() {
+    this.xtotalcount = this.xtotalcount-1
     this.store.dispatch(
-      MushroomsActions.deleteMushroom({ id: Number(this.mushroom?.id) })
+      MushroomsActions.deleteMushroom({ id: Number(this.mushroom?.id), xtotalcount: this.xtotalcount })
     );
     this.router.navigate(['']);
   }

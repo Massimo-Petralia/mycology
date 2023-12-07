@@ -48,12 +48,12 @@ export const updateMushroomFailed = createAction(
 
 export const deleteMushroom= createAction(
     '[Mushroom Item Component] Delete Mushroom Request',
-    props<{id: number }>()
+    props<{id: number, xtotalcount: number }>()
 )
 
 export const deleteMushroomSucces = createAction(
     '[Mushroom API] Delete Mushroom Succes',
-    props<{id: number}>()
+    props<{id: number, xtotalcount: number}>()
 )
 
 export const deleteMushroomFailed = createAction(
