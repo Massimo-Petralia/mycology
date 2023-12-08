@@ -2,6 +2,7 @@
 <h3>Define Taxonomy</h3>
 <div class="flex-container">
   <form [formGroup]="mushroomForm" (submit)="onCreate()">
+    <p>NOTE: each new mushroom is added to the last page of the mushrooms list</p>
     <button type="submit" [disabled]="!mushroomForm.valid">Save mushroom</button>
   <div formGroupName="taxonomy" class="flex-taxonomy" >
     <mat-form-field>

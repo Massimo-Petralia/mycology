@@ -16,11 +16,20 @@ import {
   PageEvent,
   MatPaginator,
 } from '@angular/material/paginator';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-mycology-mushroom-list',
   standalone: true,
-  imports: [CommonModule, MatSidenavModule, RouterLink, MatPaginatorModule],
+  imports: [
+    CommonModule,
+    MatSidenavModule,
+    RouterLink,
+    MatPaginatorModule,
+    MatSlideToggleModule,
+    FormsModule,
+  ],
   templateUrl: './mycology-mushroom-list.component.html',
   styleUrl: './mycology-mushroom-list.component.scss',
 })
@@ -30,16 +39,19 @@ export class MycologyMushroomListComponent implements OnInit, OnDestroy {
   @ViewChild('paginator') paginator!: MatPaginator;
 
   mushrooms$ = this.store.select(selectMushrooms);
-  @Input() xtotalcount$!: Observable<number>;
-  pageIndex$ = this.store.select(selectPageIndex);
 
+  @Input() xtotalcount$!: Observable<number>;
+
+  pageIndex$ = this.store.select(selectPageIndex);
   page: number = 1;
   xtotalcount!: number;
+
+  showFirstLastButtons: boolean = true;
+
   subs = new Subscription();
 
   handlePagination(pageEvent: PageEvent) {
     this.page = pageEvent.pageIndex + 1;
-    console.log('page from handlePagination: ', this.page);
     this.store.dispatch(
       MushroomsActions.loadMushrooms({ pageIndex: this.page })
     );
@@ -58,22 +70,19 @@ export class MycologyMushroomListComponent implements OnInit, OnDestroy {
     );
     this.subs.add(
       this.mushrooms$.subscribe((mushrooms) => {
-        console.log("rilevi cambiamento di stato alla creazione dell'undicesimo elemento")
         if (mushrooms.length === 0) {
           this.page = this.page - 1;
           this.store.dispatch(
             MushroomsActions.loadMushrooms({ pageIndex: this.page })
           );
-          if (this.paginator) {
-            this.paginator.pageIndex = this.paginator.pageIndex - 1;
-          }
-        };
-        
+
+          this.paginator!.pageIndex = this.paginator.pageIndex - 1;
+        }
       })
     );
   }
 
-  onMushroom(id: number | undefined) {
+  onMushroom(id: number ) {
     this.router.navigate([{ outlets: { container: ['mushroom', id] } }]);
   }
 
@@ -85,4 +94,3 @@ export class MycologyMushroomListComponent implements OnInit, OnDestroy {
     this.subs.unsubscribe();
   }
 }
-//if const  paginator.getNuBER OpAGES === pageIndex => navigate Next page 

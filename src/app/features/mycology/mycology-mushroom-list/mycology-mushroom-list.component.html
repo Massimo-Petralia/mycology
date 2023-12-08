@@ -1,18 +1,24 @@
-
 <mat-sidenav-container>
   <mat-sidenav-content>
-    <a *ngFor="let mushroom of mushrooms$|async" (click)="onMushroom(mushroom.id)">
+    <a
+      *ngFor="let mushroom of mushrooms$ | async"
+      (click)="onMushroom(mushroom.id!)"
+    >
       {{ mushroom.taxonomy!.species }}
     </a>
 
-    <mat-paginator #paginator
-    (page)="handlePagination($event)"
-    [length]="xtotalcount"
-    [pageSize]= 10
-    ></mat-paginator>
+    <mat-paginator
+      #paginator
+      (page)="handlePagination($event)"
+      [length]="xtotalcount"
+      [pageSize]="10"
+      [showFirstLastButtons]="showFirstLastButtons"
+    >
+    </mat-paginator>
+    <mat-slide-toggle [(ngModel)]="showFirstLastButtons"
+      >show first / last buttons</mat-slide-toggle
+    >
 
-    <button  (click)="toNewMushroom()">Define mushroom</button>
+    <button (click)="toNewMushroom()">Define mushroom</button>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-get number of pages {{paginator.getNumberOfPages()}}
