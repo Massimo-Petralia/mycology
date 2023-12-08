@@ -6,7 +6,10 @@ import *as MushroomsActions from "./mycology.actions"
 export const mushroomsReducer = createReducer(
     initialState,
     on(MushroomsActions.loadMushroomsSucces, (mycologyState, {mushrooms, xtotalcount, pageIndex})=> ({...mycologyState, mushrooms, xtotalcount, pageIndex})),
-    on(MushroomsActions.createMushroomSucces, (mycologyState, {mushroom, xtotalcount})=> ({...mycologyState,  mushroom, xtotalcount})),
+    on(MushroomsActions.createMushroomSucces, (mycologyState, {mushroom, xtotalcount})=> ({...mycologyState, 
+       mushrooms: mycologyState.mushrooms.length < 10 ? [...mycologyState.mushrooms, mushroom] : [...mycologyState.mushrooms]  
+      
+       , xtotalcount})),
     on(MushroomsActions.updateMushroomSucces, (mycologyState, {mushroom}) => (
       {...mycologyState, mushrooms: [...mycologyState.mushrooms.map((item)=> (item.id !== mushroom.id ? item : mushroom))]} 
     )),

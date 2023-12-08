@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterLink, Router } from '@angular/router';
@@ -11,7 +11,11 @@ import {
   selectPageIndex,
 } from '../../mycology-state/mycology.selectors';
 import { Observable, Subscription } from 'rxjs';
-import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import {
+  MatPaginatorModule,
+  PageEvent,
+  MatPaginator,
+} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-mycology-mushroom-list',
@@ -23,18 +27,19 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 export class MycologyMushroomListComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private store: Store<MycologyState>) {}
 
+  @ViewChild('paginator') paginator!: MatPaginator;
+
   mushrooms$ = this.store.select(selectMushrooms);
   @Input() xtotalcount$!: Observable<number>;
   pageIndex$ = this.store.select(selectPageIndex);
 
-  totalPages!: number;
   page: number = 1;
   xtotalcount!: number;
-  pageSize!: number;
   subs = new Subscription();
 
   handlePagination(pageEvent: PageEvent) {
     this.page = pageEvent.pageIndex + 1;
+    console.log('page from handlePagination: ', this.page);
     this.store.dispatch(
       MushroomsActions.loadMushrooms({ pageIndex: this.page })
     );
@@ -49,12 +54,21 @@ export class MycologyMushroomListComponent implements OnInit, OnDestroy {
     this.subs.add(
       this.xtotalcount$.subscribe((xtotal) => {
         this.xtotalcount = xtotal;
-        console.log('x total count: ', this.xtotalcount);
       })
     );
     this.subs.add(
       this.mushrooms$.subscribe((mushrooms) => {
-        this.pageSize = mushrooms.length;
+        console.log("rilevi cambiamento di stato alla creazione dell'undicesimo elemento")
+        if (mushrooms.length === 0) {
+          this.page = this.page - 1;
+          this.store.dispatch(
+            MushroomsActions.loadMushrooms({ pageIndex: this.page })
+          );
+          if (this.paginator) {
+            this.paginator.pageIndex = this.paginator.pageIndex - 1;
+          }
+        };
+        
       })
     );
   }
@@ -71,3 +85,4 @@ export class MycologyMushroomListComponent implements OnInit, OnDestroy {
     this.subs.unsubscribe();
   }
 }
+//if const  paginator.getNuBER OpAGES === pageIndex => navigate Next page 

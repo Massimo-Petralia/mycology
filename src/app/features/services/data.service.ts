@@ -36,7 +36,6 @@ export class DataService {
   }
 
   createMushroom(mushroom: Mushroom){
-    debugger
     return this.http.post<Mushroom>(mushroomsDataURL, mushroom).pipe(
       catchError((error)=>{
         console.error('post request failed', error);

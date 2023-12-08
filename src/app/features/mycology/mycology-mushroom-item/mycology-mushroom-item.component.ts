@@ -39,7 +39,6 @@ import { selectXtotalcount } from '../../mycology-state/mycology.selectors';
 export class MycologyMushroomItemComponent implements OnInit, OnChanges, OnDestroy {
   @Input() set id(mushroomId: number) {
     this.mushroomID = mushroomId;
-    console.log('id value: ', mushroomId);
   }
   mushroomID!: number;
   mushroom!: Mushroom | null;

@@ -79,11 +79,12 @@ ngOnInit(): void {
     message: '',
   });
   onCreate() {
-   this.xtotalcount = this.xtotalcount+1
+   this.xtotalcount = this.xtotalcount+1;
+
     this.store.dispatch(
       MushroomsActions.createMushroom({mushroom:this.mushroomForm.value, xtotalcount: this.xtotalcount})
     );
-    debugger
+
     this.router.navigate(['']);
   }
 }
