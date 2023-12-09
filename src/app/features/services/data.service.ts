@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient ,HttpResponse} from '@angular/common/http';
 import { Observable, catchError } from 'rxjs';
 import { Mushroom } from '../models/mushroom.models';
-import { error } from 'console';
 
 const mushroomsDataURL = 'http://localhost:3000/mushrooms'
 
@@ -13,8 +12,13 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getMushrooms(): Observable<Mushroom[]> {
-    return this.http.get<Mushroom[]>(mushroomsDataURL).pipe(
+  getMushrooms(pageNumber: number): Observable<HttpResponse<Mushroom[]>> {
+    return this.http.get<Mushroom[]>(`${mushroomsDataURL}?_page=${pageNumber}`, 
+    {
+        observe: 'response',
+        transferCache: {includeHeaders: ['X-total-count']}
+      }
+    ).pipe(
       catchError((error)=> {
         console.error('get request failed: ', error);
         throw error
@@ -22,7 +26,7 @@ export class DataService {
     )
   }
 
-  getMushroom(mushroomId: string): Observable<Mushroom> {
+  getMushroom(mushroomId: number): Observable<Mushroom> {
     return this.http.get<Mushroom>(`${mushroomsDataURL}/${mushroomId}`).pipe(
       catchError((error)=> {
         console.error('get request failed: ', error);
@@ -31,7 +35,7 @@ export class DataService {
     )
   }
 
-  createMushroom(mushroom: Mushroom): Observable<Mushroom> {
+  createMushroom(mushroom: Mushroom){
     return this.http.post<Mushroom>(mushroomsDataURL, mushroom).pipe(
       catchError((error)=>{
         console.error('post request failed', error);
@@ -53,6 +57,15 @@ export class DataService {
   return this.http.delete(`${mushroomsDataURL}/${id}`).pipe(
     catchError((error)=> {
       console.error('delete request failed', error);
+      throw error
+    })
+  )
+ }
+
+ getXtotalcount() {
+  return this.http.get(`${mushroomsDataURL}?_page=1`, {observe: 'response', transferCache: {includeHeaders: ['X-total-count']}}).pipe(
+    catchError((error)=> {
+      console.error('xtotalcount request failed', error);
       throw error
     })
   )

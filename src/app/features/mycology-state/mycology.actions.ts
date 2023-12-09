@@ -2,12 +2,13 @@ import { createAction, props } from "@ngrx/store";
 import { Mushroom } from "../models/mushroom.models";
 
 export const loadMushrooms = createAction(
-    '[Mushrooms Page] Load Mushromms Request'
+    '[Mushrooms Page] Load Mushromms Request',
+    props<{pageIndex: number}>()
 )
 
 export const loadMushroomsSucces = createAction(
     '[Mushrooms API] Load Mushrooms Get Request Succes',
-    props<{mushrooms: Mushroom[]}>()
+    props<{xtotalcount: number, mushrooms: Mushroom[], pageIndex: number}>()
 )
 
 export const loadMushroomsFailed = createAction(
@@ -17,12 +18,12 @@ export const loadMushroomsFailed = createAction(
 
 export const createMushroom = createAction(
     '[New Mushroom component] Create Mushroom Request',
-    props<Mushroom>()
+    props<{mushroom:Mushroom, xtotalcount: number}>()
 )
 
 export const createMushroomSucces = createAction(
     '[Mushroom API] Create Mushroom Post Succes',
-    props<{mushroom: Mushroom}>()
+    props<{mushroom: Mushroom, xtotalcount: number}>()
 )
 
 export const createMushroomFailed = createAction(
@@ -47,15 +48,17 @@ export const updateMushroomFailed = createAction(
 
 export const deleteMushroom= createAction(
     '[Mushroom Item Component] Delete Mushroom Request',
-    props<{id: number }>()
+    props<{id: number, xtotalcount: number }>()
 )
 
 export const deleteMushroomSucces = createAction(
     '[Mushroom API] Delete Mushroom Succes',
-    props<{id: number}>()
+    props<{id: number, xtotalcount: number}>()
 )
 
 export const deleteMushroomFailed = createAction(
     '[Mushroom API] Delete Mushroom Failed',
     props<{error: any}>()
 )
+
+

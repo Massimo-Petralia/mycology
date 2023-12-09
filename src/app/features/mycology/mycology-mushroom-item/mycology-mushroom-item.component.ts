@@ -1,15 +1,28 @@
-import { Component, OnDestroy, Input } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  OnInit,
+  OnDestroy,
+  Input,
+  SimpleChanges,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Mushroom } from '../../models/mushroom.models';
+import { Iconography, Mushroom } from '../../models/mushroom.models';
 import { Subscription } from 'rxjs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+  FormGroup,
+} from '@angular/forms';
 import { DataService } from '../../services/data.service';
 import { Store } from '@ngrx/store';
 import { MycologyState } from '../../models/mycology-state.models';
 import * as MushroomsActions from '../../mycology-state/mycology.actions';
 import { Router } from '@angular/router';
+import { selectXtotalcount } from '../../mycology-state/mycology.selectors';
 
 @Component({
   selector: 'app-mycology-mushroom-item',
@@ -23,24 +36,37 @@ import { Router } from '@angular/router';
   templateUrl: './mycology-mushroom-item.component.html',
   styleUrl: './mycology-mushroom-item.component.scss',
 })
-export class MycologyMushroomItemComponent implements OnDestroy {
-  @Input() set id(mushroomId: string) {
-    this.subs = this.dataService
-      .getMushroom(mushroomId)
-      .subscribe((mushroom) => {
-        this.mushroom = mushroom;
-      });
+export class MycologyMushroomItemComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() set id(mushroomId: number) {
+    this.mushroomID = mushroomId;
   }
+  mushroomID!: number;
+  mushroom!: Mushroom | null;
+  xtotalcount$ = this.store.select(selectXtotalcount)
+  xtotalcount!: number
   subs = new Subscription();
 
-  mushroom: Mushroom = {
-    taxonomy: {},
-    morphology: {},
-    features: {},
-    microscopicFeatures: {},
-    iconography: [],
-    message: '',
-  };
+  ngOnChanges(changes: SimpleChanges): void {
+    const { id } = changes;
+    if (id) {
+      this.subs.add(
+        this.dataService
+        .getMushroom(this.mushroomID)
+        .subscribe((mushroom: Mushroom) => {
+          this.mushroom = mushroom;
+          this.mushroomForm.patchValue(this.mushroom);
+        })
+      )
+    }
+  }
+
+ngOnInit(): void {
+  this.subs.add(
+    this.xtotalcount$.subscribe((xtotal)=> {
+      this.xtotalcount = xtotal
+    })
+  )
+}
 
   constructor(
     private dataService: DataService,
@@ -49,56 +75,80 @@ export class MycologyMushroomItemComponent implements OnDestroy {
     private router: Router
   ) {}
 
-  formTaxsonomy = this.formBuilder.group({
-    AA: this.formBuilder.control<string>(''),
-    species: this.formBuilder.control<string>(''),
-    gender: this.formBuilder.control<string>(''),
-    family: this.formBuilder.control<string>(''),
-    order: this.formBuilder.control<string>(''),
-    synonymous: this.formBuilder.control<string>(''),
-  });
+  mushroomForm: FormGroup = this.formBuilder.group({
+    id: null,
+    taxonomy: this.formBuilder.group({
+      AA: this.formBuilder.control<string>(''),
+      species: this.formBuilder.control<string>('', Validators.required),
+      gender: this.formBuilder.control<string>(''),
+      family: this.formBuilder.control<string>(''),
+      order: this.formBuilder.control<string>(''),
+      synonymous: this.formBuilder.control<string>(''),
+    }),
 
-  formMorphology = this.formBuilder.group({
-    cap: this.formBuilder.control<string>(''),
-    gills: this.formBuilder.control<string>(''),
-    stalk: this.formBuilder.control<string>(''),
-    flesh: this.formBuilder.control<string>(''),
-  });
+    morphology: this.formBuilder.group({
+      cap: this.formBuilder.control<string>(''),
+      gills: this.formBuilder.control<string>(''),
+      stalk: this.formBuilder.control<string>(''),
+      flesh: this.formBuilder.control<string>(''),
+    }),
+    features: this.formBuilder.group({
+      habitat: this.formBuilder.control<string>(''),
+      edibility: this.formBuilder.control<string>(''),
+      note: this.formBuilder.control<string>(''),
+    }),
+    microscopicFeatures: this.formBuilder.group({
+      spores: this.formBuilder.control<string>(''),
+      pileipellis: this.formBuilder.control<string>(''),
+      cystidia: this.formBuilder.control<string>(''),
+    }),
+    iconography: this.formBuilder.control<Iconography[]>([]),
 
-  formFeatures = this.formBuilder.group({
-    habitat: this.formBuilder.control<string>(''),
-    edibility: this.formBuilder.control<string>(''),
-    note: this.formBuilder.control<string>(''),
+    // formArray : this.formBuilder.array([
+    //   this.formBuilder.control('')
+    // ]),
+  
+    message: '',
+    type: null,
   });
+  // get immagini() {
+  //   return this.mushroomForm.get('formArray') as FormArray
+  // }
 
-  formMicroscopicFeatures = this.formBuilder.group({
-    spores: this.formBuilder.control<string>(''),
-    pileipellis: this.formBuilder.control<string>(''),
-    cystidia: this.formBuilder.control<string>(''),
-  });
+
+// addImmagine() {
+//    this.immagini.push(this.formBuilder.control(''))
+//   }
+
+
+// colorGroup = this.formBuilder.group({
+//   colori: this.formBuilder.array([
+//     this.formBuilder.control('')
+//   ])
+// })
+
+// get colori() {
+//   return this.colorGroup.get('colori') as FormArray
+// }
+
+// addColor() {
+//   this.colori.push(this.formBuilder.control(''))
+
+// }
+
 
   onSave() {
     this.store.dispatch(
-      MushroomsActions.updateMushroom({
-        id: this.mushroom.id,
-        taxonomy: this.formTaxsonomy.value,
-        morphology: this.formMorphology.value,
-        features: this.formFeatures.value,
-        microscopicFeatures: this.formMicroscopicFeatures.value,
-        iconography: [],
-        message: '',
-      })
+      MushroomsActions.updateMushroom(this.mushroomForm.value)
     );
-    // const fungo : Mushroom = this.mushroom
-    // const pippo = {...fungo, taxonomy: {...fungo.taxonomy, species: 'giggi'}} 
-    // //pippo.taxonomy = {species: 'giggi'}
- 
-    // debugger
   }
 
-  onDelete(){
-    this.store.dispatch(MushroomsActions.deleteMushroom({id:Number(this.mushroom.id)}));
-    this.router.navigate([''])
+  onDelete() {
+    this.xtotalcount = this.xtotalcount-1
+    this.store.dispatch(
+      MushroomsActions.deleteMushroom({ id: Number(this.mushroom?.id), xtotalcount: this.xtotalcount })
+    );
+    this.router.navigate(['']);
   }
 
   ngOnDestroy(): void {

@@ -16,15 +16,15 @@
         "stalk": "10-20 × 1-3,5 cm, eterogeneo con il cappello, cilindrico, leggermente attenua to all’apice, con la base bulbosa arrotondata e concentricamente ricoperta da verruche bianche o bianco-giallognole provenienti dalla dissociazione del velo generale; da glabro a fbrilloso-lanoso, di colore bianco, con anello membranoso molto ampio e sottile.",
         "flesh": "abbastanza spessa, consistente, bianca, spesso un po’ giallo-arancio sotto la cuticola; senza odore e sapore particolari."
       },
-      "feature": {
+      "features": {
         "habitat": "cresce gregaria, spesso in numerosi esemplari, nei boschi di latifoglie e di conifere di montagna, in estate-autunno. Molto comune e diffusa.",
-        "edibility": "tossico",
+        "edibility": "tossico\nmolto tossico",
         "note": "Amanita muscaria è senza dubbio il fungo più bello e più conosciuto. A livello specifco non esiste nessun problema di determinazione. Qualche diffcoltà potrebbe nascere se si vogliono distinguere le sue numerose forme o varietà esistenti in letteratura. Tra queste, citiamo: la var. aureola con il cappello giallo-arancio e con poche verruche, quasi glabro; la var. formosa con le verruche sul cappello e alla base del gambo di un bel giallo-oro. Amanita regalis (= A. muscaria var. regalis) ha il cappello più scuro, di colore rosso-fegato e con verruche grigiastre."
       },
       "microscopicFeatures": {
         "spores": "bianche in massa, ellissoidali, lisce,9-11, 5 × 6, 5-9 µm, non amiloidi.",
         "pileipellis": "",
-        "cystidia": ""
+        "cystidia": "da ispezionare"
       },
       "iconography": [
         {
@@ -33,65 +33,9 @@
           "message": ""
         }
       ],
-      "message": ""
-    },
-    {
-      "id": 6,
-      "taxonomy": {
-        "AA": "Max",
-        "species": "fungo sconosciuto",
-        "gender": "",
-        "family": "",
-        "order": "",
-        "synonymous": ""
-      },
-      "morphology": {
-        "cap": "",
-        "gills": "",
-        "stalk": "",
-        "flesh": ""
-      },
-      "features": {
-        "habitat": "",
-        "edibility": "",
-        "note": ""
-      },
-      "microscopicFeatures": {
-        "spores": "",
-        "pileipellis": "",
-        "cystidia": ""
-      },
-      "iconography": [],
-      "message": "",
-      "type": "[Mushroom Item component] Update Mushroom Request"
-    },
-    {
-      "id": 16,
-      "taxonomy": {
-        "AA": "",
-        "species": "",
-        "gender": "",
-        "family": "",
-        "order": "",
-        "synonymous": ""
-      },
-      "morphology": {
-        "cap": "",
-        "gills": "",
-        "stalk": "con anello",
-        "flesh": ""
-      },
-      "features": {
-        "habitat": "",
-        "edibility": "",
-        "note": ""
-      },
-      "microscopicFeatures": {
-        "spores": "",
-        "pileipellis": "",
-        "cystidia": ""
-      },
-      "iconography": [],
+      "formArray": [
+        ""
+      ],
       "message": "",
       "type": "[Mushroom Item component] Update Mushroom Request"
     },
@@ -128,7 +72,7 @@
     {
       "taxonomy": {
         "AA": "",
-        "species": "bollettus",
+        "species": "fungo7",
         "gender": "",
         "family": "",
         "order": "",
@@ -153,12 +97,12 @@
       "iconography": [],
       "message": "",
       "type": "[New Mushroom component] Create Mushroom Request",
-      "id": 18
+      "id": 24
     },
     {
       "taxonomy": {
         "AA": "",
-        "species": "strange new species",
+        "species": "altro fungo",
         "gender": "",
         "family": "",
         "order": "",
@@ -183,7 +127,1227 @@
       "iconography": [],
       "message": "",
       "type": "[New Mushroom component] Create Mushroom Request",
-      "id": 19
+      "id": 32
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "ennesimo fungo",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "type": "[New Mushroom component] Create Mushroom Request",
+      "id": 33
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "cccc",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "type": "[New Mushroom component] Create Mushroom Request",
+      "id": 35
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "gungox",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 36
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "gungox",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 37
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "gungox",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 38
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "gungox",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 39
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "gungox",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 40
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "gungox",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 41
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "gungox",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 42
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "gungox",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 43
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "gungox",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 44
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "gungox",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 45
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "fungoX",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 46
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "fungo Y",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 47
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "fungo X",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 48
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "fungo marrone",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 49
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "fungolo",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 50
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "nove",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 54
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "10",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 55
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "11",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 56
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "sss",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 57
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "princes",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 58
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "princes",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 59
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "princes",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 60
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "princes",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 61
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "princes",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 62
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "princes",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 63
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "princes",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 64
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "princes",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 65
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "giack",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 66
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "ugo",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 67
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "sommario",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 68
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "ed 11",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 69
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "ornella",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 70
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "daponara",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 71
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "morbella",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 72
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "otto",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 73
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "nove",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 74
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "dieci",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 75
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "undici",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 76
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "e in questa",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 77
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "vaii",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "iconography": [],
+      "message": "",
+      "id": 78
     }
   ]
 }
