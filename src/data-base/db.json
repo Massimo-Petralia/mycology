@@ -72,36 +72,6 @@
     {
       "taxonomy": {
         "AA": "",
-        "species": "new species fungo ferla",
-        "gender": "",
-        "family": "",
-        "order": "",
-        "synonymous": ""
-      },
-      "morphology": {
-        "cap": "",
-        "gills": "",
-        "stalk": "",
-        "flesh": ""
-      },
-      "features": {
-        "habitat": "",
-        "edibility": "",
-        "note": ""
-      },
-      "microscopicFeatures": {
-        "spores": "",
-        "pileipellis": "",
-        "cystidia": ""
-      },
-      "iconography": [],
-      "message": "",
-      "type": "[New Mushroom component] Create Mushroom Request",
-      "id": 20
-    },
-    {
-      "taxonomy": {
-        "AA": "",
         "species": "fungo7",
         "gender": "",
         "family": "",
@@ -128,96 +98,6 @@
       "message": "",
       "type": "[New Mushroom component] Create Mushroom Request",
       "id": 24
-    },
-    {
-      "taxonomy": {
-        "AA": "",
-        "species": "fungo8",
-        "gender": "",
-        "family": "",
-        "order": "",
-        "synonymous": ""
-      },
-      "morphology": {
-        "cap": "",
-        "gills": "",
-        "stalk": "",
-        "flesh": ""
-      },
-      "features": {
-        "habitat": "",
-        "edibility": "",
-        "note": ""
-      },
-      "microscopicFeatures": {
-        "spores": "",
-        "pileipellis": "",
-        "cystidia": ""
-      },
-      "iconography": [],
-      "message": "",
-      "type": "[New Mushroom component] Create Mushroom Request",
-      "id": 25
-    },
-    {
-      "taxonomy": {
-        "AA": "",
-        "species": "fungo12",
-        "gender": "",
-        "family": "",
-        "order": "",
-        "synonymous": ""
-      },
-      "morphology": {
-        "cap": "",
-        "gills": "",
-        "stalk": "",
-        "flesh": ""
-      },
-      "features": {
-        "habitat": "",
-        "edibility": "",
-        "note": ""
-      },
-      "microscopicFeatures": {
-        "spores": "",
-        "pileipellis": "",
-        "cystidia": ""
-      },
-      "iconography": [],
-      "message": "",
-      "type": "[New Mushroom component] Create Mushroom Request",
-      "id": 29
-    },
-    {
-      "taxonomy": {
-        "AA": "",
-        "species": "fungo14",
-        "gender": "",
-        "family": "",
-        "order": "",
-        "synonymous": ""
-      },
-      "morphology": {
-        "cap": "",
-        "gills": "",
-        "stalk": "",
-        "flesh": ""
-      },
-      "features": {
-        "habitat": "",
-        "edibility": "",
-        "note": ""
-      },
-      "microscopicFeatures": {
-        "spores": "",
-        "pileipellis": "",
-        "cystidia": ""
-      },
-      "iconography": [],
-      "message": "",
-      "type": "[New Mushroom component] Create Mushroom Request",
-      "id": 31
     },
     {
       "taxonomy": {
