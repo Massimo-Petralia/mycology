@@ -24,7 +24,7 @@ ngOnInit(): void {
   this.store.dispatch(MushroomsActions.loadIconography({iconographyID : this.iconographyID}))
   this.subs.add(
     this.iconographydata$.subscribe((iconographydata)=>{
-      this.iconography = iconographydata!.iconography
+      this.iconography = iconographydata.iconography
       console.log('iconographydata from subscription: ', iconographydata)
     })
   )
