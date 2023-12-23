@@ -4,13 +4,14 @@ export interface MycologyState {
     mushrooms: Mushroom[];
     xtotalcount: number;
     pageIndex:  number;
-    iconographydata: IconographyData | null
-
+    iconographydata: IconographyData
 }
 
 export const initialState: MycologyState = {
     mushrooms: [],
     xtotalcount: 0,
     pageIndex:0,
-    iconographydata: null
+    iconographydata: {
+        iconography: []
+    }
 }
