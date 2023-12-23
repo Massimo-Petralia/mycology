@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient ,HttpResponse} from '@angular/common/http';
 import { Observable, catchError } from 'rxjs';
-import { Mushroom } from '../models/mushroom.models';
+import { IconographyData, Mushroom } from '../models/mushroom.models';
 
 const mushroomsDataURL = 'http://localhost:3000/mushrooms'
 const iconographiesDataURL = 'http://localhost:3000/iconographies'
@@ -73,7 +73,7 @@ export class DataService {
  }
 
  getIconography(iconographyID: number) {
-  return this.http.get(`${iconographiesDataURL}/${iconographyID}`).pipe(
+  return this.http.get<IconographyData>(`${iconographiesDataURL}/${iconographyID}`).pipe(
     catchError((error)=> {
       console.error('get iconography failed', error);
       throw error

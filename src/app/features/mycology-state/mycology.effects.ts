@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { DataService } from '../services/data.service';
 import * as MushroomsActions from './mycology.actions';
-import { map, exhaustMap, catchError, of } from 'rxjs';
-import { Mushroom } from '../models/mushroom.models';
+import { map, exhaustMap, catchError, of, switchMap } from 'rxjs';
+import { IconographyData, Mushroom } from '../models/mushroom.models';
 import { response } from 'express';
 
 @Injectable()
@@ -100,9 +100,16 @@ export class deleteMushroomEffects {
   );
 }
 
-// this.dataService.getXtotalcount().pipe(
-//   exhaustMap( (response) => MushroomsActions.sendDati({
-//     xtotalcount:  Number(response.headers.get('X-total-count'))
-//   })
-//   )
-//   )
+@Injectable()
+export class LoadIconographyEffects {
+  constructor(private actions$: Actions, private dataService: DataService) {}
+
+  loadIconography$ = createEffect(()=> this.actions$.pipe(
+    ofType(MushroomsActions.loadIconography),
+    switchMap((prop)=> this.dataService.getIconography(prop.iconographyID).pipe(
+      map((iconographydata: IconographyData)=> MushroomsActions.loadIconographySucces({iconographydata})),
+      catchError((error)=> of(MushroomsActions.loadIconographyFailed({error})))
+    ))
+  ))
+
+}
