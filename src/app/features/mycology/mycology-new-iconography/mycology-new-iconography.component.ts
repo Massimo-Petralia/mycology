@@ -14,5 +14,15 @@ export class MycologyNewIconographyComponent {
 
 @Output() iconographydata = new EventEmitter<IconographyData>()
 
-handleFiles(){}
+handleFiles(){
+  const imageFiles: FileList|null  = this.inputfileElem.nativeElement.files!
+  let counter:  number = 0
+  for(const image of Array.from(imageFiles)){
+    const reader = new FileReader();
+    reader.onload = (event: ProgressEvent<FileReader>) => {
+      const imageData = (event.target as FileReader).result as string
+    }
+    reader.readAsDataURL(image)
+  }
+}
 }
