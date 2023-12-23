@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { selectPageIndex, selectXtotalcount } from '../../mycology-state/mycology.selectors'; 
 import { Subscription } from 'rxjs';
+import { MycologyNewIconographyComponent } from '../mycology-new-iconography/mycology-new-iconography.component';
 
 @Component({
   selector: 'app-mycology-new-mushroom',
@@ -24,6 +25,7 @@ import { Subscription } from 'rxjs';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MycologyNewIconographyComponent
   ],
   templateUrl: './mycology-new-mushroom.component.html',
   styleUrl: './mycology-new-mushroom.component.scss',

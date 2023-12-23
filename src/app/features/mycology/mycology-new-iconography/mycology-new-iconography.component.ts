@@ -9,5 +9,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './mycology-new-iconography.component.scss'
 })
 export class MycologyNewIconographyComponent {
-
+handleFiles(){}
 }
