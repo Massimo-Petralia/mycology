@@ -34,3 +34,15 @@ export interface Mushroom {
   microscopicFeatures: MicroscopicFeatures;
   message: string | null;
 }
+
+
+export interface Iconography {
+  id?: number;
+  imageURL: string;
+  description: string
+}
+
+export interface IconographyData {
+  id?: number;
+  iconography: Iconography[]
+}

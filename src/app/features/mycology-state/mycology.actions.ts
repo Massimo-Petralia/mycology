@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Mushroom } from "../models/mushroom.models";
+import { Mushroom, IconographyData } from "../models/mushroom.models";
 
 export const loadMushrooms = createAction(
     '[Mushrooms Page] Load Mushromms Request',
@@ -61,4 +61,17 @@ export const deleteMushroomFailed = createAction(
     props<{error: any}>()
 )
 
+export const loadIconography = createAction(
+    '[Iconography-list component] Load Iconography Request',
+    props<{iconographyID: number}>()
+)
 
+export const loadIconographySucces = createAction(
+    '[Iconography API]Load Iconography Succes',
+    props<{iconographydata: IconographyData}>()
+)
+
+export const loadIconographyFailed = createAction(
+    '[Iconography API] Load Iconography Failed',
+    props<{error: any}>()
+)
