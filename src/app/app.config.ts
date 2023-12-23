@@ -7,8 +7,14 @@ import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { mushroomsReducer } from './features/mycology-state/mycology.reducers'
-import { LoadMushroomsEffects, CreateMushroomEffects, updateMushroomEffects, deleteMushroomEffects } from './features/mycology-state/mycology.effects';
+import { mushroomsReducer } from './features/mycology-state/mycology.reducers';
+import {
+  LoadMushroomsEffects,
+  CreateMushroomEffects,
+  updateMushroomEffects,
+  deleteMushroomEffects,
+  LoadIconographyEffects
+} from './features/mycology-state/mycology.effects';
 
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
@@ -16,13 +22,18 @@ import { withComponentInputBinding } from '@angular/router';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes, withComponentInputBinding()), 
+    provideRouter(routes, withComponentInputBinding()),
     provideClientHydration(),
-    provideHttpClient(
-    withFetch()
-  ),
-  provideStore({mycology: mushroomsReducer}), 
-  provideEffects([LoadMushroomsEffects, CreateMushroomEffects, updateMushroomEffects, deleteMushroomEffects]), 
-  provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }), provideAnimations()]
-  
+    provideHttpClient(withFetch()),
+    provideStore({ mycology: mushroomsReducer }),
+    provideEffects([
+      LoadMushroomsEffects,
+      CreateMushroomEffects,
+      updateMushroomEffects,
+      deleteMushroomEffects,
+      LoadIconographyEffects
+    ]),
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    provideAnimations(),
+  ],
 };
