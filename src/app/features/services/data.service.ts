@@ -82,7 +82,7 @@ export class DataService {
  }
 
  createIconography(iconographydata: IconographyData) {
-  return this.http.post(iconographiesDataURL, iconographydata).pipe(
+  return this.http.post<IconographyData>(iconographiesDataURL, iconographydata).pipe(
     catchError((error)=>{
       console.error('post iconography request failed', error);
       throw error
