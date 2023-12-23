@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterLink, Router } from '@angular/router';
@@ -33,7 +40,9 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './mycology-mushroom-list.component.html',
   styleUrl: './mycology-mushroom-list.component.scss',
 })
-export class MycologyMushroomListComponent implements OnInit, OnDestroy {
+export class MycologyMushroomListComponent
+  implements OnInit, AfterViewInit, OnDestroy
+{
   constructor(private router: Router, private store: Store<MycologyState>) {}
 
   @ViewChild('paginator') paginator!: MatPaginator;
@@ -68,6 +77,9 @@ export class MycologyMushroomListComponent implements OnInit, OnDestroy {
         this.xtotalcount = xtotal;
       })
     );
+  }
+
+  ngAfterViewInit(): void {
     this.subs.add(
       this.mushrooms$.subscribe((mushrooms) => {
         if (mushrooms.length === 0) {
@@ -82,7 +94,7 @@ export class MycologyMushroomListComponent implements OnInit, OnDestroy {
     );
   }
 
-  onMushroom(id: number ) {
+  onMushroom(id: number) {
     this.router.navigate([{ outlets: { container: ['mushroom', id] } }]);
   }
 
