@@ -75,3 +75,16 @@ export const loadIconographyFailed = createAction(
     '[Iconography API] Load Iconography Failed',
     props<{error: any}>()
 )
+
+export const createIconography = createAction(
+    '[New Iconography Component] Create Iconography request',
+    props<{iconographydata : IconographyData}>()
+)
+
+export const createIconographySucces = createAction(
+    '[Iconography API] Create Iconography Succes'
+) 
+
+export const createIconographyFailed = createAction(
+    '[Iconography API] Create Iconography Failed'
+)

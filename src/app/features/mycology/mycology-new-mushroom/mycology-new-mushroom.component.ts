@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -37,7 +37,7 @@ export class MycologyNewMushroomComponent implements OnInit {
     private router: Router,
     private http: HttpClient
   ) {}
-
+  @ViewChild(MycologyNewIconographyComponent) iconography!: MycologyNewIconographyComponent
   pageIndex$ = this.store.select(selectPageIndex);
   xtotalcount$ = this.store.select(selectXtotalcount) ;
   subs = new Subscription()

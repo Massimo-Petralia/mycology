@@ -13,10 +13,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class MycologyNewIconographyComponent {
   @ViewChild('inputfile') inputfileElem!: ElementRef<HTMLInputElement>
+  
 
-@Output() iconographydata$ = new EventEmitter<IconographyData>()
+//@Output() iconographydata$ = new EventEmitter<IconographyData>()
 
-iconographydata!: IconographyData
 
 iconographylist: Iconography[] =[]
 
@@ -32,5 +32,10 @@ handleFiles(){
     }
     reader.readAsDataURL(image)
   }
+}
+
+getIconographylist(){
+  console.log('iconography obj preview: ', this.iconographylist)
+
 }
 }
