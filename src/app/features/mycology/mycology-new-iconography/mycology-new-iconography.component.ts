@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { IconographyData } from '../../models/mushroom.models';
 
 @Component({
   selector: 'app-mycology-new-iconography',
@@ -9,5 +10,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './mycology-new-iconography.component.scss'
 })
 export class MycologyNewIconographyComponent {
+  @ViewChild('inputfile') inputfileElem!: ElementRef<HTMLInputElement>
+
+@Output() iconographydata = new EventEmitter<IconographyData>()
+
 handleFiles(){}
 }
