@@ -78,7 +78,7 @@ export const loadIconographyFailed = createAction(
 
 export const createIconography = createAction(
     '[New Iconography Component] Create Iconography request',
-    props<{iconographydata : IconographyData}>()
+    props<IconographyData>()
 )
 
 // export const createIconographySucces = createAction(

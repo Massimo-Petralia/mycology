@@ -16,6 +16,7 @@ import { HttpClient } from '@angular/common/http';
 import { selectPageIndex, selectXtotalcount } from '../../mycology-state/mycology.selectors'; 
 import { Subscription } from 'rxjs';
 import { MycologyNewIconographyComponent } from '../mycology-new-iconography/mycology-new-iconography.component';
+import { IconographyData } from '../../models/mushroom.models';
 
 @Component({
   selector: 'app-mycology-new-mushroom',
@@ -41,7 +42,7 @@ export class MycologyNewMushroomComponent implements OnInit {
   pageIndex$ = this.store.select(selectPageIndex);
   xtotalcount$ = this.store.select(selectXtotalcount) ;
   subs = new Subscription()
-  
+  iconographydata!: IconographyData
   xtotalcount!: number //counter dovrebbe essere assegnato al pezzo di stato xtotalcount tramite un selettore
 ngOnInit(): void {
   this.subs = this.xtotalcount$.subscribe((xtotal)=> {
@@ -84,7 +85,8 @@ ngOnInit(): void {
     this.store.dispatch(
       MushroomsActions.createMushroom({mushroom:this.mushroomForm.value, xtotalcount: this.xtotalcount})
     );
-
+      this.iconographydata= {...this.iconographydata, iconography: this.iconography.iconographylist}
+      this.store.dispatch(MushroomsActions.createIconography(this.iconographydata))
     this.router.navigate(['']);
   }
 }

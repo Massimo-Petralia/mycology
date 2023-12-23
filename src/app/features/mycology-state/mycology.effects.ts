@@ -132,7 +132,7 @@ export class CreateIconographyEffects {
   constructor(private actions$: Actions, private dataService: DataService) {}
   createIconography$ = createEffect(()=> this.actions$.pipe(
     ofType(MushroomsActions.createIconography),
-    switchMap((prop)=> this.dataService.createIconography(prop.iconographydata))
+    switchMap((iconographydata)=> this.dataService.createIconography(iconographydata))
   ),
   {dispatch: false})
 }
