@@ -89,7 +89,6 @@ export class MycologyMushroomListComponent
           );
 
           this.paginator!.pageIndex = this.paginator.pageIndex - 1;
-          debugger
         }
       })
     );
