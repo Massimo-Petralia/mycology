@@ -4,6 +4,7 @@ import { Observable, catchError } from 'rxjs';
 import { Mushroom } from '../models/mushroom.models';
 
 const mushroomsDataURL = 'http://localhost:3000/mushrooms'
+const iconographiesDataURL = 'http://localhost:3000/iconographies'
 
 @Injectable({
   providedIn: 'root'
@@ -66,6 +67,15 @@ export class DataService {
   return this.http.get(`${mushroomsDataURL}?_page=1`, {observe: 'response', transferCache: {includeHeaders: ['X-total-count']}}).pipe(
     catchError((error)=> {
       console.error('xtotalcount request failed', error);
+      throw error
+    })
+  )
+ }
+
+ getIconography(iconographyID: number) {
+  return this.http.get(`${iconographiesDataURL}/${iconographyID}`).pipe(
+    catchError((error)=> {
+      console.error('get iconography failed', error);
       throw error
     })
   )

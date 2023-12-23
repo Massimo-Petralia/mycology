@@ -7,7 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Iconography, Mushroom } from '../../models/mushroom.models';
+import {  Mushroom } from '../../models/mushroom.models';
 import { Subscription } from 'rxjs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -23,6 +23,7 @@ import { MycologyState } from '../../models/mycology-state.models';
 import * as MushroomsActions from '../../mycology-state/mycology.actions';
 import { Router } from '@angular/router';
 import { selectXtotalcount } from '../../mycology-state/mycology.selectors';
+import { MycologyIconographyListComponent } from '../mycology-iconography-list/mycology-iconography-list.component';
 
 @Component({
   selector: 'app-mycology-mushroom-item',
@@ -32,6 +33,7 @@ import { selectXtotalcount } from '../../mycology-state/mycology.selectors';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
+    MycologyIconographyListComponent
   ],
   templateUrl: './mycology-mushroom-item.component.html',
   styleUrl: './mycology-mushroom-item.component.scss',
@@ -102,7 +104,6 @@ ngOnInit(): void {
       pileipellis: this.formBuilder.control<string>(''),
       cystidia: this.formBuilder.control<string>(''),
     }),
-    iconography: this.formBuilder.control<Iconography[]>([]),
 
     // formArray : this.formBuilder.array([
     //   this.formBuilder.control('')

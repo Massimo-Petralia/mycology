@@ -12,7 +12,6 @@ import { Store } from '@ngrx/store';
 import { MycologyState } from '../../models/mycology-state.models';
 import * as MushroomsActions from '../../mycology-state/mycology.actions';
 import { Router } from '@angular/router';
-import { Iconography } from '../../models/mushroom.models';
 import { HttpClient } from '@angular/common/http';
 import { selectPageIndex, selectXtotalcount } from '../../mycology-state/mycology.selectors'; 
 import { Subscription } from 'rxjs';
@@ -74,7 +73,6 @@ ngOnInit(): void {
       pileipellis: this.formBuilder.control<string>(''),
       cystidia: this.formBuilder.control<string>(''),
     }),
-    iconography: this.formBuilder.control<Iconography[]>([]),
 
     message: '',
   });

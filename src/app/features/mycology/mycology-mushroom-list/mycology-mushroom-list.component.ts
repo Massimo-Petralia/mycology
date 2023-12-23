@@ -76,7 +76,7 @@ export class MycologyMushroomListComponent
       this.xtotalcount$.subscribe((xtotal) => {
         this.xtotalcount = xtotal;
       })
-    );
+    )
   }
 
   ngAfterViewInit(): void {
@@ -89,6 +89,7 @@ export class MycologyMushroomListComponent
           );
 
           this.paginator!.pageIndex = this.paginator.pageIndex - 1;
+          debugger
         }
       })
     );

@@ -26,20 +26,11 @@ export interface MicroscopicFeatures {
   cystidia: string | null;
 }
 
-export interface Iconography {
-  imageURL: string | null;
-  description: string | null;
-  message: string | null;
-}
-
 export interface Mushroom {
   id?: number;
   taxonomy: Taxonomy;
   morphology: Morphology;
   features: Features;
   microscopicFeatures: MicroscopicFeatures;
-  iconography: Iconography[];
   message: string | null;
 }
-
-
