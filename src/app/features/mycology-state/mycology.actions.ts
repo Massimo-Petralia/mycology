@@ -81,10 +81,10 @@ export const createIconography = createAction(
     props<{iconographydata : IconographyData}>()
 )
 
-export const createIconographySucces = createAction(
-    '[Iconography API] Create Iconography Succes'
-) 
+// export const createIconographySucces = createAction(
+//     '[Iconography API] Create Iconography Succes'
+// ) 
 
-export const createIconographyFailed = createAction(
-    '[Iconography API] Create Iconography Failed'
-)
+// export const createIconographyFailed = createAction(
+//     '[Iconography API] Create Iconography Failed'
+// )

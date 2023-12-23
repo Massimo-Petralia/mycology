@@ -5,6 +5,7 @@ import * as MushroomsActions from './mycology.actions';
 import { map, exhaustMap, catchError, of, switchMap } from 'rxjs';
 import { IconographyData, Mushroom } from '../models/mushroom.models';
 import { response } from 'express';
+import { request } from 'http';
 
 @Injectable()
 export class LoadMushroomsEffects {
@@ -35,25 +36,24 @@ export class LoadMushroomsEffects {
 export class CreateMushroomEffects {
   constructor(private actions$: Actions, private dataService: DataService) {}
 
-  createMushroom$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(MushroomsActions.createMushroom),
-        exhaustMap((request) =>
-          this.dataService.createMushroom(request.mushroom).pipe(
-            map((mushromm) =>
-              MushroomsActions.createMushroomSucces({
-                mushroom: mushromm,
-                xtotalcount: request.xtotalcount,
-              })
-            ),
+  createMushroom$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MushroomsActions.createMushroom),
+      exhaustMap((request) =>
+        this.dataService.createMushroom(request.mushroom).pipe(
+          map((mushromm) =>
+            MushroomsActions.createMushroomSucces({
+              mushroom: mushromm,
+              xtotalcount: request.xtotalcount,
+            })
+          ),
 
-            catchError((error) =>
-              of(MushroomsActions.createMushroomFailed({ error }))
-            )
+          catchError((error) =>
+            of(MushroomsActions.createMushroomFailed({ error }))
           )
         )
-      ),
+      )
+    )
   );
 }
 
@@ -89,7 +89,12 @@ export class deleteMushroomEffects {
       exhaustMap((request) =>
         this.dataService.deleteMushroom(request.id).pipe(
           map(() => request),
-          map((request) => MushroomsActions.deleteMushroomSucces({id: request.id, xtotalcount: request.xtotalcount })),
+          map((request) =>
+            MushroomsActions.deleteMushroomSucces({
+              id: request.id,
+              xtotalcount: request.xtotalcount,
+            })
+          ),
 
           catchError((error) =>
             of(MushroomsActions.deleteMushroomFailed({ error }))
@@ -104,12 +109,30 @@ export class deleteMushroomEffects {
 export class LoadIconographyEffects {
   constructor(private actions$: Actions, private dataService: DataService) {}
 
-  loadIconography$ = createEffect(()=> this.actions$.pipe(
-    ofType(MushroomsActions.loadIconography),
-    switchMap((prop)=> this.dataService.getIconography(prop.iconographyID).pipe(
-      map((iconographydata: IconographyData)=> MushroomsActions.loadIconographySucces({iconographydata})),
-      catchError((error)=> of(MushroomsActions.loadIconographyFailed({error})))
-    ))
-  ))
+  loadIconography$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MushroomsActions.loadIconography),
+      switchMap((prop) =>
+        this.dataService.getIconography(prop.iconographyID).pipe(
+          map((iconographydata: IconographyData) =>
+            MushroomsActions.loadIconographySucces({ iconographydata })
+          ),
+          catchError((error) =>
+            of(MushroomsActions.loadIconographyFailed({ error }))
+          )
+        )
+      )
+    )
+  );
+}
 
+
+@Injectable() 
+export class CreateIconographyEffects {
+  constructor(private actions$: Actions, private dataService: DataService) {}
+  createIconography$ = createEffect(()=> this.actions$.pipe(
+    ofType(MushroomsActions.createIconography),
+    switchMap((prop)=> this.dataService.createIconography(prop.iconographydata))
+  ),
+  {dispatch: false})
 }
