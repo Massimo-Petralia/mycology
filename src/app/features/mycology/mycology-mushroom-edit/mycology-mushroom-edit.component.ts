@@ -7,7 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {  Mushroom } from '../../models/mushroom.models';
+import { Mushroom } from '../../models/mushroom.models';
 import { Subscription } from 'rxjs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -26,26 +26,28 @@ import { selectXtotalcount } from '../../mycology-state/mycology.selectors';
 import { MycologyIconographyListComponent } from '../mycology-iconography-list/mycology-iconography-list.component';
 
 @Component({
-  selector: 'app-mycology-mushroom-item',
+  selector: 'app-mycology-mushroom-edit',
   standalone: true,
   imports: [
     CommonModule,
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    MycologyIconographyListComponent
+    MycologyIconographyListComponent,
   ],
-  templateUrl: './mycology-mushroom-item.component.html',
-  styleUrl: './mycology-mushroom-item.component.scss',
+  templateUrl: './mycology-mushroom-edit.component.html',
+  styleUrl: './mycology-mushroom-edit.component.scss',
 })
-export class MycologyMushroomItemComponent implements OnInit, OnChanges, OnDestroy {
+export class MycologyMushroomEditComponent
+  implements OnInit, OnChanges, OnDestroy
+{
   @Input() set id(mushroomId: number) {
     this.mushroomID = mushroomId;
   }
   mushroomID!: number;
   mushroom!: Mushroom | null;
-  xtotalcount$ = this.store.select(selectXtotalcount)
-  xtotalcount!: number
+  xtotalcount$ = this.store.select(selectXtotalcount);
+  xtotalcount!: number;
   subs = new Subscription();
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -53,22 +55,22 @@ export class MycologyMushroomItemComponent implements OnInit, OnChanges, OnDestr
     if (id) {
       this.subs.add(
         this.dataService
-        .getMushroom(this.mushroomID)
-        .subscribe((mushroom: Mushroom) => {
-          this.mushroom = mushroom;
-          this.mushroomForm.patchValue(this.mushroom);
-        })
-      )
+          .getMushroom(this.mushroomID)
+          .subscribe((mushroom: Mushroom) => {
+            this.mushroom = mushroom;
+            this.mushroomForm.patchValue(this.mushroom);
+          })
+      );
     }
   }
 
-ngOnInit(): void {
-  this.subs.add(
-    this.xtotalcount$.subscribe((xtotal)=> {
-      this.xtotalcount = xtotal
-    })
-  )
-}
+  ngOnInit(): void {
+    this.subs.add(
+      this.xtotalcount$.subscribe((xtotal) => {
+        this.xtotalcount = xtotal;
+      })
+    );
+  }
 
   constructor(
     private dataService: DataService,
@@ -105,38 +107,9 @@ ngOnInit(): void {
       cystidia: this.formBuilder.control<string>(''),
     }),
 
-    // formArray : this.formBuilder.array([
-    //   this.formBuilder.control('')
-    // ]),
-  
     message: '',
     type: null,
   });
-  // get immagini() {
-  //   return this.mushroomForm.get('formArray') as FormArray
-  // }
-
-
-// addImmagine() {
-//    this.immagini.push(this.formBuilder.control(''))
-//   }
-
-
-// colorGroup = this.formBuilder.group({
-//   colori: this.formBuilder.array([
-//     this.formBuilder.control('')
-//   ])
-// })
-
-// get colori() {
-//   return this.colorGroup.get('colori') as FormArray
-// }
-
-// addColor() {
-//   this.colori.push(this.formBuilder.control(''))
-
-// }
-
 
   onSave() {
     this.store.dispatch(
@@ -145,11 +118,14 @@ ngOnInit(): void {
   }
 
   onDelete() {
-    this.xtotalcount = this.xtotalcount-1
+    this.xtotalcount = this.xtotalcount - 1;
     this.store.dispatch(
-      MushroomsActions.deleteMushroomRequest({ id: Number(this.mushroom?.id), xtotalcount: this.xtotalcount })
+      MushroomsActions.deleteMushroomRequest({
+        id: Number(this.mushroom?.id),
+        xtotalcount: this.xtotalcount,
+      })
     );
-    this.router.navigate(['']);
+    this.router.navigate(['mushromm-list']);
   }
 
   ngOnDestroy(): void {

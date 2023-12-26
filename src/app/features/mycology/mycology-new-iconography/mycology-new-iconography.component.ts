@@ -34,8 +34,5 @@ handleFiles(){
   }
 }
 
-getIconographylist(){
-  console.log('iconography obj preview: ', this.iconographylist)
 
-}
 }
