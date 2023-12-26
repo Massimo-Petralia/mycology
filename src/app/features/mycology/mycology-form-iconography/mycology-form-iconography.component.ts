@@ -5,13 +5,13 @@ import { Iconography } from '../../models/mushroom.models';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-mycology-new-iconography',
+  selector: 'app-mycology-form-iconography',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './mycology-new-iconography.component.html',
-  styleUrl: './mycology-new-iconography.component.scss'
+  templateUrl: './mycology-form-iconography.component.html',
+  styleUrl: './mycology-form-iconography.component.scss'
 })
-export class MycologyNewIconographyComponent {
+export class MycologyFormIconographyComponent {
   @ViewChild('inputfile') inputfileElem!: ElementRef<HTMLInputElement>
   
 

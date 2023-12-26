@@ -30,7 +30,7 @@
     },
     {
       "taxonomy": {
-        "AA": "",
+        "AA": "zz top",
         "species": "some new species",
         "gender": "",
         "family": "",
@@ -54,8 +54,8 @@
         "cystidia": ""
       },
       "message": "",
-      "type": "[New Mushroom component] Create Mushroom Request",
-      "id": 17
+      "id": 17,
+      "type": "[Mushroom Item component] Update Mushroom Request"
     },
     {
       "taxonomy": {
@@ -309,6 +309,118 @@
       },
       "message": "",
       "id": 33
+    },
+    {
+      "taxonomy": {
+        "AA": "questo autore è sconosciuto",
+        "species": "some new species",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "message": "",
+      "id": 34
+    },
+    {
+      "taxonomy": {
+        "AA": "cccp",
+        "species": "some new species",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "message": "",
+      "id": 35
+    },
+    {
+      "taxonomy": {
+        "AA": "zztop",
+        "species": "some new species",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "message": "",
+      "id": 36
+    },
+    {
+      "taxonomy": {
+        "AA": "zz top",
+        "species": "some new species",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "message": "",
+      "id": 37
     }
   ],
   "iconographies": [
@@ -470,6 +582,16 @@
         }
       ],
       "id": 33,
+      "type": "[New Iconography Component] Create Iconography request"
+    },
+    {
+      "iconography": [],
+      "id": 35,
+      "type": "[New Iconography Component] Create Iconography request"
+    },
+    {
+      "iconography": [],
+      "id": 37,
       "type": "[New Iconography Component] Create Iconography request"
     }
   ]

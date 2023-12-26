@@ -95,11 +95,11 @@ export class MycologyMushroomListComponent
   }
 
   onMushroom(id: number) {
-    this.router.navigate(['mushroom', id]);
+    this.router.navigate(['mushroom-edit-page', id]);
   }
 
   toNewMushroom() {
-    this.router.navigate(['create-mushroom']);
+    this.router.navigate(['new-mushroom-page']);
   }
 
   ngOnDestroy(): void {

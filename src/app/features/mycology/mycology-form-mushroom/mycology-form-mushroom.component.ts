@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit,OnChanges, ViewChild, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -15,30 +15,34 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { selectPageIndex, selectXtotalcount } from '../../mycology-state/mycology.selectors'; 
 import { Subscription } from 'rxjs';
-import { MycologyNewIconographyComponent } from '../mycology-new-iconography/mycology-new-iconography.component';
-import { IconographyData } from '../../models/mushroom.models';
+import { MycologyFormIconographyComponent } from '../mycology-form-iconography/mycology-form-iconography.component';
+import { IconographyData, Mushroom } from '../../models/mushroom.models';
 
 @Component({
-  selector: 'app-mycology-new-mushroom',
+  selector: 'app-mycology-form-mushroom',
   standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MycologyNewIconographyComponent
+    MycologyFormIconographyComponent
   ],
-  templateUrl: './mycology-new-mushroom.component.html',
-  styleUrl: './mycology-new-mushroom.component.scss',
+  templateUrl: './mycology-form-mushroom.component.html',
+  styleUrl: './mycology-form-mushroom.component.scss',
 })
-export class MycologyNewMushroomComponent implements OnInit {
+export class MycologyFormMushroomComponent implements OnInit , OnChanges{
   constructor(
     private formBuilder: FormBuilder,
     private store: Store<MycologyState>,
     private router: Router,
     private http: HttpClient
   ) {}
-  @ViewChild(MycologyNewIconographyComponent) iconography!: MycologyNewIconographyComponent
+
+@Input() mushroom! : Mushroom
+@Output() update = new EventEmitter<Mushroom>()
+
+  @ViewChild(MycologyFormIconographyComponent) iconography!: MycologyFormIconographyComponent
   pageIndex$ = this.store.select(selectPageIndex);
   xtotalcount$ = this.store.select(selectXtotalcount) ;
   subs = new Subscription()
@@ -48,6 +52,13 @@ ngOnInit(): void {
   this.subs = this.xtotalcount$.subscribe((xtotal)=> {
     this.xtotalcount = xtotal
   })
+}
+
+ngOnChanges(changes: SimpleChanges): void {
+  const {mushroom} = changes
+  if(mushroom) {
+    this.mushroomForm.patchValue(this.mushroom)
+  }
 }
 
   mushroomForm: FormGroup = this.formBuilder.group({
@@ -88,5 +99,9 @@ ngOnInit(): void {
     );
      // this.store.dispatch(MushroomsActions.createIconography(this.iconographydata))
     this.router.navigate(['']);
+  }
+
+  onUpdate() {
+    this.update.emit(this.mushroomForm.value)
   }
 }

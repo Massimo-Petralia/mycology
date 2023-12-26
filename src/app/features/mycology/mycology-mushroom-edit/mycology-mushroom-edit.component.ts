@@ -23,6 +23,7 @@ import { MycologyState } from '../../models/mycology-state.models';
 import * as MushroomsActions from '../../mycology-state/mycology.actions';
 import { Router } from '@angular/router';
 import { selectXtotalcount } from '../../mycology-state/mycology.selectors';
+import  { MycologyFormMushroomComponent } from '../mycology-form-mushroom/mycology-form-mushroom.component'
 import { MycologyIconographyListComponent } from '../mycology-iconography-list/mycology-iconography-list.component';
 
 @Component({
@@ -33,36 +34,26 @@ import { MycologyIconographyListComponent } from '../mycology-iconography-list/m
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
+    MycologyFormMushroomComponent,
     MycologyIconographyListComponent,
   ],
   templateUrl: './mycology-mushroom-edit.component.html',
   styleUrl: './mycology-mushroom-edit.component.scss',
 })
 export class MycologyMushroomEditComponent
-  implements OnInit, OnChanges, OnDestroy
+  implements OnInit,  OnDestroy
 {
-  @Input() set id(mushroomId: number) {
-    this.mushroomID = mushroomId;
-  }
-  mushroomID!: number;
-  mushroom!: Mushroom | null;
+  // @Input() set id(mushroomId: number) {
+  //   this.mushroomID = mushroomId;
+  // }
+  //mushroomID!: number;
+  @Input() mushroom!: Mushroom ;
+  
   xtotalcount$ = this.store.select(selectXtotalcount);
   xtotalcount!: number;
   subs = new Subscription();
 
-  ngOnChanges(changes: SimpleChanges): void {
-    const { id } = changes;
-    if (id) {
-      this.subs.add(
-        this.dataService
-          .getMushroom(this.mushroomID)
-          .subscribe((mushroom: Mushroom) => {
-            this.mushroom = mushroom;
-            this.mushroomForm.patchValue(this.mushroom);
-          })
-      );
-    }
-  }
+
 
   ngOnInit(): void {
     this.subs.add(
@@ -111,11 +102,11 @@ export class MycologyMushroomEditComponent
     type: null,
   });
 
-  onSave() {
-    this.store.dispatch(
-      MushroomsActions.updateMushroomRequest(this.mushroomForm.value)
-    );
-  }
+  // onSave() {
+  //   this.store.dispatch(
+  //     MushroomsActions.updateMushroomRequest(this.mushroomForm.value)
+  //   );
+  // }
 
   onDelete() {
     this.xtotalcount = this.xtotalcount - 1;

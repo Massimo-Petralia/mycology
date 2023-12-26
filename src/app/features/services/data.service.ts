@@ -46,6 +46,7 @@ export class DataService {
   }
 
  updateMushroom(mushroom: Mushroom) : Observable<Mushroom> {
+  debugger
   return this.http.put<Mushroom>(`${mushroomsDataURL}/${mushroom.id}`, mushroom).pipe(
     catchError((error)=> {
       console.error('put request failed', error);
