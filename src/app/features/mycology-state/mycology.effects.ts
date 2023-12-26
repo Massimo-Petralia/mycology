@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { DataService } from '../services/data.service';
 import * as MushroomsActions from './mycology.actions';
-import { map, exhaustMap, catchError, of, switchMap } from 'rxjs';
+import { map, exhaustMap, catchError, of, switchMap, from } from 'rxjs';
 import { IconographyData, Mushroom } from '../models/mushroom.models';
+import { Store } from '@ngrx/store';
 import { response } from 'express';
 import { request } from 'http';
 
@@ -38,15 +39,22 @@ export class CreateMushroomEffects {
 
   createMushroom$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MushroomsActions.createMushroom),
+      ofType(MushroomsActions.createMushroomRequest),
       exhaustMap((request) =>
         this.dataService.createMushroom(request.mushroom).pipe(
-          map((mushromm) =>
-            MushroomsActions.createMushroomSucces({
-              mushroom: mushromm,
-              xtotalcount: request.xtotalcount,
-            })
-          ),
+          switchMap((mushromm) => {
+            const actionsToDispatch = [
+              MushroomsActions.createMushroomSucces({
+                mushroom: mushromm,
+                xtotalcount: request.xtotalcount,
+              }),
+              MushroomsActions.createIconography({
+                ...request.iconographydata,
+                id: mushromm.id,
+              }),
+            ];
+            return from(actionsToDispatch);
+          }),
 
           catchError((error) =>
             of(MushroomsActions.createMushroomFailed({ error }))
@@ -126,16 +134,21 @@ export class LoadIconographyEffects {
   );
 }
 
-
-@Injectable() 
+@Injectable()
 export class CreateIconographyEffects {
   constructor(private actions$: Actions, private dataService: DataService) {}
-  createIconography$ = createEffect(()=> this.actions$.pipe(
-    ofType(MushroomsActions.createIconography),
-    switchMap((iconographydata)=> this.dataService.createIconography(iconographydata).pipe(
-      map((iconographydata)=> MushroomsActions.createIconographySucces({iconographydataID: iconographydata.id!}))
-    ))
-  )
-  
-  )
+  createIconography$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MushroomsActions.createIconography),
+      switchMap((iconographydata) =>
+        this.dataService.createIconography(iconographydata).pipe(
+          map((iconographydata) =>
+            MushroomsActions.createIconographySucces({
+              iconographydataID: iconographydata.id!,
+            })
+          )
+        )
+      )
+    )
+  );
 }

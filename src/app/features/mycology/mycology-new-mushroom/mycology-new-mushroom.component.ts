@@ -81,12 +81,12 @@ ngOnInit(): void {
   });
   onCreate() {
    this.xtotalcount = this.xtotalcount+1;
+   this.iconographydata= {...this.iconographydata, iconography: this.iconography.iconographylist}
 
     this.store.dispatch(
-      MushroomsActions.createMushroom({mushroom:this.mushroomForm.value, xtotalcount: this.xtotalcount})
+      MushroomsActions.createMushroomRequest({mushroom:this.mushroomForm.value, xtotalcount: this.xtotalcount, iconographydata: this.iconographydata})
     );
-      this.iconographydata= {...this.iconographydata, iconography: this.iconography.iconographylist}
-      this.store.dispatch(MushroomsActions.createIconography(this.iconographydata))
+     // this.store.dispatch(MushroomsActions.createIconography(this.iconographydata))
     this.router.navigate(['']);
   }
 }

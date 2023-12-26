@@ -16,9 +16,9 @@ export const loadMushroomsFailed = createAction(
     props<{error: any}>()
 )
 
-export const createMushroom = createAction(
+export const createMushroomRequest = createAction(
     '[New Mushroom component] Create Mushroom Request',
-    props<{mushroom:Mushroom, xtotalcount: number}>()
+    props<{mushroom:Mushroom, xtotalcount: number, iconographydata: IconographyData}>()
 )
 
 export const createMushroomSucces = createAction(
@@ -86,6 +86,6 @@ export const createIconographySucces = createAction(
     props<{iconographydataID: number}>()
 ) 
 
-// export const createIconographyFailed = createAction(
-//     '[Iconography API] Create Iconography Failed'
-// )
+ export const createIconographyFailed = createAction(
+    '[Iconography API] Create Iconography Failed'
+    )
