@@ -24,7 +24,7 @@ iconography: Iconography[] = []
 ngOnChanges(changes: SimpleChanges): void {
   const {iconographyID} = changes
   if(iconographyID) {
-    this.store.dispatch(MushroomsActions.loadIconography({iconographyID : this.iconographyID}))
+    this.store.dispatch(MushroomsActions.loadIconographyRequest({iconographyID : this.iconographyID}))
     this.subs.add(
       this.iconographydata$.subscribe((iconographydata)=>{
         this.iconography = iconographydata.iconography

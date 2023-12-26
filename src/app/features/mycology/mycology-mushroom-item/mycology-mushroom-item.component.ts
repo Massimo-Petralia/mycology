@@ -140,14 +140,14 @@ ngOnInit(): void {
 
   onSave() {
     this.store.dispatch(
-      MushroomsActions.updateMushroom(this.mushroomForm.value)
+      MushroomsActions.updateMushroomRequest(this.mushroomForm.value)
     );
   }
 
   onDelete() {
     this.xtotalcount = this.xtotalcount-1
     this.store.dispatch(
-      MushroomsActions.deleteMushroom({ id: Number(this.mushroom?.id), xtotalcount: this.xtotalcount })
+      MushroomsActions.deleteMushroomRequest({ id: Number(this.mushroom?.id), xtotalcount: this.xtotalcount })
     );
     this.router.navigate(['']);
   }

@@ -62,13 +62,13 @@ export class MycologyMushroomListComponent
   handlePagination(pageEvent: PageEvent) {
     this.page = pageEvent.pageIndex + 1;
     this.store.dispatch(
-      MushroomsActions.loadMushrooms({ pageIndex: this.page })
+      MushroomsActions.loadMushroomsRequest({ pageIndex: this.page })
     );
   }
 
   ngOnInit(): void {
     this.store.dispatch(
-      MushroomsActions.loadMushrooms({ pageIndex: this.page })
+      MushroomsActions.loadMushroomsRequest({ pageIndex: this.page })
     );
     this.xtotalcount$ = this.store.select(selectXtotalcount);
 
@@ -85,7 +85,7 @@ export class MycologyMushroomListComponent
         if (mushrooms.length === 0) {
           this.page = this.page - 1;
           this.store.dispatch(
-            MushroomsActions.loadMushrooms({ pageIndex: this.page })
+            MushroomsActions.loadMushroomsRequest({ pageIndex: this.page })
           );
 
           this.paginator!.pageIndex = this.paginator.pageIndex - 1;

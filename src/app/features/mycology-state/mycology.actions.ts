@@ -1,7 +1,7 @@
 import { createAction, props } from "@ngrx/store";
 import { Mushroom, IconographyData } from "../models/mushroom.models";
 
-export const loadMushrooms = createAction(
+export const loadMushroomsRequest = createAction(
     '[Mushrooms Page] Load Mushromms Request',
     props<{pageIndex: number}>()
 )
@@ -31,7 +31,7 @@ export const createMushroomFailed = createAction(
     props<{error: any}>()
 )
 
-export const updateMushroom = createAction(
+export const updateMushroomRequest = createAction(
     '[Mushroom Item component] Update Mushroom Request',
     props<Mushroom>()
 )
@@ -46,7 +46,7 @@ export const updateMushroomFailed = createAction(
     props<{error: any}>()
 )
 
-export const deleteMushroom= createAction(
+export const deleteMushroomRequest= createAction(
     '[Mushroom Item Component] Delete Mushroom Request',
     props<{id: number, xtotalcount: number }>()
 )
@@ -61,7 +61,7 @@ export const deleteMushroomFailed = createAction(
     props<{error: any}>()
 )
 
-export const loadIconography = createAction(
+export const loadIconographyRequest = createAction(
     '[Iconography-list component] Load Iconography Request',
     props<{iconographyID: number}>()
 )
@@ -76,8 +76,8 @@ export const loadIconographyFailed = createAction(
     props<{error: any}>()
 )
 
-export const createIconography = createAction(
-    '[New Iconography Component] Create Iconography request',
+export const createIconographyRequest = createAction(
+    '[New Iconography Component] Create Iconography request',// questa richiesta da dove parte ?
     props<IconographyData>()
 )
 
@@ -89,3 +89,7 @@ export const createIconographySucces = createAction(
  export const createIconographyFailed = createAction(
     '[Iconography API] Create Iconography Failed'
     )
+
+export const deleteIconographyRequest = createAction(
+    '[]'
+)

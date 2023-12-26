@@ -14,7 +14,7 @@ export class LoadMushroomsEffects {
 
   loadMoshrooms$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MushroomsActions.loadMushrooms),
+      ofType(MushroomsActions.loadMushroomsRequest),
       exhaustMap((page) =>
         this.dataService.getMushrooms(page.pageIndex).pipe(
           map((response) =>
@@ -42,15 +42,15 @@ export class CreateMushroomEffects {
       ofType(MushroomsActions.createMushroomRequest),
       exhaustMap((request) =>
         this.dataService.createMushroom(request.mushroom).pipe(
-          switchMap((mushromm) => {
+          switchMap((mushroom) => {
             const actionsToDispatch = [
               MushroomsActions.createMushroomSucces({
-                mushroom: mushromm,
+                mushroom: mushroom,
                 xtotalcount: request.xtotalcount,
               }),
-              MushroomsActions.createIconography({
+              MushroomsActions.createIconographyRequest({
                 ...request.iconographydata,
-                id: mushromm.id,
+                id: mushroom.id,
               }),
             ];
             return from(actionsToDispatch);
@@ -71,7 +71,7 @@ export class updateMushroomEffects {
 
   updateMushroom$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MushroomsActions.updateMushroom),
+      ofType(MushroomsActions.updateMushroomRequest),
       exhaustMap((mushroom) =>
         this.dataService.updateMushroom(mushroom).pipe(
           map((mushroom: Mushroom) =>
@@ -92,7 +92,7 @@ export class deleteMushroomEffects {
 
   deleteMushroom$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MushroomsActions.deleteMushroom),
+      ofType(MushroomsActions.deleteMushroomRequest),
 
       exhaustMap((request) =>
         this.dataService.deleteMushroom(request.id).pipe(
@@ -119,7 +119,7 @@ export class LoadIconographyEffects {
 
   loadIconography$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MushroomsActions.loadIconography),
+      ofType(MushroomsActions.loadIconographyRequest),
       switchMap((prop) =>
         this.dataService.getIconography(prop.iconographyID).pipe(
           map((iconographydata: IconographyData) =>
@@ -139,7 +139,7 @@ export class CreateIconographyEffects {
   constructor(private actions$: Actions, private dataService: DataService) {}
   createIconography$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MushroomsActions.createIconography),
+      ofType(MushroomsActions.createIconographyRequest),
       switchMap((iconographydata) =>
         this.dataService.createIconography(iconographydata).pipe(
           map((iconographydata) =>
