@@ -41,6 +41,7 @@ export class MycologyFormMushroomComponent implements OnInit , OnChanges{
 
 @Input() mushroom! : Mushroom
 @Output() update = new EventEmitter<Mushroom>()
+@Output() delete = new EventEmitter<number>()
 
   @ViewChild(MycologyFormIconographyComponent) iconography!: MycologyFormIconographyComponent
   pageIndex$ = this.store.select(selectPageIndex);
@@ -88,12 +89,11 @@ ngOnChanges(changes: SimpleChanges): void {
       cystidia: this.formBuilder.control<string>(''),
     }),
 
-    message: '',
+   // message: '',
   });
   onCreate() {
    this.xtotalcount = this.xtotalcount+1;
    this.iconographydata= {...this.iconographydata, iconography: this.iconography.iconographylist}
-
     this.store.dispatch(
       MushroomsActions.createMushroomRequest({mushroom:this.mushroomForm.value, xtotalcount: this.xtotalcount, iconographydata: this.iconographydata})
     );
@@ -103,5 +103,10 @@ ngOnChanges(changes: SimpleChanges): void {
 
   onUpdate() {
     this.update.emit(this.mushroomForm.value)
+  }
+
+  onDelete() {
+    this.delete.emit(this.mushroom.id)
+
   }
 }

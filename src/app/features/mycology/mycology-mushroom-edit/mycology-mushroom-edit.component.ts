@@ -41,27 +41,27 @@ import { MycologyIconographyListComponent } from '../mycology-iconography-list/m
   styleUrl: './mycology-mushroom-edit.component.scss',
 })
 export class MycologyMushroomEditComponent
-  implements OnInit,  OnDestroy
+ 
 {
   // @Input() set id(mushroomId: number) {
   //   this.mushroomID = mushroomId;
   // }
   //mushroomID!: number;
-  @Input() mushroom!: Mushroom ;
+ // @Input() mushroom!: Mushroom ;
   
-  xtotalcount$ = this.store.select(selectXtotalcount);
-  xtotalcount!: number;
-  subs = new Subscription();
+  // xtotalcount$ = this.store.select(selectXtotalcount);
+  // xtotalcount!: number;
+  // subs = new Subscription();
 
 
 
-  ngOnInit(): void {
-    this.subs.add(
-      this.xtotalcount$.subscribe((xtotal) => {
-        this.xtotalcount = xtotal;
-      })
-    );
-  }
+  // ngOnInit(): void {
+  //   this.subs.add(
+  //     this.xtotalcount$.subscribe((xtotal) => {
+  //       this.xtotalcount = xtotal;
+  //     })
+  //   );
+  // }
 
   constructor(
     private dataService: DataService,
@@ -98,7 +98,7 @@ export class MycologyMushroomEditComponent
       cystidia: this.formBuilder.control<string>(''),
     }),
 
-    message: '',
+   // message: '',
     type: null,
   });
 
@@ -108,18 +108,16 @@ export class MycologyMushroomEditComponent
   //   );
   // }
 
-  onDelete() {
-    this.xtotalcount = this.xtotalcount - 1;
-    this.store.dispatch(
-      MushroomsActions.deleteMushroomRequest({
-        id: Number(this.mushroom?.id),
-        xtotalcount: this.xtotalcount,
-      })
-    );
-    this.router.navigate(['mushromm-list']);
-  }
+  // onDelete() {
+  //   this.xtotalcount = this.xtotalcount - 1;
+  //   this.store.dispatch(
+  //     MushroomsActions.deleteMushroomRequest({
+  //       id: Number(this.mushroom?.id),
+  //       xtotalcount: this.xtotalcount,
+  //     })
+  //   );
+  //   this.router.navigate(['mushromm-list']);
+  // }
 
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
-  }
+
 }

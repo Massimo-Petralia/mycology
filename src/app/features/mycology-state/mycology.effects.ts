@@ -50,7 +50,7 @@ export class CreateMushroomEffects {
               }),
               MushroomsActions.createIconographyRequest({
                 ...request.iconographydata,
-                id: mushroom.id,
+                mushroomID: mushroom.id,
               }),
             ];
             return from(actionsToDispatch);
@@ -144,7 +144,7 @@ export class CreateIconographyEffects {
         this.dataService.createIconography(iconographydata).pipe(
           map((iconographydata) =>
             MushroomsActions.createIconographySucces({
-              iconographydataID: iconographydata.id!,
+              iconographydataID: iconographydata.mushroomID!,
             })
           )
         )
