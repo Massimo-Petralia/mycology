@@ -77,13 +77,13 @@ export const loadIconographyFailed = createAction(
 )
 
 export const createIconographyRequest = createAction(
-    '[New Iconography Component] Create Iconography request',// questa richiesta da dove parte ?
+    '[Create Mushroom Effects] Create Iconography request',
     props<IconographyData>()
 )
 
 export const createIconographySucces = createAction(
     '[Iconography API] Create Iconography Succes',
-    props<{iconographydataID: number}>()
+   // props<{iconographydataID: number}>()
 ) 
 
  export const createIconographyFailed = createAction(
@@ -91,5 +91,16 @@ export const createIconographySucces = createAction(
     )
 
 export const deleteIconographyRequest = createAction(
-    '[]'
+    '[Delete Mushroom Effects] Delete Iconography Request',
+    props<{mushroomID: number}>()
+
+)
+
+export const deleteIconographySucces = createAction(
+    '[Iconography API] Delete Iconography Succes',
+   // props<{mushroomID: number}>()
+)
+
+export const deleteIconographyFailed = createAction(
+    '[Iconography API] Delete Iconography Failed',
 )

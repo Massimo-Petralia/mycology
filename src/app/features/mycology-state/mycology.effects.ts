@@ -97,11 +97,15 @@ export class deleteMushroomEffects {
       exhaustMap((request) =>
         this.dataService.deleteMushroom(request.id).pipe(
           map(() => request),
-          map((request) =>
-            MushroomsActions.deleteMushroomSucces({
-              id: request.id,
-              xtotalcount: request.xtotalcount,
-            })
+          switchMap((request) => {
+            const actionsToDispatch = [
+              MushroomsActions.deleteMushroomSucces({
+                id: request.id,
+                xtotalcount: request.xtotalcount,
+              }),
+              MushroomsActions.deleteIconographyRequest({ mushroomID: request.id })
+            ]; return from(actionsToDispatch)
+        }
           ),
 
           catchError((error) =>
@@ -141,14 +145,21 @@ export class CreateIconographyEffects {
     this.actions$.pipe(
       ofType(MushroomsActions.createIconographyRequest),
       switchMap((iconographydata) =>
-        this.dataService.createIconography(iconographydata).pipe(
-          map((iconographydata) =>
-            MushroomsActions.createIconographySucces({
-              iconographydataID: iconographydata.mushroomID!,
-            })
-          )
-        )
+        this.dataService.createIconography(iconographydata)
       )
-    )
+    ),
+    {dispatch: false}
   );
+}
+
+@Injectable()
+export class DeleteIconographyEffects {
+  constructor(private actions$: Actions, private dataService: DataService) {}
+  deleteIconography$ = createEffect(()=>
+  this.actions$.pipe(
+    ofType(MushroomsActions.deleteIconographyRequest),
+    switchMap((iconographydata)=> this.dataService.deleteIconography(iconographydata.mushroomID))
+  ),
+  {dispatch: false}
+  )
 }

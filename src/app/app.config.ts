@@ -14,7 +14,8 @@ import {
   updateMushroomEffects,
   deleteMushroomEffects,
   LoadIconographyEffects,
-  CreateIconographyEffects
+  CreateIconographyEffects,
+  DeleteIconographyEffects
 } from './features/mycology-state/mycology.effects';
 
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -33,7 +34,8 @@ export const appConfig: ApplicationConfig = {
       updateMushroomEffects,
       deleteMushroomEffects,
       LoadIconographyEffects,
-      CreateIconographyEffects
+      CreateIconographyEffects,
+      DeleteIconographyEffects
     ]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideAnimations(),

@@ -37,7 +37,6 @@ export class DataService {
   }
 
   createMushroom(mushroom: Mushroom){
-    debugger
     return this.http.post<Mushroom>(mushroomsDataURL, mushroom).pipe(
       catchError((error)=>{
         console.error('post request failed', error);
@@ -47,7 +46,6 @@ export class DataService {
   }
 
  updateMushroom(mushroom: Mushroom) : Observable<Mushroom> {
-  debugger
   return this.http.put<Mushroom>(`${mushroomsDataURL}/${mushroom.id}`, mushroom).pipe(
     catchError((error)=> {
       console.error('put request failed', error);
@@ -84,10 +82,19 @@ export class DataService {
  }
 
  createIconography(iconographydata: IconographyData) {
-  debugger
   return this.http.post<IconographyData>(iconographiesDataURL, iconographydata).pipe(
     catchError((error)=>{
       console.error('post iconography request failed', error);
+      throw error
+    })
+  )
+ }
+
+
+ deleteIconography(mushroomID: number) {
+  return this.http.delete(`${iconographiesDataURL}/${mushroomID}`).pipe(
+    catchError((error)=> {
+      console.error('delete iconography failed', error);
       throw error
     })
   )
