@@ -20,6 +20,8 @@ export class MycologyFormIconographyComponent  {
 
   @Output() newiconography = new EventEmitter<IconographyData>()
 
+  @Output() oncreate = new EventEmitter()
+
  @Input() isCreateMode!: boolean 
 
 handleFiles(){
@@ -43,5 +45,7 @@ handleFiles(){
 // onSave() {
 
 // }
-
+onCreate() {
+  this.oncreate.emit()
+}
 }

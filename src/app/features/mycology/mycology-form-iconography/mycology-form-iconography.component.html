@@ -1,14 +1,30 @@
 <div *ngIf="!isCreateMode; else elseBlock">
-<div *ngFor="let item of iconographydata.iconography; let i = index">
-    <img  [src]="item.imageURL" alt="">
-    <textarea [(ngModel)]="item.description"  name="" id="" cols="30" rows="10"></textarea>
-</div>
+  <div *ngFor="let item of iconographydata.iconography; let i = index">
+    <img [src]="item.imageURL" alt="" />
+    <textarea
+      [(ngModel)]="item.description"
+      name=""
+      id=""
+      cols="30"
+      rows="10"
+    ></textarea>
+  </div>
 </div>
 <ng-template #elseBlock>
-<div *ngFor="let item of defineiconography.iconography; let i = index">
-    <img  [src]="item.imageURL" alt="">
-    <textarea [(ngModel)]="item.description"  name="" id="" cols="30" rows="10"></textarea>
-</div>
+  <h2>Define iconography</h2>
+
+  <div *ngFor="let item of defineiconography.iconography; let i = index">
+    <img [src]="item.imageURL" alt="" />
+    <textarea
+      [(ngModel)]="item.description"
+      name=""
+      id=""
+      cols="30"
+      rows="10"
+    ></textarea>
+  </div>
 </ng-template>
-<input #inputfile type="file" multiple (change)="handleFiles()">
+<input #inputfile type="file" multiple (change)="handleFiles()" />
+<button *ngIf="defineiconography.iconography.length !== 0"  (click)="onCreate()">Save mushroom</button>
+
 <!-- <button (click)="onSave()">Save</button> -->
