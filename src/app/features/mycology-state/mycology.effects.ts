@@ -124,8 +124,8 @@ export class LoadIconographyEffects {
   loadIconography$ = createEffect(() =>
     this.actions$.pipe(
       ofType(MushroomsActions.loadIconographyRequest),
-      switchMap((prop) =>
-        this.dataService.getIconography(prop.iconographyID).pipe(
+      switchMap((request) =>
+        this.dataService.getIconography(request.iconographyID).pipe(
           map((iconographydata: IconographyData) =>
             MushroomsActions.loadIconographySucces({ iconographydata })
           ),

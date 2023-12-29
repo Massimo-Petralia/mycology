@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IconographyData } from '../../models/mushroom.models';
 import { Iconography } from '../../models/mushroom.models';
@@ -14,11 +14,12 @@ import { FormsModule } from '@angular/forms';
 export class MycologyFormIconographyComponent {
   @ViewChild('inputfile') inputfileElem!: ElementRef<HTMLInputElement>
   
+ @Input() iconographydata!: IconographyData
 
 //@Output() iconographydata$ = new EventEmitter<IconographyData>()
 
 
-iconographylist: Iconography[] =[]
+//iconographylist: Iconography[] =[]
 
 handleFiles(){
   const imageFiles: FileList|null  = this.inputfileElem.nativeElement.files!
@@ -28,7 +29,7 @@ handleFiles(){
     reader.onload = (event: ProgressEvent<FileReader>) => {
       const imageData = (event.target as FileReader).result as string;
       const iconography = {id: counter++, description: '', imageURL: imageData }
-      this.iconographylist.push(iconography)
+      this.iconographydata.iconography.push(iconography)
     }
     reader.readAsDataURL(image)
   }

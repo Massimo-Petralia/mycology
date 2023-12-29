@@ -17,6 +17,7 @@ import { selectPageIndex, selectXtotalcount } from '../../mycology-state/mycolog
 import { Subscription } from 'rxjs';
 import { MycologyFormIconographyComponent } from '../mycology-form-iconography/mycology-form-iconography.component';
 import { IconographyData, Mushroom } from '../../models/mushroom.models';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-mycology-form-mushroom',
@@ -26,7 +27,8 @@ import { IconographyData, Mushroom } from '../../models/mushroom.models';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MycologyFormIconographyComponent
+    MycologyFormIconographyComponent,
+    RouterLink
   ],
   templateUrl: './mycology-form-mushroom.component.html',
   styleUrl: './mycology-form-mushroom.component.scss',
@@ -93,7 +95,7 @@ ngOnChanges(changes: SimpleChanges): void {
   });
   onCreate() {
    this.xtotalcount = this.xtotalcount+1;
-   this.iconographydata= {...this.iconographydata, iconography: this.iconography.iconographylist}
+   this.iconographydata= this.iconography.iconographydata
     this.store.dispatch(
       MushroomsActions.createMushroomRequest({mushroom:this.mushroomForm.value, xtotalcount: this.xtotalcount, iconographydata: this.iconographydata})
     );
@@ -108,5 +110,9 @@ ngOnChanges(changes: SimpleChanges): void {
   onDelete() {
     this.delete.emit(this.mushroom.id)
 
+  }
+
+  showIconography() {
+    this.router.navigate(['form-iconography-page', this.mushroom.id])
   }
 }

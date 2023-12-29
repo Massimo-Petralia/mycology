@@ -1,4 +1,4 @@
-<div *ngFor="let item of iconographylist; let i = index">
+<div *ngFor="let item of iconographydata.iconography; let i = index">
     <img [src]="item.imageURL" alt="">
     <textarea [(ngModel)]="item.description"  name="" id="" cols="30" rows="10"></textarea>
 </div>

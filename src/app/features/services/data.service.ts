@@ -90,7 +90,6 @@ export class DataService {
   )
  }
 
-
  deleteIconography(mushroomID: number) {
   return this.http.delete(`${iconographiesDataURL}/${mushroomID}`).pipe(
     catchError((error)=> {
