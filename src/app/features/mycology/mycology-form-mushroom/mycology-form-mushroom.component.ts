@@ -18,6 +18,8 @@ import { Subscription } from 'rxjs';
 import { MycologyFormIconographyComponent } from '../mycology-form-iconography/mycology-form-iconography.component';
 import { IconographyData, Mushroom } from '../../models/mushroom.models';
 import { RouterLink } from '@angular/router';
+import { MycologyFormIconographyPageComponent } from '../mycology-form-iconography-page/mycology-form-iconography-page.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-mycology-form-mushroom',
@@ -28,7 +30,8 @@ import { RouterLink } from '@angular/router';
     MatFormFieldModule,
     MatInputModule,
     MycologyFormIconographyComponent,
-    RouterLink
+    RouterLink,
+    RouterOutlet
   ],
   templateUrl: './mycology-form-mushroom.component.html',
   styleUrl: './mycology-form-mushroom.component.scss',
@@ -45,12 +48,18 @@ export class MycologyFormMushroomComponent implements OnInit , OnChanges{
 @Output() update = new EventEmitter<Mushroom>()
 @Output() delete = new EventEmitter<number>()
 
-  @ViewChild(MycologyFormIconographyComponent) iconography!: MycologyFormIconographyComponent
+  @ViewChild(MycologyFormIconographyComponent) formiconography!: MycologyFormIconographyComponent
+  @ViewChild(MycologyFormIconographyPageComponent) formIconographyPage!: MycologyFormIconographyPageComponent
+
   pageIndex$ = this.store.select(selectPageIndex);
   xtotalcount$ = this.store.select(selectXtotalcount) ;
   subs = new Subscription()
   iconographydata!: IconographyData
   xtotalcount!: number //counter dovrebbe essere assegnato al pezzo di stato xtotalcount tramite un selettore
+
+  newiconography!: IconographyData
+
+  isCreateMode: boolean = false
 ngOnInit(): void {
   this.subs = this.xtotalcount$.subscribe((xtotal)=> {
     this.xtotalcount = xtotal
@@ -91,11 +100,12 @@ ngOnChanges(changes: SimpleChanges): void {
       cystidia: this.formBuilder.control<string>(''),
     }),
 
-   // message: '',
   });
   onCreate() {
    this.xtotalcount = this.xtotalcount+1;
-   this.iconographydata = this.iconography.iconographydata
+   
+   this.iconographydata = this.formiconography.defineiconography
+   debugger
     this.store.dispatch(
       MushroomsActions.createMushroomRequest({mushroom:this.mushroomForm.value, xtotalcount: this.xtotalcount, iconographydata: this.iconographydata})
     );
@@ -115,4 +125,13 @@ ngOnChanges(changes: SimpleChanges): void {
   showIconography() {
     this.router.navigate(['form-iconography-page', this.mushroom.id])
   }
+
+  handleNewIconography(newiconography: IconographyData) {
+    this.newiconography = newiconography
+  }
+
+  switchMode() {
+    this.isCreateMode=true
+   
+}
 }

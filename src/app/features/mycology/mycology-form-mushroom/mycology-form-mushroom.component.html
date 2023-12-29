@@ -87,5 +87,6 @@
   </form>
 </form>
 <button *ngIf="mushroom" (click)="showIconography()">Show iconography</button>
-<button *ngIf="!mushroom" [routerLink]="['/form-iconography']">Define iconography</button>
+<button *ngIf="!mushroom" (click)="switchMode()">Define iconography</button>
+<app-mycology-form-iconography *ngIf="isCreateMode===true" [isCreateMode]="isCreateMode" (newiconography)="handleNewIconography($event)"></app-mycology-form-iconography>
 </div>

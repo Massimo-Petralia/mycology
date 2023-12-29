@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MycologyFormIconographyComponent } from '../mycology-form-iconography/mycology-form-iconography.component';
 import { Store } from '@ngrx/store';
@@ -22,6 +22,8 @@ export class MycologyFormIconographyPageComponent implements OnInit, OnDestroy {
     this.mushroomID = mushroomId;
   }
 
+   //newiconography!:IconographyData
+
   mushroomID!: number
 
   subs = new Subscription()
@@ -42,4 +44,8 @@ export class MycologyFormIconographyPageComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subs.unsubscribe()
   }
+
+  // newIconography(newiconography: IconographyData) {
+  //   this.newiconography = newiconography
+  // }
 }

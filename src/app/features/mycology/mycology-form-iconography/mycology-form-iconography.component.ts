@@ -16,12 +16,11 @@ export class MycologyFormIconographyComponent  {
   
  @Input() iconographydata!: IconographyData 
 
-defineiconography: IconographyData = {iconography:[]}
+ defineiconography: IconographyData = {iconography:[]}
 
-//@Output() iconographydata$ = new EventEmitter<IconographyData>()
+  @Output() newiconography = new EventEmitter<IconographyData>()
 
-
-//iconographylist: Iconography[] =[]
+ @Input() isCreateMode!: boolean 
 
 handleFiles(){
   const imageFiles: FileList|null  = this.inputfileElem.nativeElement.files!
@@ -32,13 +31,17 @@ handleFiles(){
     reader.onload = (event: ProgressEvent<FileReader>) => {
       const imageData = (event.target as FileReader).result as string;
       const iconography = {id: counter++, description: '', imageURL: imageData }
-      if(this.iconographydata) {
-       this.iconographydata.iconography.push(iconography)
-      }else this.defineiconography.iconography.push(iconography)
+      if(this.isCreateMode === true) {
+        this.defineiconography.iconography.push(iconography)
+      }else this.iconographydata.iconography.push(iconography)
     }
     reader.readAsDataURL(image)
   }
+  console.log('defineiconography', this.defineiconography)
+ // this.newiconography.emit(this.defineiconography)
 }
+// onSave() {
 
+// }
 
 }
