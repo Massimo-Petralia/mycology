@@ -20,6 +20,7 @@ import { IconographyData, Mushroom } from '../../models/mushroom.models';
 import { RouterLink } from '@angular/router';
 import { MycologyFormIconographyPageComponent } from '../mycology-form-iconography-page/mycology-form-iconography-page.component';
 import { RouterOutlet } from '@angular/router';
+import { MatExpansionModule } from '@angular/material/expansion'
 
 @Component({
   selector: 'app-mycology-form-mushroom',
@@ -31,7 +32,8 @@ import { RouterOutlet } from '@angular/router';
     MatInputModule,
     MycologyFormIconographyComponent,
     RouterLink,
-    RouterOutlet
+    RouterOutlet,
+    MatExpansionModule
   ],
   templateUrl: './mycology-form-mushroom.component.html',
   styleUrl: './mycology-form-mushroom.component.scss',
@@ -130,8 +132,8 @@ ngOnChanges(changes: SimpleChanges): void {
     this.newiconography = newiconography
   }
 
-  switchMode() {
-    this.isCreateMode=true
+//   switchMode() {
+//     this.isCreateMode=true
    
-}
+// }
 }
