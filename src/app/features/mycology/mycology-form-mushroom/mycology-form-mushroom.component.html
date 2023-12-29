@@ -4,8 +4,8 @@
   <form [formGroup]="mushroomForm" (submit)="onCreate()">
     <p *ngIf="!mushroom">NOTE: each new mushroom is added to the last page of the mushrooms list</p>
     <button type="submit" [disabled]="!mushroomForm.valid || mushroom">Save mushroom</button>
-    <button type="button" (click)="onUpdate()">Save Changes</button>
-    <button type="button" (click)="onDelete()">Delete Mushroom</button>
+    <button *ngIf="mushroom" type="button" (click)="onUpdate()">Save Changes</button>
+    <button *ngIf="mushroom" type="button" (click)="onDelete()">Delete Mushroom</button>
   <div formGroupName="taxonomy" class="flex-taxonomy" >
     <mat-form-field>
       <mat-label>Species: </mat-label>
@@ -86,5 +86,6 @@
     </mat-form-field>
   </form>
 </form>
-<button (click)="showIconography()">Show iconography</button>
+<button *ngIf="mushroom" (click)="showIconography()">Show iconography</button>
+<button *ngIf="!mushroom" [routerLink]="['/form-iconography']">Define iconography</button>
 </div>

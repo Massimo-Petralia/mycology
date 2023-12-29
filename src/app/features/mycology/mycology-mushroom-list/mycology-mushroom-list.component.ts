@@ -99,7 +99,7 @@ export class MycologyMushroomListComponent
   }
 
   toNewMushroom() {
-    this.router.navigate(['new-mushroom-page']);
+    this.router.navigate(['form-mushroom']);
   }
 
   ngOnDestroy(): void {
