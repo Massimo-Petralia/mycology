@@ -1,6 +1,13 @@
+<div *ngIf="iconographydata; else elseBlock">
 <div *ngFor="let item of iconographydata.iconography; let i = index">
-    <img [src]="item.imageURL" alt="">
+    <img  [src]="item.imageURL" alt="">
     <textarea [(ngModel)]="item.description"  name="" id="" cols="30" rows="10"></textarea>
 </div>
-
+</div>
+<ng-template #elseBlock>
+<div *ngFor="let item of defineiconography.iconography; let i = index">
+    <img  [src]="item.imageURL" alt="">
+    <textarea [(ngModel)]="item.description"  name="" id="" cols="30" rows="10"></textarea>
+</div>
+</ng-template>
 <input #inputfile type="file" multiple (change)="handleFiles()">

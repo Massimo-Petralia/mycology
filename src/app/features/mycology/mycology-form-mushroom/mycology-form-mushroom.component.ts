@@ -95,7 +95,7 @@ ngOnChanges(changes: SimpleChanges): void {
   });
   onCreate() {
    this.xtotalcount = this.xtotalcount+1;
-   this.iconographydata= this.iconography.iconographydata
+   this.iconographydata = this.iconography.iconographydata
     this.store.dispatch(
       MushroomsActions.createMushroomRequest({mushroom:this.mushroomForm.value, xtotalcount: this.xtotalcount, iconographydata: this.iconographydata})
     );
