@@ -26,12 +26,15 @@ defineiconography: IconographyData = {iconography:[]}
 handleFiles(){
   const imageFiles: FileList|null  = this.inputfileElem.nativeElement.files!
   let counter:  number = 0
+  this.iconographydata = {iconography:[]}
   for(const image of Array.from(imageFiles)){
     const reader = new FileReader();
     reader.onload = (event: ProgressEvent<FileReader>) => {
       const imageData = (event.target as FileReader).result as string;
       const iconography = {id: counter++, description: '', imageURL: imageData }
-      this.defineiconography.iconography.push(iconography)
+      if(this.iconographydata) {
+       this.iconographydata.iconography.push(iconography)
+      }else this.defineiconography.iconography.push(iconography)
     }
     reader.readAsDataURL(image)
   }
