@@ -104,3 +104,18 @@ export const deleteIconographySucces = createAction(
 export const deleteIconographyFailed = createAction(
     '[Iconography API] Delete Iconography Failed',
 )
+
+export const updateIconographyRequest = createAction(
+    '[Form Iconography Component] Update Iconography Component',
+    props<IconographyData>()
+)
+
+export const updateIconographySucces = createAction(
+    '[Iconography API] Update Iconography Succes',
+    props<{iconographydata: IconographyData}>()
+)
+
+export const updateIconographyFailed = createAction(
+    '[Iconographi API] Update Iconography Failed',
+    props<{error: any}>()
+)

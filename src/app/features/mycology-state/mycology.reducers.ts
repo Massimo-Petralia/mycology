@@ -45,7 +45,8 @@ export const mushroomsReducer = createReducer(
     MushroomsActions.loadIconographySucces,
     (mycologyState, { iconographydata }) => ({
       ...mycologyState,
-      iconographydata,
+      iconographydata
     })
-  )
+  ),
+  on(MushroomsActions.updateIconographySucces, (mycologyState, {iconographydata})=>  ({...mycologyState, iconographydata}))
 );

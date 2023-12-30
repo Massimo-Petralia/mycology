@@ -4,7 +4,7 @@
     <textarea
       [(ngModel)]="item.description"
       name=""
-      id=""
+      id="{{i}}"
       cols="30"
       rows="10"
     ></textarea>
@@ -18,13 +18,15 @@
     <textarea
       [(ngModel)]="item.description"
       name=""
-      id=""
+      id="{{i}}"
       cols="30"
       rows="10"
     ></textarea>
   </div>
 </ng-template>
 <input #inputfile type="file" multiple (change)="handleFiles()" />
-<button *ngIf="defineiconography.iconography.length !== 0"  (click)="onCreate()">Save mushroom</button>
+<button *ngIf="defineiconography.iconography.length !== 0" (click)="onCreate()">
+  Save mushroom
+</button>
 
-<!-- <button (click)="onSave()">Save</button> -->
+<button *ngIf="!isCreateMode" (click)="onUpdate()">Save iconography</button>

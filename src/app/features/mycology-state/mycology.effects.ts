@@ -163,3 +163,17 @@ export class DeleteIconographyEffects {
   {dispatch: false}
   )
 }
+
+@Injectable()
+export class UpdateIconographyEffects {
+  constructor(private actions$: Actions, private dataService: DataService) {}
+updateIconography$ = createEffect(()=> 
+this.actions$.pipe(
+  ofType(MushroomsActions.updateIconographyRequest),
+  exhaustMap((iconographydata)=> this.dataService.updateIconography(iconographydata).pipe(
+    map((iconographydata) => MushroomsActions.updateIconographySucces({iconographydata: iconographydata})),
+    catchError((error)=> of(MushroomsActions.updateIconographyFailed({error: error})))
+  ))
+)
+)
+}

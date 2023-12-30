@@ -48,4 +48,8 @@ export class MycologyFormIconographyPageComponent implements OnInit, OnDestroy {
   // newIconography(newiconography: IconographyData) {
   //   this.newiconography = newiconography
   // }
+
+  onUpdate(iconographydata: IconographyData){
+    this.store.dispatch(MycologyActions.updateIconographyRequest({...iconographydata, id: this.mushroomID}))
+  }
 }

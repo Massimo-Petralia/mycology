@@ -43,6 +43,7 @@ export interface Iconography {
 }
 
 export interface IconographyData {
+  id?: number;
   mushroomID?: number;
   iconography: Iconography[]
 }

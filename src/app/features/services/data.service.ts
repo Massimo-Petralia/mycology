@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient ,HttpResponse} from '@angular/common/http';
 import { Observable, catchError } from 'rxjs';
 import { IconographyData, Mushroom } from '../models/mushroom.models';
+import { error } from 'console';
 
 const mushroomsDataURL = 'http://localhost:3000/mushrooms'
 const iconographiesDataURL = 'http://localhost:3000/iconographies'
@@ -94,6 +95,15 @@ export class DataService {
   return this.http.delete(`${iconographiesDataURL}/${mushroomID}`).pipe(
     catchError((error)=> {
       console.error('delete iconography failed', error);
+      throw error
+    })
+  )
+ }
+
+ updateIconography(iconographydata: IconographyData):Observable<IconographyData> {
+  return this.http.put<IconographyData>(`${iconographiesDataURL}/${iconographydata.id}`, iconographydata).pipe(
+    catchError((error)=> {
+      console.error('put request failed', error);
       throw error
     })
   )
