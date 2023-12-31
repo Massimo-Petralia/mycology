@@ -139,60 +139,6 @@
     {
       "taxonomy": {
         "AA": "",
-        "species": "vini di milo",
-        "gender": "",
-        "family": "",
-        "order": "",
-        "synonymous": ""
-      },
-      "morphology": {
-        "cap": "",
-        "gills": "",
-        "stalk": "",
-        "flesh": ""
-      },
-      "features": {
-        "habitat": "",
-        "edibility": "",
-        "note": ""
-      },
-      "microscopicFeatures": {
-        "spores": "",
-        "pileipellis": "",
-        "cystidia": ""
-      },
-      "id": 7
-    },
-    {
-      "taxonomy": {
-        "AA": "",
-        "species": "spores",
-        "gender": "",
-        "family": "",
-        "order": "",
-        "synonymous": ""
-      },
-      "morphology": {
-        "cap": "",
-        "gills": "",
-        "stalk": "",
-        "flesh": ""
-      },
-      "features": {
-        "habitat": "",
-        "edibility": "",
-        "note": ""
-      },
-      "microscopicFeatures": {
-        "spores": "",
-        "pileipellis": "",
-        "cystidia": ""
-      },
-      "id": 8
-    },
-    {
-      "taxonomy": {
-        "AA": "",
         "species": "cill",
         "gender": "",
         "family": "",
