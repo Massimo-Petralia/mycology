@@ -13,6 +13,6 @@ export const initialState: MycologyState = {
     pageIndex:0,
     iconographydata: {
         mushroomID: 0,
-        iconography: []
+        iconographyarray: []
     }
 }

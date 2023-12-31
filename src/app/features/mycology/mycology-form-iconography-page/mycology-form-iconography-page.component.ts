@@ -1,9 +1,9 @@
-import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MycologyFormIconographyComponent } from '../mycology-form-iconography/mycology-form-iconography.component';
 import { Store } from '@ngrx/store';
 import { MycologyState } from '../../models/mycology-state.models';
-import * as MycologyActions from '../../mycology-state/mycology.actions'
+import * as MycologyActions from '../../mycology-state/mycology.actions';
 import { selectIconographydata } from '../../mycology-state/mycology.selectors';
 import { Subscription } from 'rxjs';
 import { IconographyData } from '../../models/mushroom.models';
@@ -13,43 +13,45 @@ import { IconographyData } from '../../models/mushroom.models';
   standalone: true,
   imports: [CommonModule, MycologyFormIconographyComponent],
   templateUrl: './mycology-form-iconography-page.component.html',
-  styleUrl: './mycology-form-iconography-page.component.scss'
+  styleUrl: './mycology-form-iconography-page.component.scss',
 })
 export class MycologyFormIconographyPageComponent implements OnInit, OnDestroy {
-  constructor(private store: Store<MycologyState>){}
+  constructor(private store: Store<MycologyState>) {}
 
   @Input() set id(mushroomId: number) {
     this.mushroomID = mushroomId;
   }
 
-   //newiconography!:IconographyData
+  mushroomID!: number;
 
-  mushroomID!: number
+  subs = new Subscription();
 
-  subs = new Subscription()
+  iconographydata!: IconographyData;
 
-  iconographydata!: IconographyData
+  iconographydata$ = this.store.select(selectIconographydata);
 
-  iconographydata$ = this.store.select(selectIconographydata)
+  isCreateMode!: boolean
 
   ngOnInit(): void {
-    this.store.dispatch(MycologyActions.loadIconographyRequest({iconographyID: this.mushroomID}))
+    this.store.dispatch(
+      MycologyActions.loadIconographyRequest({ iconographyID: this.mushroomID })
+    );
     this.subs.add(
-      this.iconographydata$.subscribe((iconographydata)=> {
-        this.iconographydata = iconographydata
+      this.iconographydata$.subscribe((iconographydata) => {
+        this.iconographydata = iconographydata;
+        console.log('iconographydata from iconographydata$: ', iconographydata)
       })
-    )
+    );
   }
-
+  onUpdate(iconographydata: IconographyData) {
+    this.store.dispatch(
+      MycologyActions.updateIconographyRequest({
+        ...iconographydata,
+        id: this.mushroomID,
+      })
+    );
+  }
   ngOnDestroy(): void {
-    this.subs.unsubscribe()
-  }
-
-  // newIconography(newiconography: IconographyData) {
-  //   this.newiconography = newiconography
-  // }
-
-  onUpdate(iconographydata: IconographyData){
-    this.store.dispatch(MycologyActions.updateIconographyRequest({...iconographydata, id: this.mushroomID}))
+    this.subs.unsubscribe();
   }
 }

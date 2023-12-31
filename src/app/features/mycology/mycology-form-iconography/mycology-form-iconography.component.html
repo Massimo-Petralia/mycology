@@ -1,32 +1,56 @@
 <div *ngIf="!isCreateMode; else elseBlock">
-  <div *ngFor="let item of iconographydata.iconography; let i = index">
-    <img [src]="item.imageURL" alt="" />
-    <textarea
-      [(ngModel)]="item.description"
-      name=""
-      id="{{i}}"
-      cols="30"
-      rows="10"
-    ></textarea>
-  </div>
+  <form [formGroup]="formIconographyData" (ngSubmit)="onSubmit()">
+    <button type="submit" *ngIf="!isCreateMode">Save iconography</button>
+
+    <div  action="" formArrayName="iconographyarrayform">
+      <div *ngFor="let iconography of iconographyarrayform.controls; let i = index;">
+          
+        <!-- <div *ngIf="i<=0"> -->
+        <div *ngFor="let iconography of iconographydata.iconographyarray.slice(i, i+1)">
+        <img [src]="iconography.imageURL"  alt="" />
+        </div>
+      <!-- </div> -->
+        <textarea
+          name=""
+          id="{{ i }}"
+          cols="30"
+          rows="10"
+          [formControlName]="i"
+        ></textarea>
+        
+      </div>
+    </div>
+  </form>
 </div>
 <ng-template #elseBlock>
   <h2>Define iconography</h2>
+  <form [formGroup]="formIconographyData" (ngSubmit)="onSubmit()">
+    <button type="submit" *ngIf="!isCreateMode">Save iconography</button>
 
-  <div *ngFor="let item of defineiconography.iconography; let i = index">
-    <img [src]="item.imageURL" alt="" />
-    <textarea
-      [(ngModel)]="item.description"
-      name=""
-      id="{{i}}"
-      cols="30"
-      rows="10"
-    ></textarea>
-  </div>
+    <div  action="" formArrayName="iconographyarrayform">
+      <div *ngFor="let iconography of iconographyarrayform.controls; let i = index;">
+          
+        <!-- <div *ngIf="i<=0"> -->
+        <div *ngFor="let iconography of iconographydata.iconographyarray.slice(i, i+1)">
+        <img [src]="iconography.imageURL"  alt="" />
+        </div>
+      <!-- </div> -->
+        <textarea
+          name=""
+          id="{{ i }}"
+          cols="30"
+          rows="10"
+          [formControlName]="i"
+        ></textarea>
+        
+      </div>
+    </div>
+  </form>
 </ng-template>
-<input #inputfile type="file" multiple (change)="handleFiles()" />
-<button *ngIf="defineiconography.iconography.length !== 0" (click)="onCreate()">
+<!-- <input #inputfile type="file" multiple (change)="handleFiles()" /> -->
+<button
+  *ngIf="defineiconography.iconographyarray.length !== 0"
+  (click)="onCreate()"
+>
   Save mushroom
 </button>
-
-<button *ngIf="!isCreateMode" (click)="onUpdate()">Save iconography</button>
