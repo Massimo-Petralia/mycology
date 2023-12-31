@@ -40,37 +40,39 @@ export class MycologyFormIconographyComponent implements OnInit, OnChanges{
 
 
 formIconographyData = this.formBuilder.group({
-  //id?: questo controllo fa riferimento a una proprietà facoltativa quindi non dovrebbe essere necessario definirlo
-  //mushroomID?: questo controllo fa riferimento a una proprietà facoltativa quindi non dovrebbe essere necessario definirlo
+  id: <number|undefined>(0),//questo controllo fa riferimento a una proprietà facoltativa quindi non dovrebbe essere necessario definirlo
+  mushroomID: <number|undefined>(0),//questo controllo fa riferimento a una proprietà facoltativa quindi non dovrebbe essere necessario definirlo
   iconographyarrayform: this.formBuilder.array([])
 })
 
 get iconographyarrayform() {
-  return this.formIconographyData.get('iconographyarrayform') as unknown as FormArray
+  return this.formIconographyData.get('iconographyarrayform')as unknown as FormArray
 }
 
 ngOnInit(): void {
-    //this.formIconographyData.patchValue(this.iconographydata) quando arrivano i dati faccio il pathValue del form (o setValue)
-this.iconographydata.iconographyarray.forEach(()=> {
-  this.iconographyarrayform.push(
- 
-   this.formBuilder.control<string>(''),
- 
+  this.iconographydata.iconographyarray.forEach((elem)=> {
+    this.iconographyarrayform.push(
+   
+     this.formBuilder.control<string>(elem.description),
+   
+      
+    );
     
-  );
-  
-})
-
-console.log('iconographyarray: ', this.iconographydata.iconographyarray)
+   // this.formIconographyData.patchValue(this.iconographydata)
+  })
+  console.log('valore completo del form: ', this.formIconographyData.value)
+  this.formIconographyData.patchValue(this.iconographydata)
+  console.log('check di mushroomID e ID all onInit', this.iconographydata)
 }
 
 @Output() formvalue = new EventEmitter<IconographyData>()
 
 ngOnChanges(changes: SimpleChanges): void {
   // const {iconographydata} = changes
-  // if(iconographydata){
+  // if(iconographydata) {
 
-  //}
+  // }
+
   
 }
 
