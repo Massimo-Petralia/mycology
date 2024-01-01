@@ -62,13 +62,13 @@ export class MycologyMushroomListComponent
   handlePagination(pageEvent: PageEvent) {
     this.page = pageEvent.pageIndex + 1;
     this.store.dispatch(
-      MushroomsActions.loadMushrooms({ pageIndex: this.page })
+      MushroomsActions.loadMushroomsRequest({ pageIndex: this.page })
     );
   }
 
   ngOnInit(): void {
     this.store.dispatch(
-      MushroomsActions.loadMushrooms({ pageIndex: this.page })
+      MushroomsActions.loadMushroomsRequest({ pageIndex: this.page })
     );
     this.xtotalcount$ = this.store.select(selectXtotalcount);
 
@@ -76,7 +76,7 @@ export class MycologyMushroomListComponent
       this.xtotalcount$.subscribe((xtotal) => {
         this.xtotalcount = xtotal;
       })
-    );
+    )
   }
 
   ngAfterViewInit(): void {
@@ -85,7 +85,7 @@ export class MycologyMushroomListComponent
         if (mushrooms.length === 0) {
           this.page = this.page - 1;
           this.store.dispatch(
-            MushroomsActions.loadMushrooms({ pageIndex: this.page })
+            MushroomsActions.loadMushroomsRequest({ pageIndex: this.page })
           );
 
           this.paginator!.pageIndex = this.paginator.pageIndex - 1;
@@ -95,11 +95,11 @@ export class MycologyMushroomListComponent
   }
 
   onMushroom(id: number) {
-    this.router.navigate([{ outlets: { container: ['mushroom', id] } }]);
+    this.router.navigate(['mushroom-edit-page', id]);
   }
 
   toNewMushroom() {
-    this.router.navigate([{ outlets: { container: ['create-mushroom'] } }]);
+    this.router.navigate(['form-mushroom']);
   }
 
   ngOnDestroy(): void {
