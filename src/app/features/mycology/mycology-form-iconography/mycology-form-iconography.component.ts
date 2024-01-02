@@ -96,7 +96,7 @@ ngAfterViewInit(): void {
 
 }
 
-  @Output() formvalue = new EventEmitter<IconographyData>();
+  //@Output() formvalue = new EventEmitter<IconographyData>();
 
 
 
@@ -133,7 +133,12 @@ ngAfterViewInit(): void {
   //   }
 
   onSubmit() {
-    //this.formvalue.emit(this.formIconographyData.value) emit current form value
+    const mappedIconographyarray  = (this.formIconographyData.controls.iconographyarrayform.value as string[]).map((text)=> ({description: text}))
+    const mappedIconographydata = {...this.iconographydata, iconographyarray: [...this.iconographydata.iconographyarray.map((iconography, index)=>
+     iconography = {...this.iconographydata.iconographyarray[index], description: mappedIconographyarray[index].description }
+    )]}
+    this.update.emit(mappedIconographydata)
+    console.log('mappedIconographydata: ', mappedIconographydata)
   }
 
   onCreate() {
