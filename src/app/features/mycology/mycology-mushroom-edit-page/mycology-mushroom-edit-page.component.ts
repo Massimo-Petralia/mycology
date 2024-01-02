@@ -22,7 +22,7 @@ import { selectXtotalcount } from '../../mycology-state/mycology.selectors';
 @Component({
   selector: 'app-mycology-mushroom-edit-page',
   standalone: true,
-  imports: [CommonModule, MycologyFormMushroomComponent],
+  imports: [CommonModule, MycologyFormMushroomComponent ],
   templateUrl: './mycology-mushroom-edit-page.component.html',
   styleUrl: './mycology-mushroom-edit-page.component.scss',
 })
@@ -76,7 +76,7 @@ ngOnInit(): void {
         xtotalcount: this.xtotalcount,
       })
     );
-    this.router.navigate(['mushromm-list']);
+    this.router.navigate(['mushrooms']);
   }
 
   ngOnDestroy(): void {

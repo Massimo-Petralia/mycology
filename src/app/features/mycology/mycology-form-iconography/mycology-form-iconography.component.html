@@ -1,4 +1,5 @@
 <div *ngIf="!isCreateMode; else elseBlock">
+  <h2>Iconography gallery</h2>
   <form [formGroup]="formIconographyData" (ngSubmit)="onSubmit()">
     <button type="submit" *ngIf="!isCreateMode">Save iconography</button>
 

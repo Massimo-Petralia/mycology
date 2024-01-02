@@ -32,7 +32,7 @@ import { Observable, Subscription } from 'rxjs';
   styleUrl: './mycology-form-iconography.component.scss',
 })
 export class MycologyFormIconographyComponent
-  implements OnInit, OnChanges, AfterViewInit, OnDestroy
+  implements OnInit, OnChanges, AfterViewInit
 {
   constructor(private formBuilder: FormBuilder) {}
   @ViewChild('inputfile') inputfileElem!: ElementRef<HTMLInputElement>;
@@ -47,11 +47,11 @@ export class MycologyFormIconographyComponent
 
   @Output() update = new EventEmitter<IconographyData>();
 
-  @Input() isCreateMode!: boolean;
+   isCreateMode!: boolean;
 
   formIconographyData = this.formBuilder.group({
-    id: <number | undefined>0, //questo controllo fa riferimento a una proprietà facoltativa quindi non dovrebbe essere necessario definirlo
-    mushroomID: <number | undefined>0, //questo controllo fa riferimento a una proprietà facoltativa quindi non dovrebbe essere necessario definirlo
+    id: <number | undefined>0, 
+    mushroomID: <number | undefined>0, 
     iconographyarrayform: this.formBuilder.array([]),
   });
 
@@ -60,29 +60,45 @@ export class MycologyFormIconographyComponent
       'iconographyarrayform'
     ) as unknown as FormArray;
   }
-
-  ngOnInit(): void {
-    this.formIconographyData.controls.iconographyarrayform.patchValue([]);
+ngOnChanges(changes: SimpleChanges): void {
+  if(this.iconographydata) {
+    this.isCreateMode = false
+    this.formIconographyData.controls.iconographyarrayform.clear();
 
     this.iconographydata.iconographyarray.forEach((iconography) => {
       this.iconographyarrayform.push(
         this.formBuilder.control<string>(iconography.description)
       );
     });
-    console.log('valore completo del form: ', this.formIconographyData.value);
     this.formIconographyData.patchValue(this.iconographydata);
-    console.log('check di mushroomID e ID all onInit', this.iconographydata);
   }
 
-  ngAfterViewInit(): void {}
+}
+
+
+  ngOnInit(): void {
+    // console.log('check iconographydata OnInit: ', this.iconographydata)
+    // if(this.iconographydata) {
+    //   this.isCreateMode = false
+    //   this.formIconographyData.controls.iconographyarrayform.patchValue([]);
+
+    //   this.iconographydata.iconographyarray.forEach((iconography) => {
+    //     this.iconographyarrayform.push(
+    //       this.formBuilder.control<string>(iconography.description)
+    //     );
+    //   });
+    //   this.formIconographyData.patchValue(this.iconographydata);
+    // }
+ 
+  }
+ngAfterViewInit(): void {
+  console.log('check iconographydata AfterViewInit: ', this.iconographydata)
+
+}
 
   @Output() formvalue = new EventEmitter<IconographyData>();
 
-  ngOnChanges(changes: SimpleChanges): void {
-    // const {iconographydata} = changes
-    // if(iconographydata) {
-    // }
-  }
+
 
   // handleFiles() {
   //     const imageFiles: FileList | null = this.inputfileElem.nativeElement.files;
@@ -129,5 +145,5 @@ export class MycologyFormIconographyComponent
     console.log('valore corrente di iconography data: ', this.iconographydata);
   }
 
-  ngOnDestroy(): void {}
+
 }

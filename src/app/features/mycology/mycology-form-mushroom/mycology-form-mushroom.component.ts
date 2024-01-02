@@ -125,7 +125,7 @@ ngOnChanges(changes: SimpleChanges): void {
   }
 
   showIconography() {
-    this.router.navigate(['form-iconography-page', this.mushroom.id])
+    this.router.navigate(['iconography', this.mushroom.id])
   }
 
   handleNewIconography(newiconography: IconographyData) {

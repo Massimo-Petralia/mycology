@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MycologyFormIconographyComponent } from '../mycology-form-iconography/mycology-form-iconography.component';
 import { Store } from '@ngrx/store';
@@ -7,6 +7,7 @@ import * as MycologyActions from '../../mycology-state/mycology.actions';
 import { selectIconographydata } from '../../mycology-state/mycology.selectors';
 import { Subscription } from 'rxjs';
 import { IconographyData } from '../../models/mushroom.models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mycology-form-iconography-page',
@@ -16,7 +17,8 @@ import { IconographyData } from '../../models/mushroom.models';
   styleUrl: './mycology-form-iconography-page.component.scss',
 })
 export class MycologyFormIconographyPageComponent implements OnInit, OnDestroy {
-  constructor(private store: Store<MycologyState>) {}
+  constructor(private store: Store<MycologyState>, private router: Router) {}
+
 
   @Input() set id(mushroomId: number) {
     this.mushroomID = mushroomId;
@@ -39,7 +41,6 @@ export class MycologyFormIconographyPageComponent implements OnInit, OnDestroy {
     this.subs.add(
       this.iconographydata$.subscribe((iconographydata) => {
         this.iconographydata = iconographydata;
-        console.log('iconographydata from iconographydata$: ', iconographydata)
       })
     );
   }

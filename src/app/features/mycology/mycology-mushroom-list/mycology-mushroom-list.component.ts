@@ -95,7 +95,7 @@ export class MycologyMushroomListComponent
   }
 
   onMushroom(id: number) {
-    this.router.navigate(['mushroom-edit-page', id]);
+    this.router.navigate(['mushroom', id]);
   }
 
   toNewMushroom() {
