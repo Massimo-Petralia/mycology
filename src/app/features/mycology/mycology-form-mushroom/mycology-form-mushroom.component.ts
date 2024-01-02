@@ -1,4 +1,13 @@
-import { Component, Input, OnInit,OnChanges, ViewChild, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnChanges,
+  ViewChild,
+  SimpleChanges,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -12,15 +21,17 @@ import { Store } from '@ngrx/store';
 import { MycologyState } from '../../models/mycology-state.models';
 import * as MushroomsActions from '../../mycology-state/mycology.actions';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { selectPageIndex, selectXtotalcount } from '../../mycology-state/mycology.selectors'; 
+import {
+  selectPageIndex,
+  selectXtotalcount,
+} from '../../mycology-state/mycology.selectors';
 import { Subscription } from 'rxjs';
 import { MycologyFormIconographyComponent } from '../mycology-form-iconography/mycology-form-iconography.component';
 import { IconographyData, Mushroom } from '../../models/mushroom.models';
 import { RouterLink } from '@angular/router';
 import { MycologyFormIconographyPageComponent } from '../mycology-form-iconography-page/mycology-form-iconography-page.component';
 import { RouterOutlet } from '@angular/router';
-import { MatExpansionModule } from '@angular/material/expansion'
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-mycology-form-mushroom',
@@ -33,47 +44,47 @@ import { MatExpansionModule } from '@angular/material/expansion'
     MycologyFormIconographyComponent,
     RouterLink,
     RouterOutlet,
-    MatExpansionModule
+    MatExpansionModule,
   ],
   templateUrl: './mycology-form-mushroom.component.html',
   styleUrl: './mycology-form-mushroom.component.scss',
 })
-export class MycologyFormMushroomComponent implements OnInit , OnChanges{
+export class MycologyFormMushroomComponent implements OnInit, OnChanges {
   constructor(
     private formBuilder: FormBuilder,
     private store: Store<MycologyState>,
     private router: Router,
-    private http: HttpClient
   ) {}
 
-@Input() mushroom! : Mushroom
-@Output() update = new EventEmitter<Mushroom>()
-@Output() delete = new EventEmitter<number>()
+  @Input() mushroom!: Mushroom;
+  @Output() update = new EventEmitter<Mushroom>();
+  @Output() delete = new EventEmitter<number>();
 
-  @ViewChild(MycologyFormIconographyComponent) formiconography!: MycologyFormIconographyComponent
-  @ViewChild(MycologyFormIconographyPageComponent) formIconographyPage!: MycologyFormIconographyPageComponent
+
+  @ViewChild(MycologyFormIconographyComponent)
+  formiconography!: MycologyFormIconographyComponent;
+  @ViewChild(MycologyFormIconographyPageComponent)
+  formIconographyPage!: MycologyFormIconographyPageComponent;
 
   pageIndex$ = this.store.select(selectPageIndex);
-  xtotalcount$ = this.store.select(selectXtotalcount) ;
-  subs = new Subscription()
-  iconographydata!: IconographyData
-  xtotalcount!: number //counter dovrebbe essere assegnato al pezzo di stato xtotalcount tramite un selettore
+  xtotalcount$ = this.store.select(selectXtotalcount);
+  subs = new Subscription();
+  iconographydata!: IconographyData;
+  xtotalcount!: number;
+  isCreateMode!: boolean;
 
-  newiconography!: IconographyData
-
-  isCreateMode: boolean = false
-ngOnInit(): void {
-  this.subs = this.xtotalcount$.subscribe((xtotal)=> {
-    this.xtotalcount = xtotal
-  })
-}
-
-ngOnChanges(changes: SimpleChanges): void {
-  const {mushroom} = changes
-  if(mushroom) {
-    this.mushroomForm.patchValue(this.mushroom)
+  ngOnInit(): void {
+    this.subs = this.xtotalcount$.subscribe((xtotal) => {
+      this.xtotalcount = xtotal;
+    });
   }
-}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const { mushroom } = changes;
+    if (mushroom) {
+      this.mushroomForm.patchValue(this.mushroom);
+    }
+  }
 
   mushroomForm: FormGroup = this.formBuilder.group({
     taxonomy: this.formBuilder.group({
@@ -101,39 +112,31 @@ ngOnChanges(changes: SimpleChanges): void {
       pileipellis: this.formBuilder.control<string>(''),
       cystidia: this.formBuilder.control<string>(''),
     }),
-
   });
   onCreate() {
-   this.xtotalcount = this.xtotalcount+1;
-   
-   this.iconographydata = this.formiconography.defineiconography
-   debugger
+    this.xtotalcount = this.xtotalcount + 1;
+
+    this.iconographydata = this.formiconography.defineiconography;
+    debugger;
     this.store.dispatch(
-      MushroomsActions.createMushroomRequest({mushroom:this.mushroomForm.value, xtotalcount: this.xtotalcount, iconographydata: this.iconographydata})
+      MushroomsActions.createMushroomRequest({
+        mushroom: this.mushroomForm.value,
+        xtotalcount: this.xtotalcount,
+        iconographydata: this.iconographydata,
+      })
     );
-     // this.store.dispatch(MushroomsActions.createIconography(this.iconographydata))
     this.router.navigate(['']);
   }
 
   onUpdate() {
-    this.update.emit(this.mushroomForm.value)
+    this.update.emit(this.mushroomForm.value);
   }
 
   onDelete() {
-    this.delete.emit(this.mushroom.id)
-
+    this.delete.emit(this.mushroom.id);
   }
 
   showIconography() {
-    this.router.navigate(['iconography', this.mushroom.id])
+    this.router.navigate(['iconography', this.mushroom.id]);
   }
-
-  handleNewIconography(newiconography: IconographyData) {
-    this.newiconography = newiconography
-  }
-
-//   switchMode() {
-//     this.isCreateMode=true
-   
-// }
 }

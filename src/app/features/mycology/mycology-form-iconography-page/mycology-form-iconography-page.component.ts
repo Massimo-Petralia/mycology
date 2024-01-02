@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MycologyFormIconographyComponent } from '../mycology-form-iconography/mycology-form-iconography.component';
 import { Store } from '@ngrx/store';
@@ -19,7 +19,6 @@ import { Router } from '@angular/router';
 export class MycologyFormIconographyPageComponent implements OnInit, OnDestroy {
   constructor(private store: Store<MycologyState>, private router: Router) {}
 
-
   @Input() set id(mushroomId: number) {
     this.mushroomID = mushroomId;
   }
@@ -32,7 +31,7 @@ export class MycologyFormIconographyPageComponent implements OnInit, OnDestroy {
 
   iconographydata$ = this.store.select(selectIconographydata);
 
-  isCreateMode!: boolean
+  isCreateMode!: boolean;
 
   ngOnInit(): void {
     this.store.dispatch(

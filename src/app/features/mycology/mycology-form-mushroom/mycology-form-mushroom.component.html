@@ -1,4 +1,3 @@
-<h2>Add / Edit Mushroom</h2>
 <div class="flex-container">
   <mat-expansion-panel expanded="true">
     <mat-expansion-panel-header>
@@ -17,7 +16,12 @@
       <button *ngIf="mushroom" type="button" (click)="onUpdate()">
         Save Changes
       </button>
-      <button *ngIf="mushroom" type="button" (click)="onDelete()">
+      <button
+        style="color: red"
+        *ngIf="mushroom"
+        type="button"
+        (click)="onDelete()"
+      >
         Delete Mushroom
       </button>
       <div formGroupName="taxonomy" class="flex-taxonomy">
@@ -104,14 +108,14 @@
     <button *ngIf="!mushroom" (click)="isCreateMode = true">
       Define iconography
     </button>
+    <button *ngIf="mushroom" (click)="showIconography()">
+      Show iconography
+    </button>
   </mat-expansion-panel>
-
-  <button *ngIf="mushroom" (click)="showIconography()">Show iconography</button>
 
   <app-mycology-form-iconography
     *ngIf="isCreateMode === true"
-   
-    (newiconography)="handleNewIconography($event)"
+    [isCreateMode]="isCreateMode"
     (oncreate)="onCreate()"
   ></app-mycology-form-iconography>
 </div>

@@ -98,7 +98,7 @@ export class MycologyMushroomListComponent
     this.router.navigate(['mushroom', id]);
   }
 
-  toNewMushroom() {
+  toNewMushroom() {//
     this.router.navigate(['form-mushroom']);
   }
 

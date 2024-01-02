@@ -8,30 +8,33 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Mushroom } from '../../models/mushroom.models';
-import { Subscription, from } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { DataService } from '../../services/data.service';
 import { MycologyFormMushroomComponent } from '../mycology-form-mushroom/mycology-form-mushroom.component';
 import { Store } from '@ngrx/store';
 import { MycologyState } from '../../models/mycology-state.models';
 import * as MushroomsActions from '../../mycology-state/mycology.actions';
 import { Router } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
 import { selectXtotalcount } from '../../mycology-state/mycology.selectors';
-
 
 @Component({
   selector: 'app-mycology-mushroom-edit-page',
   standalone: true,
-  imports: [CommonModule, MycologyFormMushroomComponent ],
+  imports: [CommonModule, MycologyFormMushroomComponent],
   templateUrl: './mycology-mushroom-edit-page.component.html',
   styleUrl: './mycology-mushroom-edit-page.component.scss',
 })
-export class MycologyMushroomEditPageComponent implements OnInit, OnChanges, OnDestroy {
+export class MycologyMushroomEditPageComponent
+  implements OnInit, OnChanges, OnDestroy
+{
   constructor(
     private dataService: DataService,
     private store: Store<MycologyState>,
     private router: Router
   ) {}
+
+isCreateMode!: boolean
+
   @Input() set id(mushroomId: number) {
     this.mushroomID = mushroomId;
   }
@@ -42,13 +45,13 @@ export class MycologyMushroomEditPageComponent implements OnInit, OnChanges, OnD
   xtotalcount$ = this.store.select(selectXtotalcount);
   xtotalcount!: number;
 
-ngOnInit(): void {
-  this.subs.add(
-    this.xtotalcount$.subscribe((xtotal) => {
-      this.xtotalcount = xtotal;
-    })
-  );
-}
+  ngOnInit(): void {
+    this.subs.add(
+      this.xtotalcount$.subscribe((xtotal) => {
+        this.xtotalcount = xtotal;
+      })
+    );
+  }
   ngOnChanges(changes: SimpleChanges): void {
     const { id } = changes;
     if (id) {
@@ -80,6 +83,6 @@ ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
-    this.subs.unsubscribe()
+    this.subs.unsubscribe();
   }
 }
