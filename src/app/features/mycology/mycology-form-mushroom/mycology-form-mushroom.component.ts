@@ -114,18 +114,23 @@ export class MycologyFormMushroomComponent implements OnInit, OnChanges {
     }),
   });
   onCreate() {
-    this.xtotalcount = this.xtotalcount + 1;
+    if(!this.mushroomForm.valid){
+      window.alert('You must specify a name in the Species field of the Taxonomy form')
+      return
+    } else {
+      this.xtotalcount = this.xtotalcount + 1;
 
-    this.iconographydata = this.formiconography.defineiconography;
-    debugger;
-    this.store.dispatch(
-      MushroomsActions.createMushroomRequest({
-        mushroom: this.mushroomForm.value,
-        xtotalcount: this.xtotalcount,
-        iconographydata: this.iconographydata,
-      })
-    );
-    this.router.navigate(['']);
+      this.iconographydata = this.formiconography.defineiconography;
+      this.store.dispatch(
+        MushroomsActions.createMushroomRequest({
+          mushroom: this.mushroomForm.value,
+          xtotalcount: this.xtotalcount,
+          iconographydata: this.iconographydata,
+        })
+      );
+      this.router.navigate(['']);
+    }
+
   }
 
   onUpdate() {
