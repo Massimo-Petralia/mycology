@@ -1,0 +1,121 @@
+<div class="flex-container">
+  <mat-expansion-panel expanded="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title> Form mushroom </mat-panel-title>
+      <mat-panel-description>
+        define the characteristics of the new mushroom
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form [formGroup]="mushroomForm" (submit)="onCreate()">
+      <p *ngIf="!mushroom">
+        NOTE: each new mushroom is added to the last page of the mushrooms list
+      </p>
+      <button type="submit" [disabled]="!mushroomForm.valid || mushroom">
+        Save mushroom
+      </button>
+      <button *ngIf="mushroom" type="button" (click)="onUpdate()">
+        Save Changes
+      </button>
+      <button
+        style="color: red"
+        *ngIf="mushroom"
+        type="button"
+        (click)="onDelete()"
+      >
+        Delete Mushroom
+      </button>
+      <div formGroupName="taxonomy" class="flex-taxonomy">
+        <h3>Define Taxonomy</h3>
+
+        <mat-form-field>
+          <mat-label>Species: </mat-label>
+          <input type="text" matInput formControlName="species" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>AA: </mat-label>
+          <input type="text" matInput formControlName="AA" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Gender: </mat-label>
+          <input type="text" matInput formControlName="gender" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Family: </mat-label>
+          <input type="text" matInput formControlName="family" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Order: </mat-label>
+          <input type="text" matInput formControlName="order" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Synonymous: </mat-label>
+          <input type="text" matInput formControlName="synonymous" />
+        </mat-form-field>
+      </div>
+
+      <h3>Define Morphology</h3>
+      <form formGroupName="morphology" class="flex-morphology">
+        <mat-form-field>
+          <mat-label>Cap: </mat-label>
+          <textarea matInput formControlName="cap"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Gills: </mat-label>
+          <textarea matInput formControlName="gills"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Stalk: </mat-label>
+          <textarea matInput formControlName="stalk"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Flesh: </mat-label>
+          <textarea matInput formControlName="flesh"></textarea>
+        </mat-form-field>
+      </form>
+
+      <h3>Define Features</h3>
+      <form formGroupName="features" class="flex-features">
+        <mat-form-field>
+          <mat-label>Habitat: </mat-label>
+          <textarea matInput formControlName="habitat"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Edibility: </mat-label>
+          <textarea matInput formControlName="edibility"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Note: </mat-label>
+          <textarea matInput formControlName="note"></textarea>
+        </mat-form-field>
+      </form>
+
+      <h3>Define Microscopic features</h3>
+      <form formGroupName="microscopicFeatures" class="flex-micro-features">
+        <mat-form-field>
+          <mat-label>Spores: </mat-label>
+          <textarea matInput formControlName="spores"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Pileipellis: </mat-label>
+          <textarea matInput formControlName="pileipellis"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Cystidia: </mat-label>
+          <textarea matInput formControlName="cystidia"></textarea>
+        </mat-form-field>
+      </form>
+    </form>
+    <button *ngIf="!mushroom" (click)="isCreateMode = true">
+      Define iconography
+    </button>
+    <button *ngIf="mushroom" (click)="showIconography()">
+      Show iconography
+    </button>
+  </mat-expansion-panel>
+
+  <app-mycology-form-iconography
+    *ngIf="isCreateMode === true"
+    [isCreateMode]="isCreateMode"
+    (oncreate)="onCreate()"
+  ></app-mycology-form-iconography>
+</div>

@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { DataService } from '../services/data.service';
 import * as MushroomsActions from './mycology.actions';
-import { map, exhaustMap, catchError, of } from 'rxjs';
-import { Mushroom } from '../models/mushroom.models';
+import { map, exhaustMap, catchError, of, switchMap, from } from 'rxjs';
+import { IconographyData, Mushroom } from '../models/mushroom.models';
+import { Store } from '@ngrx/store';
 import { response } from 'express';
+import { request } from 'http';
 
 @Injectable()
 export class LoadMushroomsEffects {
@@ -12,7 +14,7 @@ export class LoadMushroomsEffects {
 
   loadMoshrooms$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MushroomsActions.loadMushrooms),
+      ofType(MushroomsActions.loadMushroomsRequest),
       exhaustMap((page) =>
         this.dataService.getMushrooms(page.pageIndex).pipe(
           map((response) =>
@@ -35,25 +37,31 @@ export class LoadMushroomsEffects {
 export class CreateMushroomEffects {
   constructor(private actions$: Actions, private dataService: DataService) {}
 
-  createMushroom$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(MushroomsActions.createMushroom),
-        exhaustMap((request) =>
-          this.dataService.createMushroom(request.mushroom).pipe(
-            map((mushromm) =>
+  createMushroom$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MushroomsActions.createMushroomRequest),
+      exhaustMap((request) =>
+        this.dataService.createMushroom(request.mushroom).pipe(
+          switchMap((mushroom) => {
+            const actionsToDispatch = [
               MushroomsActions.createMushroomSucces({
-                mushroom: mushromm,
+                mushroom: mushroom,
                 xtotalcount: request.xtotalcount,
-              })
-            ),
+              }),
+              MushroomsActions.createIconographyRequest({
+                ...request.iconographydata,
+                mushroomID: mushroom.id,
+              }),
+            ];
+            return from(actionsToDispatch);
+          }),
 
-            catchError((error) =>
-              of(MushroomsActions.createMushroomFailed({ error }))
-            )
+          catchError((error) =>
+            of(MushroomsActions.createMushroomFailed({ error }))
           )
         )
-      ),
+      )
+    )
   );
 }
 
@@ -63,7 +71,7 @@ export class updateMushroomEffects {
 
   updateMushroom$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MushroomsActions.updateMushroom),
+      ofType(MushroomsActions.updateMushroomRequest),
       exhaustMap((mushroom) =>
         this.dataService.updateMushroom(mushroom).pipe(
           map((mushroom: Mushroom) =>
@@ -84,12 +92,21 @@ export class deleteMushroomEffects {
 
   deleteMushroom$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MushroomsActions.deleteMushroom),
+      ofType(MushroomsActions.deleteMushroomRequest),
 
       exhaustMap((request) =>
         this.dataService.deleteMushroom(request.id).pipe(
           map(() => request),
-          map((request) => MushroomsActions.deleteMushroomSucces({id: request.id, xtotalcount: request.xtotalcount })),
+          switchMap((request) => {
+            const actionsToDispatch = [
+              MushroomsActions.deleteMushroomSucces({
+                id: request.id,
+                xtotalcount: request.xtotalcount,
+              }),
+              MushroomsActions.deleteIconographyRequest({ mushroomID: request.id })
+            ]; return from(actionsToDispatch)
+        }
+          ),
 
           catchError((error) =>
             of(MushroomsActions.deleteMushroomFailed({ error }))
@@ -100,9 +117,63 @@ export class deleteMushroomEffects {
   );
 }
 
-// this.dataService.getXtotalcount().pipe(
-//   exhaustMap( (response) => MushroomsActions.sendDati({
-//     xtotalcount:  Number(response.headers.get('X-total-count'))
-//   })
-//   )
-//   )
+@Injectable()
+export class LoadIconographyEffects {
+  constructor(private actions$: Actions, private dataService: DataService) {}
+
+  loadIconography$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MushroomsActions.loadIconographyRequest),
+      switchMap((request) =>
+        this.dataService.getIconography(request.iconographyID).pipe(
+          map((iconographydata: IconographyData) =>
+            MushroomsActions.loadIconographySucces({ iconographydata })
+          ),
+          catchError((error) =>
+            of(MushroomsActions.loadIconographyFailed({ error }))
+          )
+        )
+      )
+    )
+  );
+}
+
+@Injectable()
+export class CreateIconographyEffects {
+  constructor(private actions$: Actions, private dataService: DataService) {}
+  createIconography$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MushroomsActions.createIconographyRequest),
+      switchMap((iconographydata) =>
+        this.dataService.createIconography(iconographydata)
+      )
+    ),
+    {dispatch: false}
+  );
+}
+
+@Injectable()
+export class DeleteIconographyEffects {
+  constructor(private actions$: Actions, private dataService: DataService) {}
+  deleteIconography$ = createEffect(()=>
+  this.actions$.pipe(
+    ofType(MushroomsActions.deleteIconographyRequest),
+    switchMap((iconographydata)=> this.dataService.deleteIconography(iconographydata.mushroomID))
+  ),
+  {dispatch: false}
+  )
+}
+
+@Injectable()
+export class UpdateIconographyEffects {
+  constructor(private actions$: Actions, private dataService: DataService) {}
+updateIconography$ = createEffect(()=> 
+this.actions$.pipe(
+  ofType(MushroomsActions.updateIconographyRequest),
+  exhaustMap((iconographydata)=> this.dataService.updateIconography(iconographydata).pipe(
+    map((iconographydata) => MushroomsActions.updateIconographySucces({iconographydata: iconographydata})),
+    catchError((error)=> of(MushroomsActions.updateIconographyFailed({error: error})))
+  ))
+)
+)
+}

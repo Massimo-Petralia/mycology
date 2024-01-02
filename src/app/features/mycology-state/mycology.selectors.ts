@@ -17,3 +17,8 @@ export const selectPageIndex = createSelector(
     selectFeature,
     ({pageIndex}) => pageIndex
 )
+
+export const selectIconographydata = createSelector(
+    selectFeature,
+    ({iconographydata}) => iconographydata
+)
