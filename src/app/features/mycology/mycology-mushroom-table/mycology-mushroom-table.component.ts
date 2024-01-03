@@ -52,7 +52,7 @@ export class MycologyMushroomTableComponent
   @Input() xtotalcount$!: Observable<number>;
 
   pageIndex$ = this.store.select(selectPageIndex);
-  page: number = 1;
+  @Input() page!: number;
   xtotalcount!: number;
 
   showFirstLastButtons: boolean = true;

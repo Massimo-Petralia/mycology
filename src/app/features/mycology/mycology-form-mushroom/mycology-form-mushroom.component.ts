@@ -71,7 +71,7 @@ export class MycologyFormMushroomComponent implements OnInit, OnChanges {
   subs = new Subscription();
   iconographydata!: IconographyData;
   xtotalcount!: number;
-  isCreateMode!: boolean;
+  isCreateMode: boolean = true;
 
   ngOnInit(): void {
     this.subs = this.xtotalcount$.subscribe((xtotal) => {

@@ -105,16 +105,14 @@
         </mat-form-field>
       </form>
     </form>
-    <button *ngIf="!mushroom" (click)="isCreateMode = true">
-      Define iconography
-    </button>
+
     <button *ngIf="mushroom" (click)="showIconography()">
       Show iconography
     </button>
   </mat-expansion-panel>
 
   <app-mycology-form-iconography
-    *ngIf="isCreateMode === true"
+    *ngIf="isCreateMode === true && !mushroom"
     [isCreateMode]="isCreateMode"
     (oncreate)="onCreate()"
   ></app-mycology-form-iconography>
