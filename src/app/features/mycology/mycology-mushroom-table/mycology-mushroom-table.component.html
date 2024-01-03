@@ -1,7 +1,7 @@
 <mat-sidenav-container>
   <mat-sidenav-content>
     <a
-      *ngFor="let mushroom of mushrooms$ | async"
+      *ngFor="let mushroom of mushrooms"
       (click)="onMushroom(mushroom.id!)"
     >
       {{ mushroom.taxonomy!.species }}

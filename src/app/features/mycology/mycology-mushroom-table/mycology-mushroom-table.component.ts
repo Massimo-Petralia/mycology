@@ -4,7 +4,6 @@ import {
   OnInit,
   OnDestroy,
   ViewChild,
-  AfterViewInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -13,7 +12,6 @@ import { Store } from '@ngrx/store';
 import * as MushroomsActions from '../../mycology-state/mycology.actions';
 import { MycologyState } from '../../models/mycology-state.models';
 import {
-  selectMushrooms,
   selectXtotalcount,
   selectPageIndex,
 } from '../../mycology-state/mycology.selectors';
@@ -25,6 +23,7 @@ import {
 } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
+import { Mushroom } from '../../models/mushroom.models';
 
 @Component({
   selector: 'app-mycology-mushroom-table',
@@ -41,13 +40,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './mycology-mushroom-table.component.scss',
 })
 export class MycologyMushroomTableComponent
-  implements OnInit, AfterViewInit, OnDestroy
+  implements OnInit, OnDestroy
 {
   constructor(private router: Router, private store: Store<MycologyState>) {}
 
   @ViewChild('paginator') paginator!: MatPaginator;
 
-  mushrooms$ = this.store.select(selectMushrooms);
+ @Input() mushrooms: Mushroom[] = []
 
   @Input() xtotalcount$!: Observable<number>;
 
@@ -79,22 +78,7 @@ export class MycologyMushroomTableComponent
     )
   }
 
-  ngAfterViewInit(): void {
-    this.subs.add(
-      this.mushrooms$.subscribe((mushrooms) => {
-        if (mushrooms.length === 0) {
-          this.page = this.page - 1;
-          this.store.dispatch(
-            MushroomsActions.loadMushroomsRequest({ pageIndex: this.page })
-          );
-
-          this.paginator!.pageIndex = this.paginator.pageIndex - 1;
-        }
-      })
-    );
-  }
-
-  onMushroom(id: number) {
+onMushroom(id: number) {
     this.router.navigate(['mushroom', id]);
   }
 
