@@ -18,13 +18,13 @@ import { Router } from '@angular/router';
 import { selectXtotalcount } from '../../mycology-state/mycology.selectors';
 
 @Component({
-  selector: 'app-mycology-mushroom-edit-page',
+  selector: 'app-mycology-mushroom-page',
   standalone: true,
   imports: [CommonModule, MycologyFormMushroomComponent],
-  templateUrl: './mycology-mushroom-edit-page.component.html',
-  styleUrl: './mycology-mushroom-edit-page.component.scss',
+  templateUrl: './mycology-mushroom-page.component.html',
+  styleUrl: './mycology-mushroom-page.component.scss',
 })
-export class MycologyMushroomEditPageComponent
+export class MycologyMushroomPageComponent
   implements OnInit, OnChanges, OnDestroy
 {
   constructor(

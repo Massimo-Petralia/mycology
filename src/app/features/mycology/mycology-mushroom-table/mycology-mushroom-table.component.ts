@@ -27,7 +27,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-mycology-mushroom-list',
+  selector: 'app-mycology-mushroom-table',
   standalone: true,
   imports: [
     CommonModule,
@@ -37,10 +37,10 @@ import { FormsModule } from '@angular/forms';
     MatSlideToggleModule,
     FormsModule,
   ],
-  templateUrl: './mycology-mushroom-list.component.html',
-  styleUrl: './mycology-mushroom-list.component.scss',
+  templateUrl: './mycology-mushroom-table.component.html',
+  styleUrl: './mycology-mushroom-table.component.scss',
 })
-export class MycologyMushroomListComponent
+export class MycologyMushroomTableComponent
   implements OnInit, AfterViewInit, OnDestroy
 {
   constructor(private router: Router, private store: Store<MycologyState>) {}
