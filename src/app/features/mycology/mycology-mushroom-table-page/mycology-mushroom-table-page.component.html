@@ -1,8 +1,3 @@
-<app-mycology-mushroom-table
-  [page]="page"
-  [mushrooms]="mushrooms"
-  [xtotalcount]="xtotalcount"
-></app-mycology-mushroom-table>
 <div class="paginator">
   <mat-paginator
     #paginator
@@ -11,9 +6,17 @@
     [pageSize]="10"
     [showFirstLastButtons]="showFirstLastButtons"
   >
+  
   </mat-paginator>
-
+<div class="flex-container">
   <mat-slide-toggle [(ngModel)]="showFirstLastButtons"
     >show first / last buttons</mat-slide-toggle
   >
 </div>
+</div>
+
+
+<app-mycology-mushroom-table
+  [page]="page"
+  [mushrooms]="mushrooms"
+></app-mycology-mushroom-table>

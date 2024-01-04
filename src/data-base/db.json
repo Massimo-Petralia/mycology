@@ -8,7 +8,7 @@
         "gender": "Amanita",
         "family": "Amanitaceae",
         "order": "Agaricales",
-        "synonymous": ""
+        "synonymous": "qui va il sinonimo"
       },
       "morphology": {
         "cap": "8-20 cm, carnoso, inizialmente globoso, emisferico-globoso, poi convesso, infne piano, talvolta leggermente depresso al centro, con il margine brevemente striato; un po’ viscido se umido, brillante, di colore rosso,rosso-arancio, ricoperto da abbondanti residui di velo generale sotto forma di verruche bianche o bianco-giallognole e facilmente detersili.",
@@ -324,33 +324,6 @@
         "cystidia": ""
       },
       "id": 13
-    },
-    {
-      "taxonomy": {
-        "AA": "",
-        "species": "extra fungo",
-        "gender": "",
-        "family": "",
-        "order": "",
-        "synonymous": ""
-      },
-      "morphology": {
-        "cap": "",
-        "gills": "",
-        "stalk": "",
-        "flesh": ""
-      },
-      "features": {
-        "habitat": "",
-        "edibility": "",
-        "note": ""
-      },
-      "microscopicFeatures": {
-        "spores": "",
-        "pileipellis": "",
-        "cystidia": ""
-      },
-      "id": 14
     }
   ],
   "iconographies": [
@@ -446,12 +419,6 @@
       "mushroomID": 13,
       "type": "[Create Mushroom Effects] Create Iconography request",
       "id": 13
-    },
-    {
-      "iconographyarray": [],
-      "mushroomID": 14,
-      "type": "[Create Mushroom Effects] Create Iconography request",
-      "id": 14
     }
   ]
 }

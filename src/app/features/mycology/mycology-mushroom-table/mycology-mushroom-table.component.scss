@@ -1,7 +1,8 @@
-mat-sidenav-content{
-    display: flex;
-    flex-direction: column;
+.table{
+    background-color: #424242;
 }
-.paginator{
-    margin: 15px;
+
+.flex-container-button{
+    display: flex;
+    justify-content: flex-end;
 }
