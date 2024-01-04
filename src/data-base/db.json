@@ -297,6 +297,33 @@
         "cystidia": ""
       },
       "id": 12
+    },
+    {
+      "taxonomy": {
+        "AA": "",
+        "species": "fungox",
+        "gender": "",
+        "family": "",
+        "order": "",
+        "synonymous": ""
+      },
+      "morphology": {
+        "cap": "",
+        "gills": "",
+        "stalk": "",
+        "flesh": ""
+      },
+      "features": {
+        "habitat": "",
+        "edibility": "",
+        "note": ""
+      },
+      "microscopicFeatures": {
+        "spores": "",
+        "pileipellis": "",
+        "cystidia": ""
+      },
+      "id": 13
     }
   ],
   "iconographies": [
@@ -386,6 +413,12 @@
       "mushroomID": 12,
       "type": "[Create Mushroom Effects] Create Iconography request",
       "id": 12
+    },
+    {
+      "iconographyarray": [],
+      "mushroomID": 13,
+      "type": "[Create Mushroom Effects] Create Iconography request",
+      "id": 13
     }
   ]
 }
