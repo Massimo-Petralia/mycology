@@ -5,10 +5,10 @@ import { MycologyFormIconographyPageComponent } from './features/mycology/mycolo
 import { MycologyFormMushroomComponent } from './features/mycology/mycology-form-mushroom/mycology-form-mushroom.component';
 import { MycologyFormIconographyComponent } from './features/mycology/mycology-form-iconography/mycology-form-iconography.component';
 export const routes: Routes = [
-  { path: '', redirectTo: 'mushrooms', pathMatch: 'full' },
-  { path: 'mushrooms', component: MycologyMushroomTablePageComponent },
+  { path: '', redirectTo: `mushrooms/${1}`, pathMatch: 'full'},
+  { path: 'mushrooms/:currentpage', component: MycologyMushroomTablePageComponent },
   {
-    path: 'mushroom/:id',
+    path: 'mushroom/:currentpage/:id',
     component: MycologyMushroomPageComponent,
   },
   {

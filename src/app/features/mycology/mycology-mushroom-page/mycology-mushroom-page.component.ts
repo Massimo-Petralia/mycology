@@ -38,7 +38,13 @@ isCreateMode!: boolean
   @Input() set id(mushroomId: number) {
     this.mushroomID = mushroomId;
   }
+
+  @Input() set currentpage(pagenumber: number) {
+    this.pagenumber = pagenumber
+    console.log('page number from mushroom: ', this.pagenumber)
+  }
   mushroomID!: number;
+  pagenumber!:number
   mushroom!: Mushroom;
   subs = new Subscription();
 
@@ -79,7 +85,7 @@ isCreateMode!: boolean
         xtotalcount: this.xtotalcount,
       })
     );
-    this.router.navigate(['mushrooms']);
+    this.router.navigate(['mushrooms', this.pagenumber]);
   }
 
   ngOnDestroy(): void {
