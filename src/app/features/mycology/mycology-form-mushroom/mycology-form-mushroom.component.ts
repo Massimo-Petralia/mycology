@@ -32,6 +32,7 @@ import { RouterLink } from '@angular/router';
 import { MycologyFormIconographyPageComponent } from '../mycology-form-iconography-page/mycology-form-iconography-page.component';
 import { RouterOutlet } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 @Component({
   selector: 'app-mycology-form-mushroom',
@@ -45,6 +46,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     RouterLink,
     RouterOutlet,
     MatExpansionModule,
+    TextFieldModule
   ],
   templateUrl: './mycology-form-mushroom.component.html',
   styleUrl: './mycology-form-mushroom.component.scss',
