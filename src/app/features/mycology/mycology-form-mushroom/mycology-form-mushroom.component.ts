@@ -55,7 +55,10 @@ export class MycologyFormMushroomComponent implements OnInit, OnChanges {
     private store: Store<MycologyState>,
     private router: Router,
   ) {}
-
+@Input() set currentpage(pagenumber: number){
+this.page = pagenumber
+}
+page!: number
   @Input() mushroom!: Mushroom;
   @Output() update = new EventEmitter<Mushroom>();
   @Output() delete = new EventEmitter<number>();
@@ -128,7 +131,7 @@ export class MycologyFormMushroomComponent implements OnInit, OnChanges {
           iconographydata: this.iconographydata,
         })
       );
-      this.router.navigate(['']);
+      this.router.navigate(['mushrooms', this.page]);
     }
 
   }

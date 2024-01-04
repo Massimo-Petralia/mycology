@@ -1,4 +1,11 @@
-import { Component, OnInit, OnDestroy, Input, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  OnDestroy,
+  Input,
+  ViewChild,
+} from '@angular/core';
 import { MycologyMushroomTableComponent } from '../mycology-mushroom-table/mycology-mushroom-table.component';
 import { Store } from '@ngrx/store';
 import * as MushroomsActions from '../../mycology-state/mycology.actions';
@@ -8,20 +15,31 @@ import {
 } from '../../mycology-state/mycology.selectors';
 import { Subscription, Observable } from 'rxjs';
 import { Mushroom } from '../../models/mushroom.models';
-import { MatPaginatorModule, PageEvent, MatPaginator } from '@angular/material/paginator'
+import {
+  MatPaginatorModule,
+  PageEvent,
+  MatPaginator,
+} from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-mycology-mushroom-table-page',
   standalone: true,
-  imports: [ MycologyMushroomTableComponent,FormsModule, MatPaginatorModule, MatSlideToggleModule],
+  imports: [
+    MycologyMushroomTableComponent,
+    FormsModule,
+    MatPaginatorModule,
+    MatSlideToggleModule,
+  ],
   templateUrl: './mycology-mushroom-table-page.component.html',
   styleUrl: './mycology-mushroom-table-page.component.scss',
 })
-export class MycologyMushroomTablePageComponent implements OnInit, OnDestroy {
+export class MycologyMushroomTablePageComponent
+  implements OnInit, AfterViewInit, OnDestroy
+{
   constructor(private store: Store, private router: Router) {}
-  @ViewChild('paginator') paginator!: ElementRef<MatPaginator>
+  @ViewChild('paginator') paginator!: MatPaginator;
   showFirstLastButtons: boolean = true;
 
   mushrooms$ = this.store.select(selectMushrooms);
@@ -30,7 +48,7 @@ export class MycologyMushroomTablePageComponent implements OnInit, OnDestroy {
   xtotalcount!: number;
   subs = new Subscription();
   @Input() set currentpage(pagenumber: number) {
-    if (pagenumber && pagenumber !== 0) {
+    if (pagenumber !== 1) {
       this.page = pagenumber;
     }
   }
@@ -52,6 +70,11 @@ export class MycologyMushroomTablePageComponent implements OnInit, OnDestroy {
         this.xtotalcount = xtotal;
       })
     );
+  }
+  ngAfterViewInit(): void {
+    if (this.page !== 1) {
+      this.paginator.pageIndex = this.page - 1;
+    }
   }
 
   handlePagination(pageEvent: PageEvent) {

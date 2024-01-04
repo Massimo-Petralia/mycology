@@ -3,7 +3,7 @@ import { IconographyData, Mushroom } from "./mushroom.models";
 export interface MycologyState {
     mushrooms: Mushroom[];
     xtotalcount: number;
-    pageIndex:  number;
+    pageIndex:  number; // not used at the moment
     iconographydata: IconographyData
 }
 

@@ -15,6 +15,6 @@ export const routes: Routes = [
     path: 'iconography/:id',
     component: MycologyFormIconographyPageComponent,
   },
-  { path: 'form-mushroom', component: MycologyFormMushroomComponent },
+  { path: 'form-mushroom/:currentpage', component: MycologyFormMushroomComponent },
   { path: 'form-iconography', component: MycologyFormIconographyComponent },
 ];

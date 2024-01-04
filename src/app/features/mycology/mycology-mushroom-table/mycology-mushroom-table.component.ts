@@ -4,6 +4,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterLink, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { MycologyState } from '../../models/mycology-state.models';
+import {MatTableModule, MatTable} from '@angular/material/table'
 import { selectPageIndex } from '../../mycology-state/mycology.selectors';
 
 import { FormsModule } from '@angular/forms';
@@ -12,7 +13,7 @@ import { Mushroom } from '../../models/mushroom.models';
 @Component({
   selector: 'app-mycology-mushroom-table',
   standalone: true,
-  imports: [CommonModule, MatSidenavModule, RouterLink, FormsModule],
+  imports: [CommonModule, MatSidenavModule, MatTableModule, RouterLink, FormsModule],
   templateUrl: './mycology-mushroom-table.component.html',
   styleUrl: './mycology-mushroom-table.component.scss',
 })
@@ -33,6 +34,6 @@ export class MycologyMushroomTableComponent {
   }
 
   toCreateMushroom() {
-    this.router.navigate(['form-mushroom']);
+    this.router.navigate(['form-mushroom', this.page]);
   }
 }
