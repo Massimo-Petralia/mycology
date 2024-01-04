@@ -64,6 +64,7 @@ export class MycologyMushroomTableComponent
     this.store.dispatch(
       MushroomsActions.loadMushroomsRequest({ pageIndex: this.page })
     );
+    this.router.navigate(['mushrooms', this.page])
   }
 
   ngOnInit(): void {
