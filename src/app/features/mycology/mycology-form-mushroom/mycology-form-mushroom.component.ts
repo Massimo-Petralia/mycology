@@ -33,6 +33,8 @@ import { MycologyFormIconographyPageComponent } from '../mycology-form-iconograp
 import { RouterOutlet } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { TextFieldModule } from '@angular/cdk/text-field';
+import { ViewEncapsulation } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-mycology-form-mushroom',
@@ -46,10 +48,12 @@ import { TextFieldModule } from '@angular/cdk/text-field';
     RouterLink,
     RouterOutlet,
     MatExpansionModule,
-    TextFieldModule
+    TextFieldModule,
+    MatButtonModule
   ],
   templateUrl: './mycology-form-mushroom.component.html',
   styleUrl: './mycology-form-mushroom.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
 export class MycologyFormMushroomComponent implements OnInit, OnChanges {
   constructor(
@@ -78,7 +82,7 @@ page!: number
   xtotalcount!: number;
   isCreateMode: boolean = true;
 
-  ngOnInit(): void {
+ngOnInit(): void {
     this.subs = this.xtotalcount$.subscribe((xtotal) => {
       this.xtotalcount = xtotal;
     });
@@ -149,4 +153,8 @@ page!: number
   showIconography() {
     this.router.navigate(['iconography', this.mushroom.id]);
   }
+
+
+
+  
 }

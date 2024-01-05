@@ -1,8 +1,16 @@
-.paginator{
-    background-color: #424242;
+h1 {
+
+  background-color: #424242;
+  margin-bottom: 0px;
+  color: white;
+  padding: 15px;
 }
 
-.flex-container{
-    display: flex;
-    justify-content: flex-end;
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  background-color: #424242;
+  align-items: baseline;
+  padding-right: 10px;
 }

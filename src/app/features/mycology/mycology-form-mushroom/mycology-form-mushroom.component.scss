@@ -29,3 +29,18 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
+
+.isFocused {
+    color: #c2185b;
+}
+
+.buttons-flex-container{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+.ico-button-flex-container{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
