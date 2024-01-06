@@ -18,13 +18,13 @@ import { Router } from '@angular/router';
 import { selectXtotalcount } from '../../mycology-state/mycology.selectors';
 
 @Component({
-  selector: 'app-mycology-mushroom-edit-page',
+  selector: 'app-mycology-mushroom-page',
   standalone: true,
   imports: [CommonModule, MycologyFormMushroomComponent],
-  templateUrl: './mycology-mushroom-edit-page.component.html',
-  styleUrl: './mycology-mushroom-edit-page.component.scss',
+  templateUrl: './mycology-mushroom-page.component.html',
+  styleUrl: './mycology-mushroom-page.component.scss',
 })
-export class MycologyMushroomEditPageComponent
+export class MycologyMushroomPageComponent
   implements OnInit, OnChanges, OnDestroy
 {
   constructor(
@@ -38,7 +38,13 @@ isCreateMode!: boolean
   @Input() set id(mushroomId: number) {
     this.mushroomID = mushroomId;
   }
+
+  @Input() set currentpage(pagenumber: number) {
+    this.pagenumber = pagenumber
+    console.log('page number from mushroom: ', this.pagenumber)
+  }
   mushroomID!: number;
+  pagenumber!:number
   mushroom!: Mushroom;
   subs = new Subscription();
 
@@ -79,7 +85,7 @@ isCreateMode!: boolean
         xtotalcount: this.xtotalcount,
       })
     );
-    this.router.navigate(['mushrooms']);
+    this.router.navigate(['mushrooms', this.pagenumber]);
   }
 
   ngOnDestroy(): void {

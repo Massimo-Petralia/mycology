@@ -94,7 +94,6 @@ export class MycologyFormIconographyComponent implements OnChanges {
             this.iconographyarrayform.push(
               this.formBuilder.control<string>(iconography.description)
             );
-            debugger;
           }
         };
         reader.readAsDataURL(image);

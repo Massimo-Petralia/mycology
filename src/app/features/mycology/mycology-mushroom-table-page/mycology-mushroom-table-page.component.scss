@@ -1,0 +1,16 @@
+h1 {
+  background-color: #424242;
+  margin-bottom: 0px;
+  color: white;
+  padding: 15px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  background-color: #424242;
+  align-items: baseline;
+  padding-right: 10px;
+}

@@ -7,22 +7,40 @@
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    align-items: flex-start;
 
 }
 .flex-morphology{
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    align-items: flex-start;
 }
 
 .flex-features{
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    align-items: flex-start;
 }
 
 .flex-taxonomy{
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+}
+
+.isFocused {
+    color: #c2185b;
+}
+
+.buttons-flex-container{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+.ico-button-flex-container{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
 }

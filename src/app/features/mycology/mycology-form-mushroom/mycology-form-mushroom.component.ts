@@ -32,6 +32,9 @@ import { RouterLink } from '@angular/router';
 import { MycologyFormIconographyPageComponent } from '../mycology-form-iconography-page/mycology-form-iconography-page.component';
 import { RouterOutlet } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { ViewEncapsulation } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-mycology-form-mushroom',
@@ -45,9 +48,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
     RouterLink,
     RouterOutlet,
     MatExpansionModule,
+    TextFieldModule,
+    MatButtonModule
   ],
   templateUrl: './mycology-form-mushroom.component.html',
   styleUrl: './mycology-form-mushroom.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
 export class MycologyFormMushroomComponent implements OnInit, OnChanges {
   constructor(
@@ -55,7 +61,10 @@ export class MycologyFormMushroomComponent implements OnInit, OnChanges {
     private store: Store<MycologyState>,
     private router: Router,
   ) {}
-
+@Input() set currentpage(pagenumber: number){
+this.page = pagenumber
+}
+page!: number
   @Input() mushroom!: Mushroom;
   @Output() update = new EventEmitter<Mushroom>();
   @Output() delete = new EventEmitter<number>();
@@ -71,9 +80,9 @@ export class MycologyFormMushroomComponent implements OnInit, OnChanges {
   subs = new Subscription();
   iconographydata!: IconographyData;
   xtotalcount!: number;
-  isCreateMode!: boolean;
+  isCreateMode: boolean = true;
 
-  ngOnInit(): void {
+ngOnInit(): void {
     this.subs = this.xtotalcount$.subscribe((xtotal) => {
       this.xtotalcount = xtotal;
     });
@@ -128,7 +137,7 @@ export class MycologyFormMushroomComponent implements OnInit, OnChanges {
           iconographydata: this.iconographydata,
         })
       );
-      this.router.navigate(['']);
+      this.router.navigate(['mushrooms', this.page]);
     }
 
   }
@@ -144,4 +153,8 @@ export class MycologyFormMushroomComponent implements OnInit, OnChanges {
   showIconography() {
     this.router.navigate(['iconography', this.mushroom.id]);
   }
+
+
+
+  
 }
