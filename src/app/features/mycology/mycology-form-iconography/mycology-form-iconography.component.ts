@@ -17,11 +17,16 @@ import {
   FormsModule,
   FormArray,
 } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card'
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-mycology-form-iconography',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, MatInputModule, MatCardModule, TextFieldModule, MatFormFieldModule, MatButtonModule],
   templateUrl: './mycology-form-iconography.component.html',
   styleUrl: './mycology-form-iconography.component.scss',
 })

@@ -1,0 +1,38 @@
+.iconography-card{
+    max-width: fit-content;
+    border: 1px solid lightgrey;
+}
+img{ 
+    max-width: 400px;
+    height: 400px;
+    object-fit: contain;
+}
+.fullsize-img{
+  
+    max-width: 100%;
+    height: 100%;
+   
+    cursor: pointer;
+}
+
+.iconography-flex-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+mat-form-field{
+    box-sizing: content-box;
+    width: 100%;
+}
+
+
+
+.container{
+    background-color: #424242;
+    width: fit-content;
+    max-width: 100%;
+}
+
+h2{
+    color: white;
+}

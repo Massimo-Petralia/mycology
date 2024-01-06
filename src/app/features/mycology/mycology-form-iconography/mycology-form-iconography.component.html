@@ -1,9 +1,12 @@
-<div *ngIf="!isCreateMode; else elseBlock">
+<div *ngIf="!isCreateMode; else elseBlock" class="container">
   <h2>Iconography gallery</h2>
-  <form [formGroup]="formIconographyData" (ngSubmit)="onSubmit()">
-    <button type="submit" *ngIf="!isCreateMode">Save iconography</button>
-
-    <div action="" formArrayName="iconographyarrayform">
+  <form [formGroup]="formIconographyData" (ngSubmit)="onSubmit()" >
+    <button mat-stroked-button type="submit" *ngIf="!isCreateMode">Save iconography</button>
+    <div
+      action=""
+      formArrayName="iconographyarrayform"
+      class="iconography-flex-container"
+    >
       <div
         *ngFor="let iconography of iconographyarrayform.controls; let i = index"
       >
@@ -12,15 +15,34 @@
             let iconography of iconographydata.iconographyarray.slice(i, i + 1)
           "
         >
-          <img [src]="iconography.imageURL" alt="" />
+          <mat-card class="iconography-card">
+            <mat-card-header>
+              <mat-card-subtitle>Image N°{{ i + 1 }}</mat-card-subtitle>
+            </mat-card-header>
+
+            <img
+              #img
+              mat-card-image
+              [src]="iconography.imageURL"
+              alt=""
+              class=""
+              (click)="img.classList.toggle('fullsize-img')"
+            />
+
+            <mat-card-content>
+              <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea
+                cdkTextareaAutosize
+                  matInput
+                  cols="30"
+                  rows="10"
+                  [formControlName]="i"
+                ></textarea>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
         </div>
-        <textarea
-          name=""
-          id="{{ i }}"
-          cols="30"
-          rows="10"
-          [formControlName]="i"
-        ></textarea>
       </div>
     </div>
   </form>
@@ -28,14 +50,37 @@
 
 <ng-template #elseBlock>
   <h2>Define iconography</h2>
-  <div *ngFor="let iconography of defineiconography.iconographyarray">
-    <img [src]="iconography.imageURL" alt="" />
-    <textarea
-      name=""
-      cols="30"
-      rows="10"
-      [(ngModel)]="iconography.description"
-    ></textarea>
+  <div class="iconography-flex-container">
+    <div
+      *ngFor="
+        let iconography of defineiconography.iconographyarray;
+        let i = index
+      "
+    >
+      <mat-card class="iconography-card">
+        <mat-card-subtitle>Image N°{{ i + 1 }}</mat-card-subtitle>
+        <img
+          #img
+          [src]="iconography.imageURL"
+          alt=""
+          class=""
+          (click)="img.classList.toggle('fullsize-img')"
+        />
+        <mat-card-content>
+          <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea
+            cdkTextareaAutosize
+
+              matInput
+              cols="30"
+              rows="10"
+              [(ngModel)]="iconography.description"
+            ></textarea>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 </ng-template>
 <input #inputfile type="file" multiple (change)="handleFiles()" />
