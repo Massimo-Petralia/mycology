@@ -18,15 +18,24 @@ import {
   FormArray,
 } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { MatCardModule } from '@angular/material/card'
+import { MatCardModule } from '@angular/material/card';
 import { TextFieldModule } from '@angular/cdk/text-field';
-import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-mycology-form-iconography',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, MatInputModule, MatCardModule, TextFieldModule, MatFormFieldModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatInputModule,
+    MatCardModule,
+    TextFieldModule,
+    MatFormFieldModule,
+    MatButtonModule,
+  ],
   templateUrl: './mycology-form-iconography.component.html',
   styleUrl: './mycology-form-iconography.component.scss',
 })
@@ -71,13 +80,16 @@ export class MycologyFormIconographyComponent implements OnChanges {
 
   handleFiles() {
     const imageFiles: FileList | null = this.inputfileElem.nativeElement.files;
+    let counter: number = 0
     if (imageFiles) {
       for (const image of Array.from(imageFiles)) {
+        counter++
         const reader = new FileReader();
         reader.onload = (event: ProgressEvent<FileReader>) => {
           const imageData = (event.target as FileReader).result as string;
 
           const iconography: Iconography = {
+            id: counter,
             description: '',
             imageURL: imageData,
           };
@@ -129,4 +141,13 @@ export class MycologyFormIconographyComponent implements OnChanges {
   onCreate() {
     this.oncreate.emit();
   }
+
+  removeControl(index: number, iconographyID: number) {
+    this.formIconographyData.controls.iconographyarrayform.removeAt(index);
+    this.iconographydata = {...this.iconographydata, iconographyarray: [...this.iconographydata.iconographyarray.filter((iconography)=>
+      iconography.id !== iconographyID 
+    )]}
+    debugger
+  }
+
 }

@@ -57,6 +57,7 @@
               formControlName="species"
               (focus)="specieslabel.className = 'isFocused'"
               (blur)="specieslabel.className = ''"
+              (click)="specieslabel.classList.toggle('isFocused')"
             />
           </mat-form-field>
           <mat-form-field>
@@ -269,7 +270,6 @@
         Show iconography
       </button>
     </div>
-    
   </mat-expansion-panel>
 
   <app-mycology-form-iconography
