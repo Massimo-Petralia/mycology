@@ -17,11 +17,25 @@ import {
   FormsModule,
   FormArray,
 } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-mycology-form-iconography',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatInputModule,
+    MatCardModule,
+    TextFieldModule,
+    MatFormFieldModule,
+    MatButtonModule,
+  ],
   templateUrl: './mycology-form-iconography.component.html',
   styleUrl: './mycology-form-iconography.component.scss',
 })
@@ -29,7 +43,7 @@ export class MycologyFormIconographyComponent implements OnChanges {
   constructor(private formBuilder: FormBuilder) {}
   @ViewChild('inputfile') inputfileElem!: ElementRef<HTMLInputElement>;
 
-  @Input() iconographydata!: IconographyData;
+  @Input() iconographydata: IconographyData  = { iconographyarray: [] };
 
   defineiconography: IconographyData = { iconographyarray: [] };
 
@@ -66,6 +80,7 @@ export class MycologyFormIconographyComponent implements OnChanges {
 
   handleFiles() {
     const imageFiles: FileList | null = this.inputfileElem.nativeElement.files;
+    let counter: number = 0
     if (imageFiles) {
       for (const image of Array.from(imageFiles)) {
         const reader = new FileReader();
@@ -73,6 +88,7 @@ export class MycologyFormIconographyComponent implements OnChanges {
           const imageData = (event.target as FileReader).result as string;
 
           const iconography: Iconography = {
+            id:  (this.iconographydata.iconographyarray.length == 0 ? 0 : this.iconographydata.iconographyarray.length+1),
             description: '',
             imageURL: imageData,
           };
@@ -82,7 +98,7 @@ export class MycologyFormIconographyComponent implements OnChanges {
               iconography,
             ];
           } else {
-            const iconographydata = {
+            const iconographydata = {//!! qui usa un counter start from 0 per l'id dell'iconografia
               ...this.iconographydata,
               iconographyarray: [
                 ...this.iconographydata.iconographyarray,
@@ -99,6 +115,7 @@ export class MycologyFormIconographyComponent implements OnChanges {
         reader.readAsDataURL(image);
       }
     }
+   
   }
 
   onSubmit() {
@@ -124,4 +141,13 @@ export class MycologyFormIconographyComponent implements OnChanges {
   onCreate() {
     this.oncreate.emit();
   }
+
+  removeControl(index: number, iconographyID: number) {
+    this.formIconographyData.controls.iconographyarrayform.removeAt(index);
+    this.iconographydata = {...this.iconographydata, iconographyarray: this.iconographydata.iconographyarray.filter(iconography=>
+       iconography.id !== iconographyID 
+       
+    )}
+  }
+
 }

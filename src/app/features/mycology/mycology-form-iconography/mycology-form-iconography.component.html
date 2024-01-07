@@ -1,9 +1,20 @@
-<div *ngIf="!isCreateMode; else elseBlock">
+<div *ngIf="!isCreateMode; else elseBlock" class="container">
   <h2>Iconography gallery</h2>
   <form [formGroup]="formIconographyData" (ngSubmit)="onSubmit()">
-    <button type="submit" *ngIf="!isCreateMode">Save iconography</button>
+    <div>
+      <input hidden #inputfile type="file" multiple (change)="handleFiles()" />
+      <button mat-stroked-button (click)="inputfile.click()">
+        Choose image File/s
+      </button>
+      <button mat-stroked-button type="submit" *ngIf="!isCreateMode">
+        Save gallery changes
+      </button>
+    </div>
 
-    <div action="" formArrayName="iconographyarrayform">
+    <div
+      formArrayName="iconographyarrayform"
+      class="iconography-flex-container"
+    >
       <div
         *ngFor="let iconography of iconographyarrayform.controls; let i = index"
       >
@@ -12,36 +23,87 @@
             let iconography of iconographydata.iconographyarray.slice(i, i + 1)
           "
         >
-          <img [src]="iconography.imageURL" alt="" />
+          <mat-card class="iconography-card">
+            <mat-card-header>
+              <mat-card-subtitle>Image N°{{ i + 1 }}</mat-card-subtitle>
+            </mat-card-header>
+
+            <img
+              id="{{ i }}"
+              #img
+              mat-card-image
+              [src]="iconography.imageURL"
+              alt=""
+              class=""
+              (click)="img.classList.toggle('fullsize-img')"
+            />
+
+            <mat-card-content>
+              <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea
+                  cdkTextareaAutosize
+                  matInput
+                  [formControlName]="i"
+                ></textarea>
+              </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-stroked-button (click)="removeControl(i , iconography.id)">
+                remove
+              </button>
+            </mat-card-actions>
+          </mat-card>
         </div>
-        <textarea
-          name=""
-          id="{{ i }}"
-          cols="30"
-          rows="10"
-          [formControlName]="i"
-        ></textarea>
       </div>
     </div>
   </form>
 </div>
 
 <ng-template #elseBlock>
-  <h2>Define iconography</h2>
-  <div *ngFor="let iconography of defineiconography.iconographyarray">
-    <img [src]="iconography.imageURL" alt="" />
-    <textarea
-      name=""
-      cols="30"
-      rows="10"
-      [(ngModel)]="iconography.description"
-    ></textarea>
+  <div class="iconography-flex-container">
+    <div
+      *ngFor="
+        let iconography of defineiconography.iconographyarray;
+        let i = index
+      "
+    >
+      <mat-card class="iconography-card">
+        <mat-card-header>
+          <mat-card-subtitle>Image N°{{ i + 1 }}</mat-card-subtitle>
+        </mat-card-header>
+        <img
+          #img
+          [src]="iconography.imageURL"
+          alt=""
+          class=""
+          (click)="img.classList.toggle('fullsize-img')"
+        />
+        <mat-card-content>
+          <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea
+              cdkTextareaAutosize
+              matInput
+              [(ngModel)]="iconography.description"
+            ></textarea>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="container-inputfile-button" *ngIf="isCreateMode">
+    <p>Define Iconography gallery</p>
+    <input hidden #inputfile type="file" multiple (change)="handleFiles()" />
+    <button mat-stroked-button (click)="inputfile.click()">
+      Choose image File/s
+    </button>
+    <button
+      mat-stroked-button
+      *ngIf="defineiconography.iconographyarray.length !== 0"
+      (click)="onCreate()"
+    >
+      Save mushroom
+    </button>
   </div>
 </ng-template>
-<input #inputfile type="file" multiple (change)="handleFiles()" />
-<button
-  *ngIf="defineiconography.iconographyarray.length !== 0"
-  (click)="onCreate()"
->
-  Save mushroom
-</button>
