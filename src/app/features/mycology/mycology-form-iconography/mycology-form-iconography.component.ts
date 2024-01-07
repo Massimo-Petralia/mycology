@@ -43,7 +43,7 @@ export class MycologyFormIconographyComponent implements OnChanges {
   constructor(private formBuilder: FormBuilder) {}
   @ViewChild('inputfile') inputfileElem!: ElementRef<HTMLInputElement>;
 
-  @Input() iconographydata!: IconographyData;
+  @Input() iconographydata: IconographyData  = { iconographyarray: [] };
 
   defineiconography: IconographyData = { iconographyarray: [] };
 
@@ -83,13 +83,12 @@ export class MycologyFormIconographyComponent implements OnChanges {
     let counter: number = 0
     if (imageFiles) {
       for (const image of Array.from(imageFiles)) {
-        counter++
         const reader = new FileReader();
         reader.onload = (event: ProgressEvent<FileReader>) => {
           const imageData = (event.target as FileReader).result as string;
 
           const iconography: Iconography = {
-            id: counter,
+            id:  (this.iconographydata.iconographyarray.length == 0 ? 0 : this.iconographydata.iconographyarray.length+1),
             description: '',
             imageURL: imageData,
           };
@@ -99,7 +98,7 @@ export class MycologyFormIconographyComponent implements OnChanges {
               iconography,
             ];
           } else {
-            const iconographydata = {
+            const iconographydata = {//!! qui usa un counter start from 0 per l'id dell'iconografia
               ...this.iconographydata,
               iconographyarray: [
                 ...this.iconographydata.iconographyarray,
@@ -116,6 +115,7 @@ export class MycologyFormIconographyComponent implements OnChanges {
         reader.readAsDataURL(image);
       }
     }
+   
   }
 
   onSubmit() {
@@ -144,10 +144,10 @@ export class MycologyFormIconographyComponent implements OnChanges {
 
   removeControl(index: number, iconographyID: number) {
     this.formIconographyData.controls.iconographyarrayform.removeAt(index);
-    this.iconographydata = {...this.iconographydata, iconographyarray: [...this.iconographydata.iconographyarray.filter((iconography)=>
-      iconography.id !== iconographyID 
-    )]}
-    debugger
+    this.iconographydata = {...this.iconographydata, iconographyarray: this.iconographydata.iconographyarray.filter(iconography=>
+       iconography.id !== iconographyID 
+       
+    )}
   }
 
 }
