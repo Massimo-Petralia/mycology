@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { DataService } from '../services/data.service';
 import * as MushroomsActions from './mycology.actions';
-import { map, exhaustMap, catchError, of, switchMap, from } from 'rxjs';
+import { map, exhaustMap, catchError, of, switchMap, from, filter } from 'rxjs';
 import { IconographyData, Mushroom } from '../models/mushroom.models';
 import { Store } from '@ngrx/store';
 import { response } from 'express';
@@ -48,6 +48,7 @@ export class CreateMushroomEffects {
                 mushroom: mushroom,
                 xtotalcount: request.xtotalcount,
               }),
+
               MushroomsActions.createIconographyRequest({
                 ...request.iconographydata,
                 mushroomID: mushroom.id,
@@ -144,8 +145,8 @@ export class CreateIconographyEffects {
   createIconography$ = createEffect(() =>
     this.actions$.pipe(
       ofType(MushroomsActions.createIconographyRequest),
-      switchMap((iconographydata) =>
-        this.dataService.createIconography(iconographydata)
+      filter((iconographydata)=> (iconographydata.iconographyarray.length !== 0)),
+      switchMap((iconographydata) => this.dataService.createIconography(iconographydata)
       )
     ),
     {dispatch: false}
