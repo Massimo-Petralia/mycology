@@ -273,7 +273,7 @@
   </mat-expansion-panel>
 
   <app-mycology-form-iconography
-    *ngIf="isCreateMode === true && !mushroom"
+    *ngIf="!mushroom"
     [isCreateMode]="isCreateMode"
     (oncreate)="onCreate()"
   ></app-mycology-form-iconography>

@@ -1,4 +1,4 @@
-<div *ngIf="!isCreateMode; else elseBlock" class="container">
+<div class="container">
   <h2>Iconography gallery</h2>
   <form [formGroup]="formIconographyData" (ngSubmit)="onSubmit()">
     <div>
@@ -6,9 +6,10 @@
       <button mat-stroked-button (click)="inputfile.click()">
         Choose image File/s
       </button>
-      <button mat-stroked-button type="submit" *ngIf="!isCreateMode">
+      <button mat-stroked-button type="submit" *ngIf="iconographydata.id && iconographydata.mushroomID">
         Save gallery changes
       </button>
+      <button mat-stroked-button type="button" *ngIf="!iconographydata.id && !iconographydata.mushroomID" (click)="onCreate()">Save mushroom</button>
     </div>
 
     <div
@@ -59,7 +60,7 @@
     </div>
   </form>
 </div>
-
+<!-- 
 <ng-template #elseBlock>
   <div class="iconography-flex-container">
     <div
@@ -106,4 +107,4 @@
       Save mushroom
     </button>
   </div>
-</ng-template>
+</ng-template> -->

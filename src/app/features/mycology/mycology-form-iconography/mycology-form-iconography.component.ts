@@ -45,7 +45,7 @@ export class MycologyFormIconographyComponent implements OnChanges {
 
   @Input() iconographydata: IconographyData  = { iconographyarray: [] };
 
-  defineiconography: IconographyData = { iconographyarray: [] };
+  //defineiconography: IconographyData = { iconographyarray: [] };
 
   @Output() oncreate = new EventEmitter();
 
@@ -65,6 +65,7 @@ export class MycologyFormIconographyComponent implements OnChanges {
     ) as unknown as FormArray;
   }
   ngOnChanges(changes: SimpleChanges): void {
+    console.log('iconographydata ngOnChanges: ', this.iconographydata)
     if (this.iconographydata) {
       this.isCreateMode = false;
       this.formIconographyData.controls.iconographyarrayform.clear();
@@ -92,13 +93,9 @@ export class MycologyFormIconographyComponent implements OnChanges {
             description: '',
             imageURL: imageData,
           };
-          if (this.isCreateMode === true) {
-            this.defineiconography.iconographyarray = [
-              ...this.defineiconography.iconographyarray,
-              iconography,
-            ];
-          } else {
-            const iconographydata = {//!! qui usa un counter start from 0 per l'id dell'iconografia
+      
+         
+            const iconographydata = {
               ...this.iconographydata,
               iconographyarray: [
                 ...this.iconographydata.iconographyarray,
@@ -110,7 +107,7 @@ export class MycologyFormIconographyComponent implements OnChanges {
             this.iconographyarrayform.push(
               this.formBuilder.control<string>(iconography.description)
             );
-          }
+          
         };
         reader.readAsDataURL(image);
       }
@@ -135,10 +132,25 @@ export class MycologyFormIconographyComponent implements OnChanges {
       ],
     };
     this.update.emit(mappedIconographydata);
-    console.log('mappedIconographydata: ', mappedIconographydata);
   }
 
   onCreate() {
+    const mappedIconographyarray = (
+      this.formIconographyData.controls.iconographyarrayform.value as string[]
+    ).map((text) => ({ description: text }));
+    const mappedIconographydata = {
+      ...this.iconographydata,
+      iconographyarray: [
+        ...this.iconographydata.iconographyarray.map(
+          (iconography, index) =>
+            (iconography = {
+              ...this.iconographydata.iconographyarray[index],
+              description: mappedIconographyarray[index].description,
+            })
+        ),
+      ],
+    };
+    this.iconographydata = mappedIconographydata
     this.oncreate.emit();
   }
 

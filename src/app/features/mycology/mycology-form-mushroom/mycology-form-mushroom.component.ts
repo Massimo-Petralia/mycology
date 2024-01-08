@@ -129,7 +129,7 @@ ngOnInit(): void {
     } else {
       this.xtotalcount = this.xtotalcount + 1;
 
-      this.iconographydata = this.formiconography.defineiconography;
+      this.iconographydata = this.formiconography.iconographydata;
       this.store.dispatch(
         MushroomsActions.createMushroomRequest({
           mushroom: this.mushroomForm.value,
